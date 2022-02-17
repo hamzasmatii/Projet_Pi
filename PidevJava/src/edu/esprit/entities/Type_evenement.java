@@ -41,6 +41,11 @@ public class Type_evenement {
     public void setLibelle_type_evenement(String libelle_type_evenement) {
         this.libelle_type_evenement = libelle_type_evenement;
     }
+
+    @Override
+    public String toString() {
+        return "Type_evenement{" + "id_type_evenement=" + id_type_evenement + ", libelle_type_evenement=" + libelle_type_evenement + '}';
+    }
     
     
 }

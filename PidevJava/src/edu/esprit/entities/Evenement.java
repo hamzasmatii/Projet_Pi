@@ -34,6 +34,16 @@ public class Evenement {
         this.id_utilisateur = id_utilisateur;
     }
 
+    public Evenement(int id_evenement, String titre_evenement, String adresse_evenement, String description_evenement, Date date_evenement, int type_evenements, int id_utilisateur) {
+        this.id_evenement = id_evenement;
+        this.titre_evenement = titre_evenement;
+        this.adresse_evenement = adresse_evenement;
+        this.description_evenement = description_evenement;
+        this.date_evenement = date_evenement;
+        this.type_evenements = type_evenements;
+        this.id_utilisateur = id_utilisateur;
+    }
+
     public Evenement(String titre_evenement, String adresse_evenement, String description_evenement, Date date_evenement, int type_evenements, int id_utilisateur) {
         this.titre_evenement = titre_evenement;
         this.adresse_evenement = adresse_evenement;
@@ -107,6 +117,11 @@ public class Evenement {
 
     public void setId_utilisateur(int id_utilisateur) {
         this.id_utilisateur = id_utilisateur;
+    }
+
+    @Override
+    public String toString() {
+        return "Evenement{" + "id_evenement=" + id_evenement + ", titre_evenement=" + titre_evenement + ", adresse_evenement=" + adresse_evenement + ", description_evenement=" + description_evenement + ", date_creation_evenement=" + date_creation_evenement + ", date_evenement=" + date_evenement + ", type_evenements=" + type_evenements + ", id_utilisateur=" + id_utilisateur + '}';
     }
     
     

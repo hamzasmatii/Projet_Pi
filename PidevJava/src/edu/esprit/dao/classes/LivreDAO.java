@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import edu.esprit.util.MyDB;
+import edu.esprit.util.MyConnection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +23,10 @@ import java.util.List;
  */
 public class LivreDAO implements ILivre {
     
-    Connection connexion;
-    Statement stm;
+  private Connection connection;
 
     public LivreDAO() {
-        connexion = MyDB.getInstance().getConnexion();
+        connection = MyConnection.getInstance();
     }
 
 
@@ -36,7 +35,7 @@ public void insertLivre(Livre l) {
         String req = "INSERT INTO `livre` (`titre_livre`, `description_livre`,`date_publication_livre`, `photo_livre`, `contenu_livre`, `prix_livre`, `evalution_livre`, `id_ecrivain_livre`) "
                 + "VALUES (?,?,?,?,?,?,?,?) ";
         try {
-            PreparedStatement usl = connexion.prepareStatement(req);
+            PreparedStatement usl = connection.prepareStatement(req);
             usl.setString(1, l.getTitre_livre());
             
             usl.setString(2, l.getDescription_livre());
@@ -57,7 +56,7 @@ public void insertLivre(Livre l) {
     public void updateLivre(edu.esprit.entities.Livre l) {
         String req = "update livre set titre_livre=? , description_livre=? , date_publication_livre=? ,photo_livre=? ,contenu_livre=? ,prix_livre=?,evalution_livre=?,id_ecrivain_livre=?  where id_livre=?";
         try {
-            PreparedStatement usl = connexion.prepareStatement(req);
+            PreparedStatement usl = connection.prepareStatement(req);
             usl.setString(1, l.getTitre_livre());
            
             usl.setString(2, l.getDescription_livre());
@@ -82,7 +81,7 @@ public void insertLivre(Livre l) {
      public void deleteLivre(int id) {
         String requete = "delete from livre where id_livre=?";
         try {
-            PreparedStatement us = connexion.prepareStatement(requete);
+            PreparedStatement us = connection.prepareStatement(requete);
             us.setInt(1, id);
             us.executeUpdate();
             System.out.println("livre supprimée");
@@ -96,7 +95,7 @@ public void insertLivre(Livre l) {
         edu.esprit.entities.Livre livre = new edu.esprit.entities.Livre();
         String requete = "select * from livre where id_livre=?";
         try {
-            PreparedStatement ps = connexion.prepareStatement(requete);
+            PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
@@ -127,7 +126,7 @@ public void insertLivre(Livre l) {
 
         String requete = "select * from livre";
         try {
-            Statement statement = connexion
+            Statement statement = connection
                     .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 

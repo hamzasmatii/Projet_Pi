@@ -5,6 +5,10 @@
  */
 package edu.esprit.dao.classes;
 
+import edu.esprit.dao.interfaces.IAchatLivre;
+import edu.esprit.entities.AchatLivre;
+import edu.esprit.dao.interfaces.IAchatLivre;
+import edu.esprit.entities.AchatLivre;
 import edu.esprit.dao.interfaces.ICategorieLivre;
 import edu.esprit.dao.interfaces.ILivre;
 import edu.esprit.entities.CategorieLivre;
@@ -23,32 +27,35 @@ import java.util.List;
  *
  * @author aziz karoui
  */
-public class CategorieLivreDAO implements ICategorieLivre {
-       private Connection connection;
+public class AchatLivreDAO implements IAchatLivre {
+     private Connection connection;
 
-    public CategorieLivreDAO() {
+    public AchatLivreDAO() {
         connection = MyConnection.getInstance();
     }
 
-    public void insertCategorieLivre(CategorieLivre l) {
-        String req = "INSERT INTO `categorie_livre` (`id_categorie_livre`,`libelle`) "
-                + "VALUES (?,?) ";
+    public void insertAchatLivre(AchatLivre l) {
+        String req = "INSERT INTO `achat_livre` (`id_utilisateur`,`id_livre`,`date_achat`) "
+                + "VALUES (?,?,?) ";
         try {
             PreparedStatement ls = connection.prepareStatement(req);
-            ls.setInt(1, l.getId_categorie_livre());
-            ls.setString(2, l.getLibelle());
+            ls.setInt(1, l.getId_utilisateur());
+            ls.setInt(2, l.getId_livre());
+            ls.setDate(3, l.getDate_achat());
+
             ls.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void updateCategorieLivre(CategorieLivre l) {
-        String req = "update categorie_livre set libelle=? where id_categorie_livre=?";
+    public void updateAchatLivre(AchatLivre l) {
+        String req = "update achat_livre set date_achat=? where id_utilisateur=?";
         try {
             PreparedStatement ls = connection.prepareStatement(req);
-            ls.setInt(2, l.getId_categorie_livre());
-            ls.setString(1, l.getLibelle());
+            ls.setInt(1, l.getId_utilisateur());
+            ls.setInt(2, l.getId_livre());
+            ls.setDate(3, l.getDate_achat());
  
 
             ls.executeUpdate();
@@ -59,32 +66,33 @@ public class CategorieLivreDAO implements ICategorieLivre {
         }
     }
 
-    public void deleteCategorieLivre(int id) {
-        String requete = "delete from categorie_livre where id_categorie_livre=?";
+    public void deleteAchatLivre(int id) {
+        String requete = "delete from achat_livre where id_utilisateur=?";
         try {
             PreparedStatement ls = connection.prepareStatement(requete);
             ls.setInt(1, id);
             ls.executeUpdate();
-            System.out.println("categorie_livre supprimée");
+            System.out.println("AchatLivre supprimée");
         } catch (SQLException ex) {
             //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la suppression " + ex.getMessage());
         }
     }
 
-    public CategorieLivre findCategorieLivreById(int id) {
-        CategorieLivre categorielivre = new CategorieLivre();
-        String requete = "select * from categorie_livre where id_categorie_livre=?";
+    public AchatLivre findAchatLivreById(int id) {
+        AchatLivre achatLivre = new AchatLivre();
+        String requete = "select * from achat_livre where id_utilisateur=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
-                categorielivre.setId_categorie_livre(resultat.getInt(1));
-                categorielivre.setLibelle(resultat.getString(2));
+                achatLivre.setId_utilisateur(resultat.getInt(1));
+                achatLivre.setId_livre(resultat.getInt(2));
+                achatLivre.setDate_achat(resultat.getDate(3));
 
             }
-            return categorielivre;
+            return achatLivre;
 
         } catch (SQLException ex) {
             //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,22 +101,22 @@ public class CategorieLivreDAO implements ICategorieLivre {
         }
     }
 
-    public List<CategorieLivre> DisplayAllCategorieLivre() {
+    public List<AchatLivre> DisplayAllAchatLivre() {
 
-        List<CategorieLivre> listedepots = new ArrayList<CategorieLivre>();
+        List<AchatLivre> listedepots = new ArrayList<AchatLivre>();
 
-        String requete = "select * from categorie_livre";
+        String requete = "select * from achat_livre";
         try {
             Statement statement = connection
                     .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 
             while (resultat.next()) {
-                CategorieLivre categorielivre = new CategorieLivre();
-                categorielivre.setId_categorie_livre(resultat.getInt(1));
-                categorielivre.setLibelle(resultat.getString(2));
-
-                listedepots.add(categorielivre);
+                AchatLivre achatLivre = new AchatLivre();
+               achatLivre.setId_utilisateur(resultat.getInt(1));
+                achatLivre.setId_livre(resultat.getInt(2));
+                achatLivre.setDate_achat(resultat.getDate(3));
+                listedepots.add(achatLivre);
             }
             return listedepots;
         } catch (SQLException ex) {
@@ -117,4 +125,7 @@ public class CategorieLivreDAO implements ICategorieLivre {
             return null;
         }
     }
+
+    
+
 }

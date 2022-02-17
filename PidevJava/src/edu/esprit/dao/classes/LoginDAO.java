@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import edu.esprit.util.MyDB;
+import edu.esprit.util.MyConnection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,18 +24,17 @@ import java.util.List;
  */
 public class LoginDAO implements ILogin {
 
-    Connection connexion;
-    Statement stm;
+    private Connection connection;
 
     public LoginDAO() {
-        connexion = MyDB.getInstance().getConnexion();
+        connection = MyConnection.getInstance();
     }
 
     public void insertLogin(Login l) {
         String req = "INSERT INTO `login` (`id_login`,`email_login`, `mdp_login`) "
                 + "VALUES (?,?,?) ";
         try {
-            PreparedStatement ls = connexion.prepareStatement(req);
+            PreparedStatement ls = connection.prepareStatement(req);
             ls.setInt(1, l.getId_login());
             ls.setString(2, l.getEmail_login());
             ls.setString(3, l.getMdp_login());
@@ -48,7 +47,7 @@ public class LoginDAO implements ILogin {
     public void updateLogin(Login l) {
         String req = "update login set email_login=? , mdp_login=? where id_login=?";
         try {
-            PreparedStatement ls = connexion.prepareStatement(req);
+            PreparedStatement ls = connection.prepareStatement(req);
             ls.setString(1, l.getEmail_login());
             ls.setString(2, l.getMdp_login());
             ls.setInt(3, l.getId_login());
@@ -64,7 +63,7 @@ public class LoginDAO implements ILogin {
     public void deleteLogin(int id) {
         String requete = "delete from login where id_login=?";
         try {
-            PreparedStatement ls = connexion.prepareStatement(requete);
+            PreparedStatement ls = connection.prepareStatement(requete);
             ls.setInt(1, id);
             ls.executeUpdate();
             System.out.println("login supprimée");
@@ -78,7 +77,7 @@ public class LoginDAO implements ILogin {
         Login login = new Login();
         String requete = "select * from login where id_login=?";
         try {
-            PreparedStatement ps = connexion.prepareStatement(requete);
+            PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
@@ -102,7 +101,7 @@ public class LoginDAO implements ILogin {
 
         String requete = "select * from login";
         try {
-            Statement statement = connexion
+            Statement statement = connection
                     .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 

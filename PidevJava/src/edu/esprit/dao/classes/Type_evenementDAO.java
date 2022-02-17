@@ -46,7 +46,7 @@ public class Type_evenementDAO implements ItypeEvenementDAO {
 
     @Override
     public void updateTypeEvenment(Type_evenement t) {
-        String query = "update type_evenement set libelle_type_evenement=?, where id_type_evenement=?";
+        String query = "update type_evenement set libelle_type_evenement=? where id_type_evenement=?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, t.getLibelle_type_evenement());
@@ -89,6 +89,7 @@ public class Type_evenementDAO implements ItypeEvenementDAO {
                 t.setLibelle_type_evenement(resultat.getString(2));
                 
                 listeType.add(t);
+                System.out.println(t);
             }
             return listeType;
         } catch (SQLException ex) {

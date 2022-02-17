@@ -23,6 +23,12 @@ public class Participation_evenement {
         this.date_participation = date_participation;
     }
 
+    public Participation_evenement(int id_utilisateur, int id_evenement) {
+        this.id_utilisateur = id_utilisateur;
+        this.id_evenement = id_evenement;
+    }
+    
+
     public int getId_utilisateur() {
         return id_utilisateur;
     }

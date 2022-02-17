@@ -17,6 +17,7 @@ public interface IevenementDAO {
     void deleteEvenement(int id);
     void updateEvenement(Evenement e);
     List<Evenement> fetchEvenement();
+    Evenement fetchEvenementById(int id);
     
     
 }

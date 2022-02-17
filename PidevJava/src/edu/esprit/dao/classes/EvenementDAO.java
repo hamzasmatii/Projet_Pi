@@ -93,11 +93,12 @@ public class EvenementDAO implements IevenementDAO{
                 e.setTitre_evenement(resultat.getString(2));
                 e.setAdresse_evenement(resultat.getString(3));
                 e.setDescription_evenement(resultat.getString(4));
-                e.setDate_creation_evenement(Date.valueOf(resultat.getString(5)));
-                e.setDate_evenement(Date.valueOf(resultat.getString(6)));
+//                e.setDate_creation_evenement(Date.valueOf(resultat.getString(5)));
+//                e.setDate_evenement(Date.valueOf(resultat.getString(6)));
                 e.setType_evenements(resultat.getInt(7));
                 e.setId_utilisateur(resultat.getInt(8));
                 listeEvenement.add(e);
+                System.out.println(e);
             }
             return listeEvenement;
         } catch (SQLException ex) {
@@ -105,6 +106,36 @@ public class EvenementDAO implements IevenementDAO{
             System.out.println("erreur lors du chargement des stocks " + ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public Evenement fetchEvenementById(int id) {
+       
+
+        String requete ="select * from evenement where id_evenement= ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(requete);
+            statement.setInt(1,id);
+            ResultSet resultat = statement.executeQuery();
+            Evenement e = new Evenement ();
+            while (resultat.next()) {
+                e.setId_evenement(resultat.getInt(1));
+                e.setTitre_evenement(resultat.getString(2));
+                e.setAdresse_evenement(resultat.getString(3));
+                e.setDescription_evenement(resultat.getString(4));
+//              e.setDate_creation_evenement(Date.valueOf(resultat.getString(5)));
+//              e.setDate_evenement(Date.valueOf(resultat.getString(6)));
+                e.setType_evenements(resultat.getInt(7));
+                e.setId_utilisateur(resultat.getInt(8));
+                System.out.println(e);
+            }
+            return e;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des evenement2 " + ex.getMessage());
+            return null;
+        }
+        
     }
         
     }

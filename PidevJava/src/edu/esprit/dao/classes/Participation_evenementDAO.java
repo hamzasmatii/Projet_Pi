@@ -9,7 +9,7 @@ import edu.esprit.dao.interfaces.IevenementDAO;
 import edu.esprit.dao.interfaces.IparticipationEvenementDAO;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Participation_evenement;
-import edu.esprit.util.MyDB;
+import edu.esprit.util.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +28,7 @@ public class Participation_evenementDAO implements IparticipationEvenementDAO {
      Connection connection;
     
     public Participation_evenementDAO(){
-        connection=MyDB.getInstance().getConnexion();
+        connection=MyConnection.getInstance();
     } 
 
     @Override

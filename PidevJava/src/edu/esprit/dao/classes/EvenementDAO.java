@@ -7,7 +7,7 @@ package edu.esprit.dao.classes;
 
 import edu.esprit.dao.interfaces.IevenementDAO;
 import edu.esprit.entities.Evenement;
-import edu.esprit.util.MyDB;
+import edu.esprit.util.MyConnection;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -25,7 +25,7 @@ public class EvenementDAO implements IevenementDAO{
     Connection connection;
     
     public EvenementDAO(){
-        connection=MyDB.getInstance().getConnexion();
+        connection=MyConnection.getInstance();
     } 
 
     @Override

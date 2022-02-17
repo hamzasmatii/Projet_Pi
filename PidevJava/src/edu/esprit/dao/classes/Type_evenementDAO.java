@@ -8,7 +8,7 @@ package edu.esprit.dao.classes;
 import edu.esprit.dao.interfaces.ItypeEvenementDAO;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Type_evenement;
-import edu.esprit.util.MyDB;
+import edu.esprit.util.MyConnection;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -27,7 +27,7 @@ public class Type_evenementDAO implements ItypeEvenementDAO {
     Connection connection;
     
     public Type_evenementDAO(){
-        connection=MyDB.getInstance().getConnexion();
+        connection=MyConnection.getInstance();
     } 
 
     @Override

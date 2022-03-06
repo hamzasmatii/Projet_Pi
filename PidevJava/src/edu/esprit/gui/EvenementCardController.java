@@ -7,7 +7,6 @@ package edu.esprit.gui;
 
 
 import edu.esprit.entities.Evenement;
-import edu.esprit.util.evenementListner;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -35,8 +34,7 @@ public class EvenementCardController implements Initializable {
     @FXML
     private Label dateLabel;
     Evenement e;
-    private evenementListner listner;
-
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,10 +47,7 @@ public class EvenementCardController implements Initializable {
        
     }
 
-    @FXML
-    private void setSideBar(MouseEvent event) {
-         listner.onClickListener(e);
-    }
+   
     
     
 }

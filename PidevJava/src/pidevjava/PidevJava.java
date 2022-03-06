@@ -45,7 +45,7 @@ public class PidevJava extends Application {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.setMaxWidth(1200);
-        stage.setMaxHeight(820);
+        stage.setMaxHeight(860);
         stage.setTitle("Add and Show Persons");
         stage.show();
 

@@ -12,7 +12,16 @@ package edu.esprit.entities;
 public class Login {
     int id_login ;
     String email_login , mdp_login ;
+    Utilisateur utilisateur;
+    Boolean blocked_login;
 
+    public Boolean getBlocked_login() {
+        return blocked_login;
+    }
+
+    public void setBlocked_login(Boolean blocked_login) {
+        this.blocked_login = blocked_login;
+    }
     public int getId_login() {
         return id_login;
     }
@@ -39,7 +48,15 @@ public class Login {
 
     @Override
     public String toString() {
-        return "Login{" + "id_login=" + id_login + ", email_login=" + email_login + ", mdp_login=" + mdp_login + '}';
+        if(id_login==0)
+        {
+            return "Login{" + "Utilisateur=" + utilisateur+"\n" + ", email_login=" + email_login + ", mdp_login=" + mdp_login + ",blocked_login="+blocked_login+ '}';
+        }
+        else
+        {
+        return "Login{" + "id_login=" + id_login + ", email_login=" + email_login + ", mdp_login=" + mdp_login + ",blocked_login="+blocked_login+ '}';
+    
+        }
     }
 
     public Login(int id_login, String email_login, String mdp_login) {
@@ -57,6 +74,21 @@ public class Login {
     public Login(String email_login, String mdp_login) {
         this.email_login = email_login;
         this.mdp_login = mdp_login;
+    }
+    
+    public Login(Utilisateur utilisateur, String email_login, String mdp_login , Boolean blocked_login) {
+        this.utilisateur = utilisateur;
+        this.email_login = email_login;
+        this.mdp_login = mdp_login;
+        this.blocked_login=blocked_login;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
     
 }

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ProfilController">
+   <children>
+      <Pane layoutX="25.0" layoutY="15.0" prefHeight="777.0" prefWidth="1182.0" styleClass="profileBackground" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="124.0" opacity="0.73" stroke="#fcf3de" strokeType="INSIDE" width="1150.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#81523b" />
+                        <Stop color="#81523b" offset="0.007662835249042145" />
+                        <Stop color="#fcf3de" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Text fill="#81523b" layoutX="331.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes informations :" wrappingWidth="244.4140625">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Text>
+            <TextField fx:id="emailInput" layoutX="511.0" layoutY="196.0" prefHeight="51.0" prefWidth="451.0" promptText="Email" styleClass="loginInputs" />
+            <TextField fx:id="nomInput" layoutX="58.0" layoutY="372.0" prefHeight="51.0" prefWidth="257.0" promptText="Nom et prénom" styleClass="loginInputs" />
+            <TextField fx:id="newMdpInput" layoutX="512.0" layoutY="412.0" prefHeight="51.0" prefWidth="451.0" promptText="Nouveau mot de passe" styleClass="loginInputs" />
+            <DatePicker fx:id="dateInput" layoutX="193.0" layoutY="445.0" opacity="0.65" prefHeight="34.0" prefWidth="119.0" promptText="dateInput" style="-fx-background-radius: 5;" />
+            <ComboBox fx:id="roleInput" layoutX="58.0" layoutY="501.0" prefHeight="39.0" prefWidth="257.0" promptText="Role" styleClass="loginInputs" />
+            <Text fill="#81523b" layoutX="952.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solde :" wrappingWidth="155.4140625">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Text>
+            <Separator layoutX="342.0" layoutY="170.0" orientation="VERTICAL" prefHeight="293.0" prefWidth="6.0" />
+            <Label fx:id="soldeInput" layoutX="1046.0" layoutY="85.0" prefHeight="30.0" prefWidth="61.0" text="Label" textFill="#81523b">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#f5f5f500" height="216.0" layoutX="73.0" layoutY="45.0" stroke="#ffffff00" strokeType="INSIDE" width="195.0" />
+            <ImageView fx:id="imageView" fitHeight="223.0" fitWidth="195.0" layoutX="73.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="#80503b" layoutX="58.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#81523b" layoutX="403.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="155.4140625">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Text fill="#81523b" layoutX="379.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer votre mot de passe " wrappingWidth="290.4140625">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Separator layoutX="539.0" layoutY="279.0" prefHeight="2.0" prefWidth="396.0" />
+            <Button fx:id="saveChangesBtn" layoutX="681.0" layoutY="536.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="39.0" prefWidth="282.0" styleClass="modifyProfileButton" text="Enregistrer les modifications" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ToggleButton fx:id="noToggle" layoutX="672.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" selected="true" text="Non">
+               <toggleGroup>
+                  <ToggleGroup fx:id="changePassword" />
+               </toggleGroup>
+            </ToggleButton>
+            <ToggleButton fx:id="yesToggle" layoutX="713.0" layoutY="308.0" mnemonicParsing="false" text="Oui" toggleGroup="$changePassword" />
+            <TextField fx:id="confirmNewMdpInput" layoutX="512.0" layoutY="472.0" prefHeight="51.0" prefWidth="451.0" promptText="Confirmer mot de passe" styleClass="loginInputs" />
+            <PasswordField fx:id="mdpInput" layoutX="511.0" layoutY="352.0" prefHeight="51.0" prefWidth="451.0" promptText="Ancien mot de passe" styleClass="loginInputs" />
+            <TextField fx:id="filePathInput" layoutX="58.0" layoutY="310.0" prefHeight="51.0" prefWidth="155.0" promptText="Nom et prénom" styleClass="loginInputs" />
+            <Button fx:id="fileBtn" layoutX="228.0" layoutY="317.0" mnemonicParsing="false" onAction="#fileChose" prefHeight="37.0" prefWidth="95.0" styleClass="loginButton" text="Attacher " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="loadpane" layoutX="403.0" layoutY="575.0" mnemonicParsing="false" onAction="#loadepane" text="Button" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

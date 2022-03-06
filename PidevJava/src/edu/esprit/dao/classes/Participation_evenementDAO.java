@@ -36,8 +36,8 @@ public class Participation_evenementDAO implements IparticipationEvenementDAO {
        String query="INSERT INTO participation_evenement (id_utilisateur,id_evenement) VALUES (?,?)";
              try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, p.getId_utilisateur());
-            ps.setInt(2, p.getId_evenement());
+            ps.setInt(1, p.getUtilisateur().getId_utilisateur());
+            ps.setInt(2, p.getEvenement().getId_evenement());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -52,8 +52,8 @@ public class Participation_evenementDAO implements IparticipationEvenementDAO {
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, p.getDate_participation().toString());
-            ps.setInt(2, p.getId_utilisateur());
-            ps.setInt(3, p.getId_evenement());
+            ps.setInt(2, p.getUtilisateur().getId_utilisateur());
+            ps.setInt(3, p.getEvenement().getId_evenement());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -67,8 +67,8 @@ public class Participation_evenementDAO implements IparticipationEvenementDAO {
         String query="DELETE FROM participation_evenement where id_evenement=? and id_utilisateur=?";
          try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1,p.getId_evenement());
-            ps.setInt(2,p.getId_utilisateur());
+           ps.setInt(2, p.getUtilisateur().getId_utilisateur());
+            ps.setInt(1, p.getEvenement().getId_evenement());
             ps.executeUpdate();
             System.out.println("Suppression effectuée avec succès");
         } catch (SQLException ex) {

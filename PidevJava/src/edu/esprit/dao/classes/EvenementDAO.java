@@ -5,7 +5,9 @@
  */
 package edu.esprit.dao.classes;
 
+import edu.esprit.dao.interfaces.IUtilisateur;
 import edu.esprit.dao.interfaces.IevenementDAO;
+import edu.esprit.dao.interfaces.ItypeEvenementDAO;
 import edu.esprit.entities.Evenement;
 import edu.esprit.util.MyConnection;
 import java.sql.Connection;
@@ -30,15 +32,16 @@ public class EvenementDAO implements IevenementDAO{
 
     @Override
     public void insertEvenement(Evenement e) {
-       String query="INSERT INTO evenement (titre_evenement,adresse_evenement,description_evenement,date_evenement,type_evenement,id_utilisateur) VALUES (?,?,?,?,?,?)";
+       String query="INSERT INTO evenement (titre_evenement,adresse_evenement,description_evenement,date_evenement,type_evenement,id_utilisateur,image) VALUES (?,?,?,?,?,?,?)";
              try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, e.getTitre_evenement());
             ps.setString(2, e.getAdresse_evenement());
             ps.setString(3, e.getDescription_evenement());
             ps.setString(4, e.getDate_evenement().toString());
-            ps.setInt(5, e.getType_evenements());
-            ps.setInt(6, e.getId_utilisateur());
+            ps.setInt(5, e.getType_evenements().getId_type_evenement());
+            ps.setInt(6, e.getUtilisateur().getId_utilisateur());
+            ps.setString(7, e.getImage());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -87,6 +90,8 @@ public class EvenementDAO implements IevenementDAO{
         try {
             Statement statement = connection.createStatement();
             ResultSet resultat = statement.executeQuery(requete);
+            ItypeEvenementDAO typeEvenementDAO= new Type_evenementDAO();
+            IUtilisateur utilisateurDAO= new UtilisateurDAO();
             while (resultat.next()) {
                 Evenement e = new Evenement ();
                 e.setId_evenement(resultat.getInt(1));
@@ -95,8 +100,9 @@ public class EvenementDAO implements IevenementDAO{
                 e.setDescription_evenement(resultat.getString(4));
 //                e.setDate_creation_evenement(Date.valueOf(resultat.getString(5)));
 //                e.setDate_evenement(Date.valueOf(resultat.getString(6)));
-                e.setType_evenements(resultat.getInt(7));
-                e.setId_utilisateur(resultat.getInt(8));
+                int idTypeEvenement=resultat.getInt(7);
+                e.setType_evenements(typeEvenementDAO.fetchTypeEvenementById(idTypeEvenement));
+                e.setUtilisateur(utilisateurDAO.findUtilisateurtById(resultat.getInt(8)));
                 listeEvenement.add(e);
                 System.out.println(e);
             }
@@ -118,6 +124,8 @@ public class EvenementDAO implements IevenementDAO{
             statement.setInt(1,id);
             ResultSet resultat = statement.executeQuery();
             Evenement e = new Evenement ();
+            ItypeEvenementDAO typeEvenementDAO= new Type_evenementDAO();
+            IUtilisateur utilisateurDAO= new UtilisateurDAO();
             while (resultat.next()) {
                 e.setId_evenement(resultat.getInt(1));
                 e.setTitre_evenement(resultat.getString(2));
@@ -125,8 +133,8 @@ public class EvenementDAO implements IevenementDAO{
                 e.setDescription_evenement(resultat.getString(4));
 //              e.setDate_creation_evenement(Date.valueOf(resultat.getString(5)));
 //              e.setDate_evenement(Date.valueOf(resultat.getString(6)));
-                e.setType_evenements(resultat.getInt(7));
-                e.setId_utilisateur(resultat.getInt(8));
+                e.setType_evenements(typeEvenementDAO.fetchTypeEvenementById(resultat.getInt(7)));
+                e.setUtilisateur(utilisateurDAO.findUtilisateurtById(resultat.getInt(8)));
                 System.out.println(e);
             }
             return e;

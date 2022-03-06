@@ -44,7 +44,8 @@ public class Type_evenement {
 
     @Override
     public String toString() {
-        return "Type_evenement{" + "id_type_evenement=" + id_type_evenement + ", libelle_type_evenement=" + libelle_type_evenement + '}';
+       // return "Type_evenement{" + "id_type_evenement=" + id_type_evenement + ", libelle_type_evenement=" + libelle_type_evenement + '}';
+       return this.libelle_type_evenement;
     }
     
     

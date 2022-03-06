@@ -98,6 +98,28 @@ public class Type_evenementDAO implements ItypeEvenementDAO {
             return null;
         }
     }
+
+    @Override
+    public Type_evenement fetchTypeEvenementById(int id) {
+        String requete = "select * from type_evenement where id_type_evenement=?";
+       try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setInt(1,id);
+            ResultSet resultat= ps.executeQuery();
+            Type_evenement te=new Type_evenement();
+            while (resultat.next()) {
+                te.setId_type_evenement(resultat.getInt(1));
+                te.setLibelle_type_evenement(resultat.getString(2));
+            }
+            System.out.println("FETCHED");
+            return te;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur" + ex.getMessage());
+        }
+        return null;
+       
+    }
     }
     
 

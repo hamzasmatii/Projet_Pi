@@ -203,7 +203,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void evenement(MouseEvent event) {
-        loadPage("Evenement");
+        loadPage("evenements");
     }
 
     @FXML

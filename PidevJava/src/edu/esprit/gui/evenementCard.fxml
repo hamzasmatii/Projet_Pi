@@ -2,7 +2,6 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,39 +11,49 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="283.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.EvenementCardController">
+<AnchorPane id="AnchorPane" prefHeight="294.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.EvenementCardController">
     <stylesheets>
         <URL value="@evenements.css" />
     </stylesheets>
    <children>
-      <VBox  prefHeight="200.0" prefWidth="100.0" styleClass="cardContainer" stylesheets="@evenements.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="cardContainer" stylesheets="@evenements.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
+            <Label fx:id="titreEvenement" prefHeight="45.0" prefWidth="471.0" text="Nom evenement">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
             <HBox prefHeight="117.0" prefWidth="859.0">
                <children>
-                  <Label fx:id="titreEvenement" prefHeight="45.0" prefWidth="471.0" text="Nom evenement">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="117.0" prefWidth="402.0" />
-                  <ImageView fitHeight="117.0" fitWidth="362.0" pickOnBounds="true" preserveRatio="true" />
+                  <Pane prefHeight="117.0" prefWidth="135.0" />
+                  <ImageView fitHeight="117.0" fitWidth="452.0" pickOnBounds="true" preserveRatio="true" />
+                  <Pane prefHeight="117.0" prefWidth="127.0" />
                </children>
             </HBox>
             <HBox prefHeight="84.0" prefWidth="933.0">
                <children>
-                  <Text fx:id="descriptionText" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrappingWidth="476.0" />
+                  <Text fx:id="descriptionText" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrappingWidth="691.0" />
                   <Pane prefHeight="47.0" prefWidth="100.0" />
-                  <Button fx:id="participerBtn" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="252.0" styleClass="participerButton" text="Participer" textFill="WHITE" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <Label fx:id="dateLabel" prefHeight="30.0" prefWidth="153.0" text="Le Date">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="dateLabel" prefHeight="30.0" prefWidth="79.0" text="Le Date">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="63.0" prefWidth="25.0" />
+                  <Label text="Label">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -104,15 +104,15 @@ public class LoginController implements Initializable {
             UtilisateurDAO us = new UtilisateurDAO();
             if (ls.verifLogin(emailInput.getText(), mdpInput.getText()))
             {
-            alert.setContentText("auth succes");
             Statics.currentUser = us.findUtilisateurtByMail(emailInput.getText());
             switchSceneProfil(event);
             }
             else
             {
             alert.setContentText("auth failed");
-            }
             alert.show();
+            }
+            
     }
     
     private Stage stage;

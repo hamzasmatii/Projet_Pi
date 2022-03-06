@@ -20,7 +20,6 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -39,16 +38,15 @@ public class PidevJava extends Application {
         
         this.stage = primaryStage;
         try {
-            parent = FXMLLoader.load(getClass().getResource("/edu/esprit/gui/home.fxml"));
+            parent = FXMLLoader.load(getClass().getResource("/edu/esprit/gui/Home.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        Image icon= new Image("/image/libro.png"); 
         Scene scene = new Scene(parent);
-        stage.getIcons().add(icon);
         stage.setScene(scene);
-        stage.setTitle("Libro");
-        
+        stage.setMaxWidth(1200);
+        stage.setMaxHeight(860);
+        stage.setTitle("Add and Show Persons");
         stage.show();
 
     }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.BlockUserController">
+   <children>
+      <Pane layoutX="9.0" layoutY="12.0" prefHeight="777.0" prefWidth="1182.0" styleClass="profileBackground">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="146.0" opacity="0.73" stroke="#fcf3de" strokeType="INSIDE" width="1182.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#81523b" />
+                        <Stop color="#81523b" offset="0.007662835249042145" />
+                        <Stop color="#fcf3de" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <TableView fx:id="tableView" layoutX="129.0" layoutY="93.0" prefHeight="634.0" prefWidth="946.0">
+              <columns>
+                <TableColumn fx:id="id_utilisateur" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nom_utilisateur" prefWidth="150.0" text="Nom et prénom" />
+                  <TableColumn fx:id="date_naissance_utilisateur" minWidth="0.0" prefWidth="140.0" text="Date de naissance" />
+                  <TableColumn fx:id="photo_utilisateur" prefWidth="156.0" text="Photo de profil" />
+                  <TableColumn fx:id="type_utilisateur" prefWidth="72.0" text="Role" />
+                  <TableColumn fx:id="solde_utilisateur" prefWidth="95.0" text="Solde" />
+                  <TableColumn fx:id="email_utilisateur" prefWidth="257.0" text="Email" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -14,7 +14,7 @@ import java.sql.Date;
 public class Utilisateur {
     
     private int id_utilisateur, type_utilisateur, solde_utilisateur;
-    private String nom_utilisateur, photo_utilisateur;
+    private String nom_utilisateur, photo_utilisateur,email_utilisateur;
     private Date date_naissance_utilisateur;
     
     public int getId_utilisateur() {
@@ -65,21 +65,32 @@ public class Utilisateur {
         this.date_naissance_utilisateur = date_naissance_utilisateur;
     }
 
-    public Utilisateur(int id_utilisateur, String nom_utilisateur, Date date_naissance_utilisateur , String photo_utilisateur,int type_utilisateur, int solde_utilisateur) {
+    public Utilisateur(int id_utilisateur, String nom_utilisateur, Date date_naissance_utilisateur , String photo_utilisateur,int type_utilisateur, int solde_utilisateur , String email_utilisateur) {
         this.id_utilisateur = id_utilisateur;
         this.type_utilisateur = type_utilisateur;
         this.solde_utilisateur = solde_utilisateur;
         this.nom_utilisateur = nom_utilisateur;
         this.photo_utilisateur = photo_utilisateur;
         this.date_naissance_utilisateur = date_naissance_utilisateur;
+        this.email_utilisateur=email_utilisateur;
     }
     
-    public Utilisateur( String nom_utilisateur, Date date_naissance_utilisateur , String photo_utilisateur,int type_utilisateur, int solde_utilisateur) {
+    public Utilisateur( String nom_utilisateur, Date date_naissance_utilisateur , String photo_utilisateur,int type_utilisateur, int solde_utilisateur , String email_utilisateur) {
         this.type_utilisateur = type_utilisateur;
         this.solde_utilisateur = solde_utilisateur;
         this.nom_utilisateur = nom_utilisateur;
         this.photo_utilisateur = photo_utilisateur;
         this.date_naissance_utilisateur = date_naissance_utilisateur;
+        this.email_utilisateur=email_utilisateur;
+        
+    }
+
+    public String getEmail_utilisateur() {
+        return email_utilisateur;
+    }
+
+    public void setEmail_utilisateur(String email_utilisateur) {
+        this.email_utilisateur = email_utilisateur;
     }
 
     public Utilisateur() {
@@ -88,12 +99,15 @@ public class Utilisateur {
         this.nom_utilisateur = "";
         this.photo_utilisateur = "";
         this.date_naissance_utilisateur = null;
+        this.email_utilisateur=null;
     }
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id_utilisateur=" + id_utilisateur + ", type_utilisateur=" + type_utilisateur + ", solde_utilisateur=" + solde_utilisateur + ", nom_utilisateur=" + nom_utilisateur + ", photo_utilisateur=" + photo_utilisateur + ", date_naissance_utilisateur=" + date_naissance_utilisateur + '}';
+        return "Utilisateur{" + "id_utilisateur=" + id_utilisateur + ", type_utilisateur=" + type_utilisateur + ", solde_utilisateur=" + solde_utilisateur + ", nom_utilisateur=" + nom_utilisateur + ", photo_utilisateur=" + photo_utilisateur + ", email_utilisateur=" + email_utilisateur + ", date_naissance_utilisateur=" + date_naissance_utilisateur + '}';
     }
+
+
     
 
     

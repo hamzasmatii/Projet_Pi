@@ -12,20 +12,30 @@ import java.sql.Date;
 public class Livre {
     
    
-    private int id_livre, prix_livre, id_ecrivain_livre, evalution_livre;
+    private int id_livre, prix_livre, id_ecrivain_livre, evalution_livre, id_categorie_livre;
     private String titre_livre, description_livre , photo_livre ,contenu_livre ;
     private Date date_publication_livre;
+    private CategorieLivre categorieLivre;
+    private Utilisateur utilisateur ;
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 
     /*public Livre() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
     
-    public int getId_livre() {
-        return id_livre;
+    public int getId_categorie_livre() {
+        return id_categorie_livre;
     }
 
-    public void setId_livre(int id_livre) {
-        this.id_livre = id_livre;
+    public void setId_categorie_livre(int id_categorie_livre) {
+        this.id_categorie_livre = id_categorie_livre;
     }
     
     
@@ -107,23 +117,19 @@ public class Livre {
         this.date_publication_livre = date_publication_livre;
     }
     
-    
-    
-    
-    public Livre(int id_livre, String titre_livre, int prix_livre,String description_livre, Date date_publication_livre , String photo_livre,String contenu_livre,int id_ecrivain_livre,int evalution_livre) {
+      public int getId_livre() {
+        return id_livre;
+    }
+
+    public void setId_livre(int id_livre) {
         this.id_livre = id_livre;
-        this.titre_livre = titre_livre;
-        this.prix_livre = prix_livre;
-        this.date_publication_livre = date_publication_livre;
-        this.photo_livre = photo_livre;
-        this.contenu_livre = contenu_livre;
-        this.id_ecrivain_livre = id_ecrivain_livre;
-        this.evalution_livre = evalution_livre;
-
-
     }
     
-    public Livre( String titre_livre,String description_livre,Date date_publication_livre, String photo_livre,String contenu_livre, int prix_livre,int evalution_livre ,int id_ecrivain_livre) {
+    
+    
+    
+    public Livre(int id_livre, String titre_livre, int prix_livre,String description_livre, Date date_publication_livre , String photo_livre,String contenu_livre,int id_ecrivain_livre,int evalution_livre,int id_categorie_livre) {
+        this.id_livre = id_livre;
         this.titre_livre = titre_livre;
         this.prix_livre = prix_livre;
         this.description_livre=description_livre;
@@ -132,6 +138,24 @@ public class Livre {
         this.contenu_livre = contenu_livre;
         this.id_ecrivain_livre = id_ecrivain_livre;
         this.evalution_livre = evalution_livre;
+        //id_categorie_livre
+        this.id_categorie_livre = id_categorie_livre;
+
+
+
+    }
+    
+    public Livre( String titre_livre,String description_livre,Date date_publication_livre, String photo_livre,String contenu_livre, int prix_livre,int evalution_livre ,int id_ecrivain_livre, int id_categorie_livre) {
+        this.titre_livre = titre_livre;
+        this.prix_livre = prix_livre;
+        this.description_livre=description_livre;
+        this.date_publication_livre = date_publication_livre;
+        this.photo_livre = photo_livre;
+        this.contenu_livre = contenu_livre;
+        this.id_ecrivain_livre = id_ecrivain_livre;
+        this.evalution_livre = evalution_livre;
+        this.id_categorie_livre = id_categorie_livre;
+
     }
 
     public Livre() {
@@ -142,15 +166,55 @@ public class Livre {
         this.photo_livre = "";
         this.contenu_livre = "";
         this.id_ecrivain_livre = 1;
-        this.evalution_livre = 1;       
+        this.evalution_livre = 1;  
+        this.id_categorie_livre=1;
         
         
         
         
     }
 
+    public CategorieLivre getCategorieLivre() {
+        return categorieLivre;
+    }
+
+    public void setCategorieLivre(CategorieLivre categorieLivre) {
+        this.categorieLivre = categorieLivre;
+    }
+
+    public Livre(int id_livre, int prix_livre, int id_ecrivain_livre, int evalution_livre, String titre_livre, String description_livre, String photo_livre, String contenu_livre, Date date_publication_livre, CategorieLivre categorieLivre) {
+        this.id_livre = id_livre;
+        this.prix_livre = prix_livre;
+        this.id_ecrivain_livre = id_ecrivain_livre;
+        this.evalution_livre = evalution_livre;
+        this.titre_livre = titre_livre;
+        this.description_livre = description_livre;
+        this.photo_livre = photo_livre;
+        this.contenu_livre = contenu_livre;
+        this.date_publication_livre = date_publication_livre;
+        this.categorieLivre = categorieLivre;
+    }
+
     @Override
     public String toString() {
-        return "Livre{" + "id_livre=" + id_livre + ", titre_livre=" + titre_livre + ", description_livre=" + description_livre + ", prix_livre=" + prix_livre + ", date_publication_livre=" + date_publication_livre + ", photo_livre=" + photo_livre + ", contenu_livre=" + contenu_livre + ", id_ecrivain_livre=" + id_ecrivain_livre + ", evalution_livre=" + evalution_livre + '}';
+        return "Livre{" + "id_livre=" + id_livre + ", prix_livre=" + prix_livre + ", id_ecrivain_livre=" + id_ecrivain_livre + ", evalution_livre=" + evalution_livre + ", id_categorie_livre=" + id_categorie_livre + ", titre_livre=" + titre_livre + ", description_livre=" + description_livre + ", photo_livre=" + photo_livre + ", contenu_livre=" + contenu_livre + ", date_publication_livre=" + date_publication_livre + ", categorieLivre=" + categorieLivre +'}';
     }
+
+    public Livre(int id_livre, int prix_livre, int id_ecrivain_livre, int evalution_livre, int id_categorie_livre, String titre_livre, String description_livre, String photo_livre, String contenu_livre, Date date_publication_livre, CategorieLivre categorieLivre, Utilisateur utilisateur) {
+        this.id_livre = id_livre;
+        this.prix_livre = prix_livre;
+        this.id_ecrivain_livre = id_ecrivain_livre;
+        this.evalution_livre = evalution_livre;
+        this.id_categorie_livre = id_categorie_livre;
+        this.titre_livre = titre_livre;
+        this.description_livre = description_livre;
+        this.photo_livre = photo_livre;
+        this.contenu_livre = contenu_livre;
+        this.date_publication_livre = date_publication_livre;
+        this.categorieLivre = categorieLivre;
+        this.utilisateur = utilisateur;
+    }
+    
+
+    
 }

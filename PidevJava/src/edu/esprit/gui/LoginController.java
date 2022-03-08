@@ -105,7 +105,13 @@ public class LoginController implements Initializable {
             if (ls.verifLogin(emailInput.getText(), mdpInput.getText()))
             {
             Statics.currentUser = us.findUtilisateurtByMail(emailInput.getText());
-            switchSceneProfil(event);
+            if(Statics.currentUser.getType_utilisateur()==4)
+            {
+            switchSceneAdminHome(event);
+            }
+            else{
+            switchSceneProfil(event);     
+            }
             }
             else
             {
@@ -128,6 +134,15 @@ public class LoginController implements Initializable {
     stage.show();
     }
     @FXML
+    public void switchSceneAdminHome(ActionEvent event) throws IOException
+    {
+       root = FXMLLoader.load(getClass().getResource("adminHome.fxml"));
+    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+    }
+    @FXML
     public void switchSceneChangePassword(ActionEvent event) throws IOException
     {
        root = FXMLLoader.load(getClass().getResource("changePassword.fxml"));
@@ -137,10 +152,18 @@ public class LoginController implements Initializable {
     stage.show();
      
     }
-    @FXML
     public void switchSceneProfil(ActionEvent event) throws IOException
     {
        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+    }
+
+    @FXML
+    private void switchHome(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
     stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);

@@ -44,6 +44,14 @@
 .tableView{
 }
 .table-view .column-header{
--fx-background-color : #81523b;
--fx-color:white;
+-fx-background-color : #FCF3DE;
+-fx-text-fill :white;
+}
+.table-row-cell:even{
+    -fx-background-color: #FCF3DE;
+
+}
+.homebody
+{
+-fx-background-color:#FFFFFF;
 }

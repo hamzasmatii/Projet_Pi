@@ -1,40 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.BlockUserController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.BlockUserController">
    <children>
-      <Pane layoutX="9.0" layoutY="12.0" prefHeight="777.0" prefWidth="1182.0" styleClass="profileBackground">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="146.0" opacity="0.73" stroke="#fcf3de" strokeType="INSIDE" width="1182.0">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#81523b" />
-                        <Stop color="#81523b" offset="0.007662835249042145" />
-                        <Stop color="#fcf3de" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <TableView fx:id="tableView" layoutX="129.0" layoutY="93.0" prefHeight="634.0" prefWidth="946.0">
-              <columns>
-                <TableColumn fx:id="id_utilisateur" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="nom_utilisateur" prefWidth="150.0" text="Nom et prénom" />
-                  <TableColumn fx:id="date_naissance_utilisateur" minWidth="0.0" prefWidth="140.0" text="Date de naissance" />
-                  <TableColumn fx:id="photo_utilisateur" prefWidth="156.0" text="Photo de profil" />
-                  <TableColumn fx:id="type_utilisateur" prefWidth="72.0" text="Role" />
-                  <TableColumn fx:id="solde_utilisateur" prefWidth="95.0" text="Solde" />
-                  <TableColumn fx:id="email_utilisateur" prefWidth="257.0" text="Email" />
-              </columns>
-            </TableView>
-         </children>
-      </Pane>
+      <TableView fx:id="tableView" layoutX="34.0" layoutY="94.0" onMouseClicked="#selectRow" prefHeight="481.0" prefWidth="932.0">
+        <columns>
+          <TableColumn fx:id="id_utilisateur" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nom_utilisateur" prefWidth="150.0" text="Nom et prénom" />
+            <TableColumn fx:id="date_naissance_utilisateur" minWidth="0.0" prefWidth="140.0" text="Date de naissance" />
+            <TableColumn fx:id="photo_utilisateur" prefWidth="156.0" text="Photo de profil" />
+            <TableColumn fx:id="type_utilisateur" prefWidth="72.0" text="Role" />
+            <TableColumn fx:id="solde_utilisateur" prefWidth="95.0" text="Solde" />
+            <TableColumn fx:id="email_utilisateur" prefWidth="139.0" text="Email" />
+            <TableColumn fx:id="blocked_login" prefWidth="139.0" text="Bloqué" />
+        </columns>
+      </TableView>
+      <Text fill="#81523b" layoutX="50.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des utilisateur">
+         <font>
+            <Font name="Microsoft JhengHei Bold" size="34.0" />
+         </font>
+      </Text>
+      <Button fx:id="unblockBtn" layoutX="770.0" layoutY="613.0" mnemonicParsing="false" onAction="#unblockUser" prefHeight="36.0" prefWidth="196.0" styleClass="loginButton" text="Débloquer l'utilisateur" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="blockBtn" layoutX="549.0" layoutY="613.0" mnemonicParsing="false" onAction="#blockUser" prefHeight="36.0" prefWidth="196.0" styleClass="loginButton" text="Bloquer l'utilisateur" textFill="WHITE">
+         <font>
+            <Font name="Microsoft JhengHei" size="14.0" />
+         </font>
+      </Button>
+      <Separator layoutX="754.0" layoutY="613.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="0.0" />
+      <Label fx:id="nomLabel" layoutX="34.0" layoutY="600.0" text="Label" textFill="#81523b">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="mailLabel" layoutX="34.0" layoutY="636.0" text="Label" textFill="#81523b">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Separator layoutX="92.0" layoutY="78.0" prefHeight="3.0" prefWidth="281.0" />
+      <Separator layoutX="34.0" layoutY="630.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

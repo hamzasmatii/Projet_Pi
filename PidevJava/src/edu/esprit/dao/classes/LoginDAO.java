@@ -7,6 +7,7 @@ package edu.esprit.dao.classes;
 
 import edu.esprit.dao.interfaces.ILogin;
 import edu.esprit.entities.Login;
+import edu.esprit.entities.Utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -102,17 +103,26 @@ public class LoginDAO implements ILogin {
 
         List<Login> listedepots = new ArrayList<Login>();
 
-        String requete = "select * from login";
+        String requete = "select * from login L join utilisateur U where L.id_login=U.id_utilisateur";
         try {
             Statement statement = connection
                     .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 
             while (resultat.next()) {
+                Utilisateur utilisateur = new Utilisateur();
                 Login login = new Login();
-                login.setId_login(resultat.getInt(1));
+                utilisateur.setId_utilisateur(resultat.getInt(5));
+                utilisateur.setNom_utilisateur(resultat.getString(6));
+                utilisateur.setDate_naissance_utilisateur(resultat.getDate(7));
+                utilisateur.setPhoto_utilisateur(resultat.getString(8));
+                utilisateur.setType_utilisateur(resultat.getInt(9));
+                utilisateur.setSolde_utilisateur(resultat.getInt(10));
+                utilisateur.setEmail_utilisateur(resultat.getString(11));
+                login.setUtilisateur(utilisateur);
                 login.setEmail_login(resultat.getString(2));
                 login.setMdp_login(resultat.getString(3));
+                login.setBlocked_login(resultat.getBoolean(4));
 
                 listedepots.add(login);
             }
@@ -225,7 +235,7 @@ public class LoginDAO implements ILogin {
                     
                 }
          }
-     public void blockMail(String email,Boolean etat)
+     public Boolean blockMail(String email,Boolean etat)
      {
             String requete = "update login set blocked_login=? where email_login=?";
             try {
@@ -234,11 +244,13 @@ public class LoginDAO implements ILogin {
                      ps.setString(2, email);
                      ps.executeUpdate();
                      System.out.println("Updated");
+                     return true;
                 } catch (SQLException ex) {
                 //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("\"erreur lors de la mise à jour \" " + ex.getMessage());
+                return false;
                     
                 }
          }
-         
+     
 }

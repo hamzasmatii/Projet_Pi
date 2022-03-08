@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="294.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.EvenementCardController">
+<AnchorPane id="AnchorPane" onMousePressed="#setSideBar" prefHeight="294.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.EvenementCardController">
     <stylesheets>
         <URL value="@evenements.css" />
     </stylesheets>
@@ -25,9 +25,9 @@
             </Label>
             <HBox prefHeight="117.0" prefWidth="859.0">
                <children>
-                  <Pane prefHeight="117.0" prefWidth="135.0" />
-                  <ImageView fitHeight="117.0" fitWidth="452.0" pickOnBounds="true" preserveRatio="true" />
-                  <Pane prefHeight="117.0" prefWidth="127.0" />
+                  <Pane prefHeight="117.0" prefWidth="166.0" />
+                  <ImageView fx:id="image" fitHeight="117.0" fitWidth="330.0" pickOnBounds="true" preserveRatio="true" />
+                  <Pane prefHeight="117.0" prefWidth="227.0" />
                </children>
             </HBox>
             <HBox prefHeight="84.0" prefWidth="933.0">
@@ -39,15 +39,15 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="boxTest" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="dateLabel" prefHeight="30.0" prefWidth="79.0" text="Le Date">
+                  <Label fx:id="dateLabel" prefHeight="30.0" prefWidth="187.0" text="Le Date">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Pane prefHeight="63.0" prefWidth="25.0" />
-                  <Label text="Label">
+                  <Pane prefHeight="30.0" prefWidth="52.0" />
+                  <Label fx:id="adresse" text="Label">
                      <font>
                         <Font size="20.0" />
                      </font>

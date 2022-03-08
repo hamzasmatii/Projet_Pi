@@ -34,7 +34,9 @@
     -fx-border-color:#CFCDCD ;
     -fx-border-radius:5.6383px;
     -fx-effect: dropshadow(gaussian,rgba(194, 213, 231, 0.2) , 20,0 , 0, 0);
-
-
+}
+.expired{
+   -fx-text-fill: red;
+    
 }
 

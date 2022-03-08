@@ -38,7 +38,7 @@ public class EvenementDAO implements IevenementDAO{
             ps.setString(1, e.getTitre_evenement());
             ps.setString(2, e.getAdresse_evenement());
             ps.setString(3, e.getDescription_evenement());
-            ps.setString(4, e.getDate_evenement().toString());
+            ps.setTimestamp(4, e.getDate_evenement());
             ps.setInt(5, e.getType_evenements().getId_type_evenement());
             ps.setInt(6, e.getUtilisateur().getId_utilisateur());
             ps.setString(7, e.getImage());
@@ -70,7 +70,7 @@ public class EvenementDAO implements IevenementDAO{
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, e.getDescription_evenement());
-            ps.setString(2, e.getDate_evenement().toString());
+            ps.setTimestamp(2, e.getDate_evenement());
             ps.setString(3, e.getAdresse_evenement());
             ps.setInt(4, e.getId_evenement());
             ps.executeUpdate();
@@ -98,8 +98,8 @@ public class EvenementDAO implements IevenementDAO{
                 e.setTitre_evenement(resultat.getString(2));
                 e.setAdresse_evenement(resultat.getString(3));
                 e.setDescription_evenement(resultat.getString(4));
-//                e.setDate_creation_evenement(Date.valueOf(resultat.getString(5)));
-//                e.setDate_evenement(Date.valueOf(resultat.getString(6)));
+                e.setDate_creation_evenement((resultat.getDate(5)));
+                e.setDate_evenement((resultat.getTimestamp(6)));
                 int idTypeEvenement=resultat.getInt(7);
                 e.setType_evenements(typeEvenementDAO.fetchTypeEvenementById(idTypeEvenement));
                 e.setUtilisateur(utilisateurDAO.findUtilisateurtById(resultat.getInt(8)));

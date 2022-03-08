@@ -5,6 +5,7 @@
  */
 package edu.esprit.gui;
 
+import com.jfoenix.controls.JFXTimePicker;
 import edu.esprit.dao.classes.EvenementDAO;
 import edu.esprit.dao.classes.Type_evenementDAO;
 import edu.esprit.dao.interfaces.IevenementDAO;
@@ -17,9 +18,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +33,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -61,11 +66,22 @@ public class AjoutEvenementController implements Initializable {
     private AnchorPane anchor;
     String  imageName;
     Alert alert;
+    @FXML
+    private JFXTimePicker timepicker;
 
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.setComboBoxData();
+        dateInput.setDayCellFactory((DatePicker d)-> 
+        new DateCell(){
+            @Override 
+            public void updateItem(LocalDate item,boolean empty){
+                super.updateItem(item, empty);
+                setDisable(item.isBefore(LocalDate.now()));
+                
+            }
+        });
     }    
 
     @FXML
@@ -81,46 +97,36 @@ public class AjoutEvenementController implements Initializable {
                 errorAlert("Le champ date est vide!");
                 return;
             }
+        
         if (adresse.getText() == null || titreInput.getText().trim().isEmpty())
             {
                 adresse.setText("");
-                
             }
         if (descriptionInput.getText() == null || descriptionInput.getText().trim().isEmpty())
             {
                errorAlert("Le champ description est vide!");
                return;
             }
+        LocalTime value = timepicker.getValue();    
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId_utilisateur(1);
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        Date date=Date.from(dateInput.getValue().atStartOfDay().toInstant(ZoneOffset.UTC));
-        long timeInMilliSeconds = date.getTime();
-        java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
-        System.out.print(imageName);
-        //java.sql.Date.valueOf( dateInput.getValue() )
-       Evenement e = new Evenement(this.titreInput.getText(),this.adresse.getText(),this.descriptionInput.getText(),date1,TypeInput.getValue(),utilisateur,this.imageName);
-      IevenementDAO edao=new EvenementDAO();
-      edao.insertEvenement(e);
-      succesAlert();
-      clearForm();
+        Timestamp date = this.prepareSelectedDate();
+        Evenement e = new Evenement(this.titreInput.getText(),this.adresse.getText(),this.descriptionInput.getText(),date,TypeInput.getValue(),utilisateur,this.imageName);
+        IevenementDAO edao=new EvenementDAO();
+        edao.insertEvenement(e);
+        succesAlert();
+        clearForm();
       
     }
     
     @FXML
     private void uploadImage(ActionEvent event) throws FileNotFoundException, IOException {
-
-
         FileChooser chooser =  new FileChooser();
         Stage stage = (Stage)anchor.getScene().getWindow();
         File file = chooser.showOpenDialog(stage);
-
-
         if (file != null) { 
-            
              imagePath.setText(file.toString());
              File directory = new File("/src/image");
-
              String destination = directory.toString();
                 if(!directory.exists())
                 {
@@ -138,15 +144,11 @@ public class AjoutEvenementController implements Initializable {
             
          }
     }
-    
-    
     private void setComboBoxData(){
         ItypeEvenementDAO tedao= new Type_evenementDAO();
         ObservableList<Type_evenement> list = FXCollections.observableArrayList(tedao.fetchTypeEvenment());
-        this.TypeInput.setItems(list);
-        
+        this.TypeInput.setItems(list); 
     }
-
     private void clearForm() {
         this.titreInput.clear();
         this.adresse.clear();
@@ -155,21 +157,15 @@ public class AjoutEvenementController implements Initializable {
         dateInput.setValue(null);
         this.TypeInput.getSelectionModel().clearSelection();
         this.imagePath.clear();
-        
-        
-        
-        
     }
     private void succesAlert(){
         if(alert==null){
-            alert=new Alert(Alert.AlertType.INFORMATION);
+         alert=new Alert(Alert.AlertType.INFORMATION);
         }
       alert.setAlertType(Alert.AlertType.INFORMATION);
       alert.setTitle("Success");
       alert.setContentText("Evenement ajouté avec succes");
-      alert.show();
-        
-        
+      alert.show(); 
     }
     private void errorAlert(String content){
          if(alert==null){
@@ -179,5 +175,19 @@ public class AjoutEvenementController implements Initializable {
         alert.setContentText(content);
         alert.show();
     }
-
+    
+    private Timestamp prepareSelectedDate(){
+        LocalDate value = this.dateInput.getValue();
+        LocalTime value1 = this.timepicker.getValue();
+        LocalDateTime value2= LocalDateTime.of(value,value1);
+        Timestamp selectedDate=Timestamp.valueOf(value2);
+        System.out.println(selectedDate);
+        return selectedDate;
+        
+        
+        
+        
+    }
+  
+    
 }

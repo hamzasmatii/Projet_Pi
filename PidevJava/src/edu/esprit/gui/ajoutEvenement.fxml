@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXColorPicker?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="1200.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AjoutEvenementController">
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AjoutEvenementController">
     <stylesheets>
         <URL value="@evenements.css" />
     </stylesheets>
@@ -29,15 +28,16 @@
             <ComboBox fx:id="TypeInput" layoutX="55.0" layoutY="131.0" prefHeight="45.0" prefWidth="536.0" promptText="Type evenement" styleClass="input" />
             <Button layoutX="440.0" layoutY="551.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="45.0" prefWidth="151.0" styleClass="participerButton" text="Attacher" textFill="WHITE" />
             <TextField fx:id="imagePath" editable="false" layoutX="55.0" layoutY="551.0" prefHeight="45.0" prefWidth="373.0" promptText=" " styleClass="input" />
-            <JFXTimePicker layoutX="282.0" layoutY="225.0" prefHeight="40.0" prefWidth="302.0" />
-            <JFXDatePicker layoutX="320.0" layoutY="192.0" />
+            <JFXTimePicker fx:id="timepicker" defaultColor="#81523d" layoutX="282.0" layoutY="225.0" prefHeight="40.0" prefWidth="302.0" />
          </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
       </Pane>
-      <Label layoutX="258.0" layoutY="14.0" prefHeight="52.0" prefWidth="324.0" text="Ajouter un evenement " textFill="#81523b">
+      <Label layoutX="276.0" layoutY="14.0" prefHeight="52.0" prefWidth="324.0" text="Ajouter un evenement " textFill="#81523b">
          <font>
-            <Font size="24.0" />
+            <Font name="Microsoft JhengHei Bold" size="24.0" />
          </font>
       </Label>
-      <JFXColorPicker layoutX="125.0" layoutY="271.0" />
    </children>
 </AnchorPane>

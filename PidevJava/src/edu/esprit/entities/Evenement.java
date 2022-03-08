@@ -6,7 +6,8 @@
 package edu.esprit.entities;
 
 import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+
 
 /**
  *
@@ -19,13 +20,13 @@ public class Evenement {
     private String adresse_evenement;
     private String description_evenement;
     private Date date_creation_evenement;
-    private Date  date_evenement;
+    private Timestamp  date_evenement;
     private Type_evenement type_evenements;
     private Utilisateur utilisateur;
     
    public Evenement(){}
 
-    public Evenement(int id_evenement, String titre_evenement, String adresse_evenement, String description_evenement, Date date_creation_evenement, Date date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur,String image) {
+    public Evenement(int id_evenement, String titre_evenement, String adresse_evenement, String description_evenement, Date date_creation_evenement, Timestamp date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur,String image) {
         this.id_evenement = id_evenement;
         this.titre_evenement = titre_evenement;
         this.adresse_evenement = adresse_evenement;
@@ -37,7 +38,7 @@ public class Evenement {
         this.image=image;
     }
 
-    public Evenement(int id_evenement, String titre_evenement, String adresse_evenement, String description_evenement, Date date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur) {
+    public Evenement(int id_evenement, String titre_evenement, String adresse_evenement, String description_evenement, Timestamp date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur) {
         this.id_evenement = id_evenement;
         this.titre_evenement = titre_evenement;
         this.adresse_evenement = adresse_evenement;
@@ -47,7 +48,7 @@ public class Evenement {
         this.utilisateur = id_utilisateur;
     }
 
-    public Evenement(String titre_evenement, String adresse_evenement, String description_evenement, Date date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur,String image) {
+    public Evenement(String titre_evenement, String adresse_evenement, String description_evenement, Timestamp date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur,String image) {
         this.titre_evenement = titre_evenement;
         this.adresse_evenement = adresse_evenement;
         this.description_evenement = description_evenement;
@@ -102,11 +103,11 @@ public class Evenement {
         this.date_creation_evenement = date_creation_evenement;
     }
 
-    public Date getDate_evenement() {
+    public Timestamp getDate_evenement() {
         return date_evenement;
     }
 
-    public void setDate_evenement(Date date_evenement) {
+    public void setDate_evenement(Timestamp date_evenement) {
         this.date_evenement = date_evenement;
     }
 

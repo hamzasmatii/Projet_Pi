@@ -172,8 +172,7 @@ public class DetailLivreController implements Initializable {
 
     public void setData(Livre l) {
         this.l = l;
-
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa." + l.getId_livre());
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa." + l);
         titreLabel.setText(l.getTitre_livre());
         discriptiondetail.setText(l.getDescription_livre());
         auteurdetail.setText("Par :" + l.getUtilisateur().getNom_utilisateur());

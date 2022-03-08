@@ -22,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -71,22 +73,27 @@ public void setData(Livre liv) {
     
     @FXML
     private void consulterLivre(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("detailLivre.fxml"));
                 
-               
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("detailLivre.fxml"));
 
                 //DetailLivreController con = fxmlLoader.getController();
 
                 Statics.livreid=l.getId_livre();
                 Statics.categorielivreid=l.getCategorieLivre();
-                root = fxmlLoader.load();
-                DetailLivreController con = fxmlLoader.getController();
-                System.out.print("---------------------------------------------"+l);
-                con.setData(l);
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                //root = loader.load();
+                
+                /*stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
-                stage.show();
+                stage.show();*/
+                
+                
+        Pane orderView = loader.load();
+        DetailLivreController con = loader.getController();
+                System.out.print("---------------------------------------------"+l);
+                con.setData(l);
+        BorderPane homePane = (BorderPane) btnConsulter.getScene().getRoot();
+        homePane.setCenter(orderView);
 
                 
     }

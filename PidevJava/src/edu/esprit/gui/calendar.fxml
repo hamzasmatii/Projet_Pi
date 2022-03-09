@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorCalendar" prefHeight="400.0" prefWidth="600.0" styleClass="Agenda" stylesheets="@evenements.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.CalendarController">
+   <children>
+      <BorderPane fx:id="cell" prefHeight="406.0" prefWidth="600.0" />
+   </children>
+</AnchorPane>

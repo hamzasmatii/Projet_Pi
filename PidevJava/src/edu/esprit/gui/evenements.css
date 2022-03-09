@@ -40,3 +40,14 @@
     
 }
 
+.calendar{
+   -fx-background-color :bisque;
+    
+}
+.calendar{
+   -fx-background-color :red;
+    
+}
+.Agenda {
+    -fx-width:800px;
+}

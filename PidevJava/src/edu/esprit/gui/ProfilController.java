@@ -25,6 +25,8 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -101,6 +103,8 @@ public class ProfilController implements Initializable {
     private TextField filePathInput;
     @FXML
     private Button loadpane;
+    @FXML
+    private BorderPane CalendarContainer;
     /**
      * Initializes the controller class.
      */
@@ -168,7 +172,11 @@ public class ProfilController implements Initializable {
             newMdpInput.setDisable(true);
             confirmNewMdpInput.setDisable(true);
         }));
-
+        try {
+            loadCalendar();
+        } catch (IOException ex) {
+            Logger.getLogger(ProfilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -275,11 +283,19 @@ public class ProfilController implements Initializable {
          /*Parent root = null;
                      root = FXMLLoader.load (getClass () .getResource ("changePassword.fxml") ) ;
                      Controller.bp.setCenter(root);*/
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("changePassword.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("changePassword.fxml"));
         Pane orderView = loader.load();
         BorderPane homePane = (BorderPane) loadpane.getScene().getRoot();
         homePane.setCenter(orderView);
 
+    }
+    
+    private void loadCalendar() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("calendar.fxml"));
+        Pane calendarView = loader.load();
+        CalendarContainer.setCenter(calendarView);
+        
+        
     }
 }
 
@@ -297,4 +313,6 @@ class role {
     public String toString() {
         return "role{" + "id=" + id + ", libelle=" + libelle + '}';
     }
+    
+    
 }

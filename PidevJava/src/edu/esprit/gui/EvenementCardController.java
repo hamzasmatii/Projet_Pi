@@ -41,6 +41,8 @@ public class EvenementCardController implements Initializable {
     private HBox boxTest;
     @FXML
     private Label adresse;
+     @FXML
+    private Button participerBTN;
     
     EvenementListner listner ;
     

@@ -4,19 +4,24 @@
  * and open the template in the editor.
  */
 package edu.esprit.gui;
-
-import com.jfoenix.controls.JFXSnackbar;
-import com.jfoenix.controls.JFXSnackbar.SnackbarEvent;
 import com.jfoenix.controls.JFXToggleButton;
 import edu.esprit.dao.classes.EvenementDAO;
+import edu.esprit.dao.classes.Participation_evenementDAO;
 import edu.esprit.dao.interfaces.IevenementDAO;
+import edu.esprit.dao.interfaces.IparticipationEvenementDAO;
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.Participation_evenement;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.EvenementListner;
+import edu.esprit.util.Statics;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +31,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -84,6 +91,8 @@ public class EvenementsController implements Initializable {
     private Button ajoutButton;
     @FXML
     private JFXToggleButton sortToggle;
+    
+    Evenement sideBarEvenement=new Evenement();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -115,6 +124,7 @@ public List<Evenement> fechEvenement(){
 }
 private void setChosenEvenement(Evenement evenement) throws IOException {
        
+       sideBarEvenement=evenement;
        titreText.setText(evenement.getTitre_evenement());
        descriptionText.setText(evenement.getDescription_evenement());
        dateText.setText(evenement.getDate_evenement().toString());
@@ -140,10 +150,7 @@ private void setChosenEvenement(Evenement evenement) throws IOException {
  List<Evenement> sorted=this.allEvenements.stream().
           sorted((e1,e2)->e2.getDate_evenement().compareTo(e1.getDate_evenement()))
          .collect(Collectors.toList());
- 
          return sorted;
-        
-        
     }
     
     private void displayGrid(List<Evenement> evenements ){
@@ -165,16 +172,13 @@ private void setChosenEvenement(Evenement evenement) throws IOException {
                 }
             
             gridEvenements.add(anchorPane,column++, row);
-            
             gridEvenements.setMinWidth(Region.USE_COMPUTED_SIZE);
-                gridEvenements.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                gridEvenements.setMaxWidth(Region.USE_PREF_SIZE);
-
+            gridEvenements.setPrefWidth(Region.USE_COMPUTED_SIZE);
+            gridEvenements.setMaxWidth(Region.USE_PREF_SIZE);
                 //set grid height
                 gridEvenements.setMinHeight(Region.USE_COMPUTED_SIZE);
                 gridEvenements.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 gridEvenements.setMaxHeight(Region.USE_PREF_SIZE);
-
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
             }
@@ -201,12 +205,29 @@ private void setChosenEvenement(Evenement evenement) throws IOException {
 
     @FXML
     private void search(KeyEvent event) {
-        String word=searchBox.getText();
-      List<Evenement> searchList=this.allEvenements.stream().
-              filter((e)->{return e.getTitre_evenement().toUpperCase().startsWith(word.toUpperCase());})
-              .collect(Collectors.toList());
+      String word=searchBox.getText();
+      List<Evenement> searchList=this.allEvenements.stream()
+                .filter((e)->{return e.getTitre_evenement().toUpperCase().startsWith(word.toUpperCase());})
+                .collect(Collectors.toList());
       this.gridEvenements.getChildren().clear();
       this.displayGrid(searchList);
+    }
+
+    @FXML
+    private void ajoutParticipation(ActionEvent event) {
+      Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setTitle("Participation evenement");
+      alert.setContentText("Voulez vous participer a cet evenement");
+         Optional<ButtonType> option = alert.showAndWait();
+         
+       if (option.get() == ButtonType.OK) {
+           IparticipationEvenementDAO pdao= new Participation_evenementDAO();
+           Utilisateur user=Statics.currentUser;
+          
+           Participation_evenement p=new Participation_evenement(user,sideBarEvenement);
+           pdao.insererParticipation(p);
+                   }
+        
     }
     
     

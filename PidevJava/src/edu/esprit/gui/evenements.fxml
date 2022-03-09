@@ -139,7 +139,7 @@
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Pane prefHeight="54.0" prefWidth="74.0" />
-                                    <Button fx:id="participerBTN" mnemonicParsing="false" prefHeight="31.0" prefWidth="215.0" styleClass="participerButton" text="Participer" textFill="WHITE">
+                                    <Button fx:id="participerBTN" mnemonicParsing="false" onAction="#ajoutParticipation" prefHeight="31.0" prefWidth="215.0" styleClass="participerButton" text="Participer" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>

@@ -131,8 +131,8 @@ public class EvenementDAO implements IevenementDAO{
                 e.setTitre_evenement(resultat.getString(2));
                 e.setAdresse_evenement(resultat.getString(3));
                 e.setDescription_evenement(resultat.getString(4));
-//              e.setDate_creation_evenement(Date.valueOf(resultat.getString(5)));
-//              e.setDate_evenement(Date.valueOf(resultat.getString(6)));
+                 e.setDate_creation_evenement((resultat.getDate(5)));
+                 e.setDate_evenement((resultat.getTimestamp(6)));
                 e.setType_evenements(typeEvenementDAO.fetchTypeEvenementById(resultat.getInt(7)));
                 e.setUtilisateur(utilisateurDAO.findUtilisateurtById(resultat.getInt(8)));
                 System.out.println(e);

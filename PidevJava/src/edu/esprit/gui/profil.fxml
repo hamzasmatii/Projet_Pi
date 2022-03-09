@@ -11,6 +11,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -20,12 +21,19 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ProfilController">
    <children>
-      <Pane layoutX="25.0" layoutY="15.0" prefHeight="777.0" prefWidth="1182.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="777.0" prefWidth="1182.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane layoutX="369.0" layoutY="138.0" prefHeight="137.0" prefWidth="772.0" styleClass="profileBodyCard" stylesheets="@../util/style.css" />
-            <Pane layoutX="22.0" layoutY="137.0" prefHeight="460.0" prefWidth="308.0" styleClass="profileBodyCard" stylesheets="@../util/style.css" />
-            <Pane layoutX="369.0" layoutY="295.0" prefHeight="420.0" prefWidth="772.0" styleClass="profileBodyCard" stylesheets="@../util/style.css" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="124.0" opacity="0.73" stroke="#fcf3de" strokeType="INSIDE" width="1200.0">
+            <Pane layoutX="356.0" layoutY="138.0" prefHeight="639.0" prefWidth="824.0" styleClass="profileBodyCard" stylesheets="@../util/style.css">
+               <children>
+                  <BorderPane fx:id="CalendarContainer" layoutX="15.0" layoutY="248.0" prefHeight="374.0" prefWidth="800.0" />
+               </children></Pane>
+            <Pane layoutX="22.0" layoutY="137.0" prefHeight="524.0" prefWidth="308.0" styleClass="profileBodyCard" stylesheets="@../util/style.css" />
+            <Button fx:id="saveChangesBtn" layoutX="38.0" layoutY="588.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="39.0" prefWidth="282.0" styleClass="modifyProfileButton" text="Enregistrer les modifications" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="124.0" layoutX="-1.0" layoutY="-8.0" opacity="0.73" stroke="#fcf3de" strokeType="INSIDE" width="1200.0">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -41,7 +49,7 @@
                   <Font size="29.0" />
                </font>
             </Text>
-            <TextField fx:id="emailInput" layoutX="511.0" layoutY="196.0" prefHeight="51.0" prefWidth="451.0" promptText="Email" styleClass="loginInputs" />
+            <TextField fx:id="emailInput" layoutX="511.0" layoutY="154.0" prefHeight="39.0" prefWidth="451.0" promptText="Email" styleClass="loginInputs" />
             <TextField fx:id="nomInput" layoutX="53.0" layoutY="372.0" prefHeight="51.0" prefWidth="257.0" promptText="Nom et prénom" styleClass="loginInputs" />
             <DatePicker fx:id="dateInput" layoutX="188.0" layoutY="445.0" opacity="0.65" prefHeight="34.0" prefWidth="119.0" promptText="dateInput" style="-fx-background-radius: 5;" />
             <ComboBox fx:id="roleInput" layoutX="53.0" layoutY="501.0" prefHeight="39.0" prefWidth="257.0" promptText="Role" styleClass="loginInputs" />
@@ -63,23 +71,24 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <Text fill="#81523b" layoutX="403.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="155.4140625">
+            <Text fill="#81523b" layoutX="403.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="155.4140625">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <Text fill="#81523b" layoutX="379.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer votre mot de passe " wrappingWidth="290.4140625">
+            <TextField fx:id="filePathInput" layoutX="53.0" layoutY="310.0" prefHeight="51.0" prefWidth="155.0" promptText="Nom et prénom" styleClass="loginInputs" />
+            <Button fx:id="fileBtn" layoutX="223.0" layoutY="317.0" mnemonicParsing="false" onAction="#fileChose" prefHeight="37.0" prefWidth="95.0" styleClass="loginButton" text="Attacher " textFill="WHITE">
                <font>
-                  <Font size="22.0" />
-               </font>
-            </Text>
-            <Separator layoutX="539.0" layoutY="283.0" prefHeight="2.0" prefWidth="396.0" />
-            <Button fx:id="saveChangesBtn" layoutX="681.0" layoutY="536.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="39.0" prefWidth="282.0" styleClass="modifyProfileButton" text="Enregistrer les modifications" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <ToggleButton fx:id="noToggle" layoutX="673.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" selected="true" styleClass="loginButton" text="Non" textFill="WHITE">
+            <Button fx:id="loadpane" layoutX="326.0" layoutY="360.0" mnemonicParsing="false" onAction="#loadepane" text="Button" />
+            <Text fill="#81523b" layoutX="389.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changer votre mot de passe " wrappingWidth="290.4140625">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <ToggleButton fx:id="noToggle" layoutX="683.0" layoutY="209.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" selected="true" styleClass="loginButton" text="Non" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="changePassword" />
                </toggleGroup>
@@ -87,21 +96,17 @@
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </ToggleButton>
-            <ToggleButton fx:id="yesToggle" layoutX="716.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" styleClass="loginButton" text="Oui" textFill="WHITE" toggleGroup="$changePassword">
+            <ToggleButton fx:id="yesToggle" layoutX="726.0" layoutY="209.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" styleClass="loginButton" text="Oui" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="changePassword" />
+               </toggleGroup>
                <font>
                   <Font name="Microsoft JhengHei" size="12.0" />
                </font>
             </ToggleButton>
-            <PasswordField fx:id="mdpInput" layoutX="511.0" layoutY="352.0" prefHeight="51.0" prefWidth="451.0" promptText="Ancien mot de passe" styleClass="loginInputs" />
-            <TextField fx:id="filePathInput" layoutX="53.0" layoutY="310.0" prefHeight="51.0" prefWidth="155.0" promptText="Nom et prénom" styleClass="loginInputs" />
-            <Button fx:id="fileBtn" layoutX="223.0" layoutY="317.0" mnemonicParsing="false" onAction="#fileChose" prefHeight="37.0" prefWidth="95.0" styleClass="loginButton" text="Attacher " textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Button>
-            <Button fx:id="loadpane" layoutX="403.0" layoutY="575.0" mnemonicParsing="false" onAction="#loadepane" text="Button" />
-            <PasswordField fx:id="newMdpInput" layoutX="512.0" layoutY="412.0" prefHeight="51.0" prefWidth="451.0" promptText="Nouveau mot de passe" styleClass="loginInputs" />
-            <PasswordField fx:id="confirmNewMdpInput" layoutX="512.0" layoutY="472.0" prefHeight="51.0" prefWidth="451.0" promptText="Confirmer mot de passe" styleClass="loginInputs" />
+            <PasswordField fx:id="mdpInput" layoutX="521.0" layoutY="241.0" prefHeight="39.0" prefWidth="451.0" promptText="Ancien mot de passe" styleClass="loginInputs" />
+            <PasswordField fx:id="newMdpInput" layoutX="522.0" layoutY="285.0" prefHeight="39.0" prefWidth="451.0" promptText="Nouveau mot de passe" styleClass="loginInputs" />
+            <PasswordField fx:id="confirmNewMdpInput" layoutX="522.0" layoutY="329.0" prefHeight="39.0" prefWidth="451.0" promptText="Confirmer mot de passe" styleClass="loginInputs" />
          </children>
       </Pane>
    </children>

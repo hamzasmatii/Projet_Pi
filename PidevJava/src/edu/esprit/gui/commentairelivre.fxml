@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="60.0" prefWidth="870.0" styleClass="paneliv" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.CommentairelivreController">
+   <children>
+      <Label fx:id="commentairelivre" layoutX="153.0" layoutY="8.0" prefHeight="46.0" prefWidth="691.0" styleClass="loginInputs" text="commentaire" />
+      <Label fx:id="nom_utilisateur" layoutX="14.0" layoutY="16.0" prefHeight="36.0" prefWidth="113.0" text="Label" />
+   </children>
+</AnchorPane>

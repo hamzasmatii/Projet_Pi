@@ -50,12 +50,12 @@ public class AchatLivreDAO implements IAchatLivre {
     }
 
     public void updateAchatLivre(AchatLivre l) {
-        String req = "update achat_livre set date_achat=? where id_utilisateur=?";
+        String req = "update achat_livre set date_achat=? where id_utilisateur=? and id_livre=?";
         try {
             PreparedStatement ls = connection.prepareStatement(req);
-            ls.setInt(1, l.getId_utilisateur());
-            ls.setInt(2, l.getId_livre());
-            ls.setDate(3, l.getDate_achat());
+            ls.setInt(2, l.getId_utilisateur());
+            ls.setInt(3, l.getId_livre());
+            ls.setDate(1, l.getDate_achat());
  
 
             ls.executeUpdate();
@@ -125,6 +125,8 @@ public class AchatLivreDAO implements IAchatLivre {
             return null;
         }
     }
+    
+    
 
     
 

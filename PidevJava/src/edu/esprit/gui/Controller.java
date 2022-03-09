@@ -193,7 +193,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void livre(MouseEvent event) {
-        loadPage("Livre");
+        loadPage("listeLivre");
     }
 
     @FXML

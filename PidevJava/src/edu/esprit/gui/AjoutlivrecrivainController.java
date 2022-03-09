@@ -10,6 +10,7 @@ import edu.esprit.dao.classes.LivreDAO;
 import edu.esprit.entities.CategorieLivre;
 import edu.esprit.entities.Livre;
 import edu.esprit.util.MyConnection;
+import edu.esprit.util.Statics;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class AjoutlivrecrivainController implements Initializable {
     @FXML
     private AnchorPane anchor;
     String imageName;
+    String pdfName;
     @FXML
     private Button uploadImage;
     @FXML
@@ -90,7 +92,7 @@ public class AjoutlivrecrivainController implements Initializable {
         
          //LocalDate date = LocalDate.of(2020, 1, 8);
          LocalDate date=java.time.LocalDate.now();
-        Livre templ = new Livre(titre_livreInput.getText(),description_livreInput.getText(),java.sql.Date.valueOf(date),photo_livreInput.getText(),contenu_livreInput.getText(),50,0,1,1);
+        Livre templ = new Livre(titre_livreInput.getText(),description_livreInput.getText(),java.sql.Date.valueOf(date),imageName,pdfName,Integer.parseInt(prix_livreInput.getText()),0,Statics.currentUser.getId_utilisateur(),categorie_livreInput.getValue().getId_categorie_livre());
         LivreDAO ls = new LivreDAO();
         ls.insertLivre(templ);
         
@@ -135,9 +137,9 @@ private void uploadPDF(ActionEvent event) throws FileNotFoundException, IOExcept
                 }
                 File sourceFile=null;
                 File destinationFile = null;
-                imageName = file.toString().substring(file.toString().lastIndexOf('\\')+1);
+                pdfName = file.toString().substring(file.toString().lastIndexOf('\\')+1);
                 sourceFile = new File(file.toString());
-                destinationFile = new File( "src/pdf/livre"+imageName);
+                destinationFile = new File( "src/pdf/livre"+pdfName);
                 if(!destinationFile.exists())
                 {
                 Files.copy(sourceFile.toPath(), destinationFile.toPath());

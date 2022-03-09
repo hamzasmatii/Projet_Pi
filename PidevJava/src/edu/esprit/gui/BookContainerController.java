@@ -62,7 +62,7 @@ public void setData(Livre liv) {
         discription.setText(l.getDescription_livre());
         evaluation.setText(l.getEvalution_livre()+"");
         //System.out.print(l.getPhoto_livre());
-        Image img = new Image("/image/"+l.getPhoto_livre(),false);
+       Image img = new Image("/image/"+l.getPhoto_livre(),false);
         imagelivre.setImage(img);
         
         

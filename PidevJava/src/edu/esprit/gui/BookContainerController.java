@@ -52,14 +52,16 @@ public class BookContainerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        //System.out.println("---------------------------------------------"+l); 
     }
 public void setData(Livre liv) {
+           // System.out.println("This is Set data");
+
         this.l = liv;
         titre.setText(l.getTitre_livre());
         discription.setText(l.getDescription_livre());
         evaluation.setText(l.getEvalution_livre()+"");
-        System.out.print(l.getPhoto_livre());
+        //System.out.print(l.getPhoto_livre());
         Image img = new Image("/image/"+l.getPhoto_livre(),false);
         imagelivre.setImage(img);
         
@@ -73,7 +75,7 @@ public void setData(Livre liv) {
     
     @FXML
     private void consulterLivre(ActionEvent event) throws IOException {
-                
+               
                FXMLLoader loader = new FXMLLoader(getClass().getResource("detailLivre.fxml"));
 
                 //DetailLivreController con = fxmlLoader.getController();
@@ -88,9 +90,9 @@ public void setData(Livre liv) {
                 stage.show();*/
                 
                 
-        Pane orderView = loader.load();
-        DetailLivreController con = loader.getController();
-                System.out.print("---------------------------------------------"+l);
+                    Pane orderView = loader.load();
+                    DetailLivreController con = loader.getController();
+                
                 con.setData(l);
         BorderPane homePane = (BorderPane) btnConsulter.getScene().getRoot();
         homePane.setCenter(orderView);

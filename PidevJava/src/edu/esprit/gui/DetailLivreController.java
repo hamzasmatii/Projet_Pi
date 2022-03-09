@@ -17,12 +17,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -67,6 +72,10 @@ public class DetailLivreController implements Initializable {
     private Button pdflivre;
     @FXML
     private Button acheterlivre;
+    @FXML
+    private Button evaluationP;
+    @FXML
+    private Button evaluationM;
 
     /**
      * Initializes the controller class.
@@ -74,15 +83,14 @@ public class DetailLivreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
                 //livres = getDataTest();
-
+       // System.out.println("Prix "+l.getPrix_livre());
         livres = getData(Statics.categorielivreid);
         int column = 0;
         int row = 1;
         if (livres == null) {
-            System.out.println("feraghhhh");
         }
-        System.out.println(Statics.livreid + "----------------------------------**************************");
-        System.out.println(livres.size());
+       // System.out.println(Statics.livreid + "----------------------------------**************************");
+       // System.out.println(livres.size());
         try {
             for (int i = 0; i < livres.size(); i++) {
                 System.out.print(livres.get(i));
@@ -121,10 +129,10 @@ public class DetailLivreController implements Initializable {
 
         int columnn = 0;
         int roww = 1;
-        System.out.println(commentaire.size());
+        //System.out.println(commentaire.size());
         try {
             for (int i = 0; i < commentaire.size(); i++) {
-                System.out.print(commentaire.get(i));
+               // System.out.print(commentaire.get(i));
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("commentairelivre.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
@@ -172,7 +180,7 @@ public class DetailLivreController implements Initializable {
 
     public void setData(Livre l) {
         this.l = l;
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa." + l);
+       // System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa." + l);
         titreLabel.setText(l.getTitre_livre());
         discriptiondetail.setText(l.getDescription_livre());
         auteurdetail.setText("Par :" + l.getUtilisateur().getNom_utilisateur());
@@ -182,6 +190,7 @@ public class DetailLivreController implements Initializable {
 
     }
 
+    @FXML
     public void openPDF() {
 
         String file = "C:/Users/aziz karoui/Desktop/pass_covid/tn.pdf";
@@ -221,5 +230,21 @@ public class DetailLivreController implements Initializable {
 
     public void evaluationM() {
 
+    }
+
+    @FXML
+    private void validerachat(ActionEvent event) {
+         Alert alert = new Alert(AlertType.CONFIRMATION);
+         System.out.println("Prix "+l.getPrix_livre());
+        if(Statics.currentUser.getSolde_utilisateur()<l.getPrix_livre()){
+            alert.setAlertType(AlertType.ERROR);
+            return;
+        }
+       
+        Optional<ButtonType> options =alert.showAndWait();
+        if(options.get() == ButtonType.OK){
+            System.out.println("Echri");
+        }
+        
     }
 }

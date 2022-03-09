@@ -39,7 +39,7 @@ public class PidevJava extends Application {
         
         this.stage = primaryStage;
         try {
-            parent = FXMLLoader.load(getClass().getResource("/edu/esprit/gui/Home.fxml"));
+            parent = FXMLLoader.load(getClass().getResource("/edu/esprit/gui/ajoutLivrecrivain.fxml"));//Home livreachete
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

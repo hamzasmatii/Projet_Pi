@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -27,35 +28,42 @@ import javafx.scene.layout.Region;
  * @author aziz karoui
  */
 public class ListeLivreController implements Initializable {
- private List<Livre> livres = new ArrayList<>();
+
+    private List<Livre> livres = new ArrayList<>();
+        private List<Livre> livresdate = new ArrayList<>();
+
     @FXML
     private GridPane bookContainer;
+    @FXML
+    private GridPane livredate;
+    @FXML
+    private ScrollPane scrollLivre;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        livres=getData();
+        livres = getData();
+        livresdate=getDataO();
+        
         int column = 0;
         int row = 1;
-        System.out.println(livres.size());
+        // System.out.println(livres.size());
         try {
             for (int i = 0; i < livres.size(); i++) {
-                System.out.print(livres.get(i));
+                // System.out.print(livres.get(i));
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("bookContainer.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 BookContainerController itemController = fxmlLoader.getController();
                 itemController.setData(livres.get(i));
-                
 
                 if (column == 6) {
                     column = 0;
                     row++;
                 }
-                
 
                 bookContainer.add(anchorPane, column++, row); //(child,column,row)
                 //set grid width
@@ -73,18 +81,52 @@ public class ListeLivreController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        
+
         // TODO
-    }    
-    private List<Livre> getData(){
-        ILivre ldao=new LivreDAO();    
-        return ldao.DisplayAllLivre();
-        
-        
-        
+        int columndate = 0;
+        int rowdate = 1;
+        // System.out.println(livres.size());
+        try {
+            for (int i = 0; i < livresdate.size(); i++) {
+                // System.out.print(livres.get(i));
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("bookContainer.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                BookContainerController itemController = fxmlLoader.getController();
+                itemController.setData(livresdate.get(i));
+
+              /*  if (columndate == 6) {
+                    columndate = 0;
+                    rowdate++;
+                }*/
+
+                livredate.add(anchorPane, columndate++, rowdate); //(child,column,row)
+                //set grid width
+                livredate.setMinWidth(Region.USE_COMPUTED_SIZE);
+                livredate.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                livredate.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                livredate.setMinHeight(Region.USE_COMPUTED_SIZE);
+                livredate.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                livredate.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    private List<Livre> getDataO(){
-        ILivre ldao=new LivreDAO();    
-        return ldao.DisplayAllLivreByDate();}
+
+    private List<Livre> getData() {
+        ILivre ldao = new LivreDAO();
+        return ldao.DisplayAllLivre();
+
+    }
+
+    private List<Livre> getDataO() {
+        ILivre ldao = new LivreDAO();
+        return ldao.DisplayAllLivreByDate();
+    }
 }

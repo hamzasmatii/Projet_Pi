@@ -22,32 +22,29 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 /**
  *
  * @author aziz karoui
  */
 public class LivreDAO implements ILivre {
-    
-  private Connection connection;
+
+    private Connection connection;
 
     public LivreDAO() {
         connection = MyConnection.getInstance();
-       
+
     }
 
 // ObservableList<LivreDAO>list=FXCollections.observableArrayList();
-
-    
-public void insertLivre(Livre l) {
+    public void insertLivre(Livre l) {
         String req = "INSERT INTO `livre` (`titre_livre`, `description_livre`,`date_publication_livre`, `photo_livre`, `contenu_livre`, `prix_livre`, `evalution_livre`, `id_ecrivain_livre`,`id_categorie_livre`) "
                 + "VALUES (?,?,?,?,?,?,?,?,?) ";
         try {
             PreparedStatement usl = connection.prepareStatement(req);
             usl.setString(1, l.getTitre_livre());
-            
             usl.setString(2, l.getDescription_livre());
             usl.setDate(3, l.getDate_publication_livre());
-            
             usl.setString(4, l.getPhoto_livre());
             usl.setString(5, l.getContenu_livre());
             usl.setInt(6, l.getPrix_livre());
@@ -60,20 +57,22 @@ public void insertLivre(Livre l) {
             Logger.getLogger(LivreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //UPDATE `livre` SET `evalution_livre`=`evalution_livre`+1 WHERE `id_livre`=1;
+    //UPDATE `livre` SET `evalution_livre`=`evalution_livre`-1 WHERE `id_livre`=1;
+
     public void updateLivre(edu.esprit.entities.Livre l) {
         String req = "update livre set titre_livre=? , description_livre=? , date_publication_livre=? ,photo_livre=? ,contenu_livre=? ,prix_livre=?,evalution_livre=?,id_ecrivain_livre=?  where id_livre=?";
         try {
             PreparedStatement usl = connection.prepareStatement(req);
             usl.setString(1, l.getTitre_livre());
-           
+
             usl.setString(2, l.getDescription_livre());
             usl.setDate(3, l.getDate_publication_livre());
             usl.setString(4, l.getPhoto_livre());
             usl.setString(5, l.getContenu_livre());
-           
-             usl.setInt(6, l.getPrix_livre());
-             
+
+            usl.setInt(6, l.getPrix_livre());
+
             usl.setInt(7, l.getEvalution_livre());
             usl.setInt(8, l.getId_ecrivain_livre());
             usl.setInt(9, l.getId_livre());
@@ -85,8 +84,8 @@ public void insertLivre(Livre l) {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
         }
     }
-    
-     public void deleteLivre(int id) {
+
+    public void deleteLivre(int id) {
         String requete = "delete from livre where id_livre=?";
         try {
             PreparedStatement us = connection.prepareStatement(requete);
@@ -98,8 +97,8 @@ public void insertLivre(Livre l) {
             System.out.println("erreur lors de la suppression " + ex.getMessage());
         }
     }
-     
-     public edu.esprit.entities.Livre findLivreById(int id) {
+
+    public edu.esprit.entities.Livre findLivreById(int id) {
         edu.esprit.entities.Livre livre = new edu.esprit.entities.Livre();
         String requete = "select * from livre where id_livre=?";
         try {
@@ -113,8 +112,8 @@ public void insertLivre(Livre l) {
                 livre.setDate_publication_livre(resultat.getDate(4));
                 livre.setPhoto_livre(resultat.getString(5));
                 livre.setContenu_livre(resultat.getString(6));
-                                livre.setPrix_livre(resultat.getInt(7));
-                
+                livre.setPrix_livre(resultat.getInt(7));
+
                 livre.setEvalution_livre(resultat.getInt(8));
                 livre.setId_ecrivain_livre(resultat.getInt(9));
 
@@ -127,8 +126,8 @@ public void insertLivre(Livre l) {
             return null;
         }
     }
-     
-     public List<edu.esprit.entities.Livre> DisplayAllLivre() {
+
+    public List<edu.esprit.entities.Livre> DisplayAllLivre() {
 
         List<edu.esprit.entities.Livre> listedepots = new ArrayList<edu.esprit.entities.Livre>();
 
@@ -149,7 +148,7 @@ public void insertLivre(Livre l) {
                 livre.setPhoto_livre(resultat.getString(5));
                 livre.setContenu_livre(resultat.getString(6));
                 livre.setPrix_livre(resultat.getInt(7));
-                
+
                 livre.setEvalution_livre(resultat.getInt(8));
                 livre.setId_ecrivain_livre(resultat.getInt(9));
                 livre.setId_categorie_livre(resultat.getInt(11));
@@ -158,7 +157,7 @@ public void insertLivre(Livre l) {
                 utilisateur.setNom_utilisateur(resultat.getString(14));
                 livre.setUtilisateur(utilisateur);
                 livre.setCategorieLivre(categorielivre);
-                System.out.println(livre);
+               // System.out.println(livre);
                 listedepots.add(livre);
             }
             return listedepots;
@@ -167,28 +166,29 @@ public void insertLivre(Livre l) {
             System.out.println("erreur lors du chargement des depots " + ex.getMessage());
             return null;
         }
-    }  
-     public List<edu.esprit.entities.Livre> DisplayAllLivreByCategorie(CategorieLivre l) {
+    }
+    //display
+    public List<edu.esprit.entities.Livre> DisplayAllLivreByecrivain(Utilisateur l) {
 
         List<edu.esprit.entities.Livre> listedepots = new ArrayList<edu.esprit.entities.Livre>();
 
-      String requete = "select L.*,C.*,U.* from livre L join categorie_livre C on L.id_categorie_livre=C.id_categorie_livre join utilisateur U on L.id_ecrivain_livre=U.id_utilisateur where C.id_categorie_livre= ?";
-               // String requete="select * from livre where id_categorie_livre=? ";
-      try {
+        String requete = "select L.*,C.*,U.* from livre L join categorie_livre C on L.id_categorie_livre=C.id_categorie_livre join utilisateur U on L.id_ecrivain_livre=U.id_utilisateur where L.id_ecrivain_livre= ?";
+        // String requete="select * from livre where id_categorie_livre=? ";
+        try {
             PreparedStatement statement = connection.prepareStatement(requete);
-            statement.setInt(1, l.getId_categorie_livre());
+            statement.setInt(1, l.getId_utilisateur());
             ResultSet resultat = statement.executeQuery();
 
             while (resultat.next()) {
-               edu.esprit.entities.Livre livre = new edu.esprit.entities.Livre();
-                Utilisateur utilisateur = new Utilisateur();
-                utilisateur.setId_utilisateur(resultat.getInt(13));
+                edu.esprit.entities.Livre livre = new edu.esprit.entities.Livre();
+                Utilisateur utilisateur = l;
+               /* utilisateur.setId_utilisateur(resultat.getInt(13));
                 utilisateur.setNom_utilisateur(resultat.getString(14));
                 utilisateur.setDate_naissance_utilisateur(resultat.getDate(15));
                 utilisateur.setPhoto_utilisateur(resultat.getString(16));
                 utilisateur.setType_utilisateur(resultat.getInt(17));
-                utilisateur.setSolde_utilisateur(resultat.getInt(18));
-              
+                utilisateur.setSolde_utilisateur(resultat.getInt(18));*/
+                CategorieLivre cat = new CategorieLivre();
                 livre.setId_livre(resultat.getInt(1));
                 livre.setTitre_livre(resultat.getString(2));
                 livre.setDescription_livre(resultat.getString(3));
@@ -198,12 +198,62 @@ public void insertLivre(Livre l) {
                 livre.setPrix_livre(resultat.getInt(7));
                 livre.setEvalution_livre(resultat.getInt(8));
                 livre.setId_ecrivain_livre(resultat.getInt(9));
+                cat.setId_categorie_livre(resultat.getInt(10));
+                cat.setLibelle(resultat.getString(12));
+                livre.setCategorieLivre(cat);
+                livre.setUtilisateur(utilisateur);
+
+                listedepots.add(livre);
+                
+            }
+            //System.out.println("22222222222222-" + listedepots);
+            return listedepots;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
+            return null;
+        }
+    }
+
+    //test
+
+    public List<edu.esprit.entities.Livre> DisplayAllLivreByCategorie(CategorieLivre l) {
+
+        List<edu.esprit.entities.Livre> listedepots = new ArrayList<edu.esprit.entities.Livre>();
+
+        String requete = "select L.*,C.*,U.* from livre L join categorie_livre C on L.id_categorie_livre=C.id_categorie_livre join utilisateur U on L.id_ecrivain_livre=U.id_utilisateur where C.id_categorie_livre= ?";
+        // String requete="select * from livre where id_categorie_livre=? ";
+        try {
+            PreparedStatement statement = connection.prepareStatement(requete);
+            statement.setInt(1, l.getId_categorie_livre());
+            ResultSet resultat = statement.executeQuery();
+
+            while (resultat.next()) {
+                edu.esprit.entities.Livre livre = new edu.esprit.entities.Livre();
+                Utilisateur utilisateur = new Utilisateur();
+                utilisateur.setId_utilisateur(resultat.getInt(13));
+                utilisateur.setNom_utilisateur(resultat.getString(14));
+                utilisateur.setDate_naissance_utilisateur(resultat.getDate(15));
+                utilisateur.setPhoto_utilisateur(resultat.getString(16));
+                utilisateur.setType_utilisateur(resultat.getInt(17));
+                utilisateur.setSolde_utilisateur(resultat.getInt(18));
+
+                livre.setId_livre(resultat.getInt(1));
+                livre.setTitre_livre(resultat.getString(2));
+                livre.setDescription_livre(resultat.getString(3));
+                livre.setDate_publication_livre(resultat.getDate(4));
+                livre.setPhoto_livre(resultat.getString(5));
+                livre.setContenu_livre(resultat.getString(6));
+                livre.setPrix_livre(resultat.getInt(7));
+                livre.setEvalution_livre(resultat.getInt(8));
+                livre.setId_ecrivain_livre(resultat.getInt(9));
+                
                 livre.setCategorieLivre(l);
                 livre.setUtilisateur(utilisateur);
-        
-                System.out.println(livre);
+
+               // System.out.println(livre);
                 listedepots.add(livre);
-                System.out.println("-------------------"+livre);
+               // System.out.println("-------------------" + livre);
             }
             return listedepots;
         } catch (SQLException ex) {
@@ -211,15 +261,13 @@ public void insertLivre(Livre l) {
             System.out.println("erreur lors du chargement des depots " + ex.getMessage());
             return null;
         }
-    }    
-     
-     
-     
-     public List<edu.esprit.entities.Livre> DisplayAllLivreByDate() {
+    }
+
+    public List<edu.esprit.entities.Livre> DisplayAllLivreByDate() {
 
         List<edu.esprit.entities.Livre> listedepots = new ArrayList<edu.esprit.entities.Livre>();
 
-        String requete = "select L.*,C.* from livre L join categorie_livre C where L.id_categorie_livre=C.id_categorie_livre ORDER BY date_publication_livre DESC";
+        String requete = "select L.*,C.*,U.* from livre L join categorie_livre C on L.id_categorie_livre=C.id_categorie_livre join utilisateur U on L.id_ecrivain_livre=U.id_utilisateur ORDER BY date_publication_livre DESC";
         try {
             Statement statement = connection
                     .createStatement();
@@ -228,6 +276,14 @@ public void insertLivre(Livre l) {
             while (resultat.next()) {
                 edu.esprit.entities.Livre livre = new edu.esprit.entities.Livre();
                 CategorieLivre categorielivre = new CategorieLivre();
+                Utilisateur utilisateur = new Utilisateur();
+                utilisateur.setId_utilisateur(resultat.getInt(13));
+                utilisateur.setNom_utilisateur(resultat.getString(14));
+                utilisateur.setDate_naissance_utilisateur(resultat.getDate(15));
+                utilisateur.setPhoto_utilisateur(resultat.getString(16));
+                utilisateur.setType_utilisateur(resultat.getInt(17));
+                utilisateur.setSolde_utilisateur(resultat.getInt(18));
+                
                 livre.setId_livre(resultat.getInt(1));
                 livre.setTitre_livre(resultat.getString(2));
                 livre.setDescription_livre(resultat.getString(3));
@@ -235,14 +291,15 @@ public void insertLivre(Livre l) {
                 livre.setPhoto_livre(resultat.getString(5));
                 livre.setContenu_livre(resultat.getString(6));
                 livre.setPrix_livre(resultat.getInt(7));
-                
+
                 livre.setEvalution_livre(resultat.getInt(8));
                 livre.setId_ecrivain_livre(resultat.getInt(9));
                 livre.setId_categorie_livre(resultat.getInt(11));
                 categorielivre.setId_categorie_livre(resultat.getInt(10));
                 categorielivre.setLibelle(resultat.getString(12));
                 livre.setCategorieLivre(categorielivre);
-                System.out.println(livre);
+                livre.setUtilisateur(utilisateur);
+                //System.out.println(livre);
                 listedepots.add(livre);
             }
             return listedepots;
@@ -251,18 +308,18 @@ public void insertLivre(Livre l) {
             System.out.println("erreur lors du chargement des depots " + ex.getMessage());
             return null;
         }
-    }    
-     
-    public List<edu.esprit.entities.Livre> FiltreLivre(String filtre , String key) {
-        
+    }
+
+    public List<edu.esprit.entities.Livre> FiltreLivre(String filtre, String key) {
+
         System.out.println(key);
         List<Livre> listedepots = new ArrayList<Livre>();
-        String requete = "select * from livre where `"+filtre+"` like '"+key+"%' ";
+        String requete = "select * from livre where `" + filtre + "` like '" + key + "%' ";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-       //      ps.setString(1,filtre);
-         //    ps.setString(2, key );
-             System.out.println(ps);
+            //      ps.setString(1,filtre);
+            //    ps.setString(2, key );
+            System.out.println(ps);
             ResultSet resultat = ps.executeQuery();
 
             while (resultat.next()) {
@@ -273,8 +330,8 @@ public void insertLivre(Livre l) {
                 livre.setDate_publication_livre(resultat.getDate(4));
                 livre.setPhoto_livre(resultat.getString(5));
                 livre.setContenu_livre(resultat.getString(6));
-                                livre.setPrix_livre(resultat.getInt(7));
-                
+                livre.setPrix_livre(resultat.getInt(7));
+
                 livre.setEvalution_livre(resultat.getInt(8));
                 livre.setId_ecrivain_livre(resultat.getInt(9));
 
@@ -286,8 +343,6 @@ public void insertLivre(Livre l) {
             System.out.println("erreur lors du chargement des depots " + ex.getMessage());
             return null;
         }
-    }  
-     
-    
-    
+    }
+
 }

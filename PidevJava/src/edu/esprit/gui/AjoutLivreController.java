@@ -10,7 +10,11 @@ import edu.esprit.dao.classes.LivreDAO;
 import edu.esprit.entities.CategorieLivre;
 import edu.esprit.entities.Livre;
 import edu.esprit.util.MyConnection;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -27,6 +31,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 /**
@@ -116,7 +122,7 @@ public class AjoutLivreController implements Initializable {
         CategorieLivreDAO cls= new CategorieLivreDAO();
         List<CategorieLivre> listeCategorieLivre = cls.DisplayAllCategorieLivre();
      
-        System.out.println(listeCategorieLivre);
+        //System.out.println(listeCategorieLivre);
         categorie_livreInput.setItems(FXCollections.observableList(listeCategorieLivre));
         categorie_livreInput.setConverter(new StringConverter<CategorieLivre>()  {
             public String toString(CategorieLivre object) {
@@ -150,7 +156,8 @@ public class AjoutLivreController implements Initializable {
 
     @FXML
     private void ajoutLivre(ActionEvent event) {
-        LocalDate date = LocalDate.of(2020, 1, 8);
+        //LocalDate date = LocalDate.of(2020, 1, 8);
+         LocalDate date=java.time.LocalDate.now();
         Livre templ = new Livre(titre_livreInput.getText(),description_livre.getText(),java.sql.Date.valueOf(date),photo_livre.getText(),contenu_livre.getText(),50,15,1,2);
         LivreDAO ls = new LivreDAO();
         ls.insertLivre(templ);
@@ -187,6 +194,5 @@ ls.deleteLivre(table_livre.getSelectionModel().getSelectedItem().getId_livre());
         
        
     }
-    
-
+   
 }

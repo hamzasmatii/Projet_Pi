@@ -87,6 +87,8 @@ public class SignupController implements Initializable {
     int tempRole;
     @FXML
     private AnchorPane anchor;
+    @FXML
+    private Button btnLogin;
     /**
      * Initializes the controller class.
      */
@@ -253,6 +255,10 @@ public class SignupController implements Initializable {
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
+    }
+
+    @FXML
+    private void switchLogin(ActionEvent event) {
     }
 
     

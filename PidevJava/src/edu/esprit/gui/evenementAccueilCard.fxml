@@ -14,7 +14,7 @@
         <URL value="@evenements.css" />
     </stylesheets>
    <children>
-      <VBox prefHeight="200.0" prefWidth="200.0" styleClass="cardContainer" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+      <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FCF3DE;" styleClass="cardContainer" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
          <children>
             <ImageView fx:id="imageEvenement" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
@@ -23,7 +23,7 @@
             </ImageView>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="titreEvenement" prefHeight="21.0" prefWidth="211.0" text="Titre evenement" textAlignment="CENTER">
+                  <Label fx:id="titreEvenement" prefHeight="21.0" prefWidth="211.0" style="-fx-background-color: #FCF3DE;" text="Titre evenement" textAlignment="CENTER">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>

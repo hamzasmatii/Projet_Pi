@@ -160,6 +160,7 @@ public class ProfilController implements Initializable {
         emailInput.setText(current.getEmail_utilisateur());
         soldeInput.setText(current.getSolde_utilisateur() + "");
         filePathInput.setText(current.getPhoto_utilisateur());
+        imageName=current.getPhoto_utilisateur();
         yesToggle.selectedProperty().addListener(((value) -> {
             mdpInput.setDisable(false);
             newMdpInput.setDisable(false);

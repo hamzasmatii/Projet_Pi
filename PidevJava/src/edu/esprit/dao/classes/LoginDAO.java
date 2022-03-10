@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import edu.esprit.util.MyConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,17 +113,21 @@ public class LoginDAO implements ILogin {
             while (resultat.next()) {
                 Utilisateur utilisateur = new Utilisateur();
                 Login login = new Login();
-                utilisateur.setId_utilisateur(resultat.getInt(5));
-                utilisateur.setNom_utilisateur(resultat.getString(6));
-                utilisateur.setDate_naissance_utilisateur(resultat.getDate(7));
-                utilisateur.setPhoto_utilisateur(resultat.getString(8));
-                utilisateur.setType_utilisateur(resultat.getInt(9));
-                utilisateur.setSolde_utilisateur(resultat.getInt(10));
-                utilisateur.setEmail_utilisateur(resultat.getString(11));
+                utilisateur.setId_utilisateur(resultat.getInt(7));
+                utilisateur.setNom_utilisateur(resultat.getString(8));
+                utilisateur.setDate_naissance_utilisateur(resultat.getDate(9));
+                utilisateur.setPhoto_utilisateur(resultat.getString(10));
+                utilisateur.setType_utilisateur(resultat.getInt(11));
+                utilisateur.setSolde_utilisateur(resultat.getInt(12));
+                utilisateur.setEmail_utilisateur(resultat.getString(13));
                 login.setUtilisateur(utilisateur);
                 login.setEmail_login(resultat.getString(2));
                 login.setMdp_login(resultat.getString(3));
                 login.setBlocked_login(resultat.getBoolean(4));
+                login.setMdp_login(resultat.getString(3));
+                login.setBlocked_login(resultat.getBoolean(4));
+                login.setBlocked_message(resultat.getString(5));
+                login.setBlocked_duree(resultat.getDate(6));
 
                 listedepots.add(login);
             }
@@ -252,5 +257,77 @@ public class LoginDAO implements ILogin {
                     
                 }
          }
-     
+     public Boolean updateBlockMessage(int i  , String message)
+     {
+         System.out.println(i+message);
+            String requete = "update login set blocked_message=? where id_login=?";
+            try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+                     ps.setString(1, message);
+                     ps.setInt(2,  i);
+                     ps.executeUpdate();
+                     return true;
+                } catch (SQLException ex) {
+                //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("\"erreur lors de la mise à jour \" " + ex.getMessage());
+                    return false;
+                }
+         }
+      public Boolean updateBlockDuree(int i  , java.sql.Date date)
+     {
+            String requete = "update login set blocked_duree=? where id_login=?";
+            try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+                     ps.setDate(1, date);
+                     ps.setInt(2,  i);
+                     ps.executeUpdate();
+                     return true;
+                } catch (SQLException ex) {
+                //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("\"erreur lors de la mise à jour \" " + ex.getMessage());
+                    return false;
+                }
+         }
+      
+      public Login findLoginByMail(String mail) {
+        Login login = new Login();
+        String requete = "select * from login where email_login=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, mail);
+            ResultSet resultat = ps.executeQuery();
+            UtilisateurDAO us = new UtilisateurDAO();
+            while (resultat.next()) {
+                login.setUtilisateur(us.findUtilisateurtById(resultat.getInt(1)));
+                login.setEmail_login(resultat.getString(2));
+                login.setMdp_login(resultat.getString(3));
+                login.setBlocked_login(resultat.getBoolean(4));
+                login.setBlocked_message(resultat.getString(5));
+                login.setBlocked_duree(resultat.getDate(6));
+
+            }
+            return login;
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+            return null;
+        }
+    }
+    public void unblockByDay(Date date) 
+    {
+        String requete = "update login set blocked_login=? , blocked_message=? , blocked_duree=? where  blocked_duree=? ";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setBoolean(1, false);
+            ps.setString(2, "");
+            ps.setDate(3, null);
+            ps.setDate(4, date);
+            ps.executeUpdate();
+              
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+        }
+    }
 }

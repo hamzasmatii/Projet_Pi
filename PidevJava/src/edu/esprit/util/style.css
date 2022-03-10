@@ -16,7 +16,8 @@
 -fx-text-fill : #81523B ;
 }
 .bodyCard{
--fx-background-color : #FCF3DE ;
+-fx-background-color : #FFFFFF;
+-fx-effect: innershadow(gaussian, #787878, 10, 0, 0,2 );
 }
 borderpane center
 {
@@ -26,4 +27,8 @@ borderpane center
 -fx-background-color : #FCF3DE ;
 -fx-background-radius:25px;
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+.homeImg
+{
+-fx-effect: dropshadow(gaussian, #787878, 20, 0.5, 0.0, 0.0);
 }

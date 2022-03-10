@@ -1,0 +1,23 @@
+creation de projet
+composer create-project symfon/website-skeleton
+
+server
+composer require server --dev
+php bin/console server:run
+
+controler
+php bin/console make:controller
+
+doctrine
+env databaseurl
+
+php bin/console doctrine:database:create
+
+php bin/console make:entity
+php bin/console make:migration
+
+fixture composer require orm-fixtures
+php bin/console make:fixtures
+php bin/console doctrine:fixtures:load
+re^po = $this->getDoctrine()->getRepository(Article::class)
+ar = repo->findOneByName()

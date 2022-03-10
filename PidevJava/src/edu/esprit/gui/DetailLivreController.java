@@ -197,7 +197,7 @@ public class DetailLivreController implements Initializable {
         discriptiondetail.setText(l.getDescription_livre());
         auteurdetail.setText("Par :" + l.getUtilisateur().getNom_utilisateur());
         evaluationdetail.setText("réaction pour ce livre :" + l.getEvalution_livre() + "");
-        Image img = new Image("/image/" + l.getPhoto_livre(), false);
+        Image img = new Image("/image/livre" + l.getPhoto_livre(), false);
         imagedetail.setImage(img);
 
     }

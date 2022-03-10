@@ -20,24 +20,24 @@
          <left>
             <Pane prefHeight="600.0" prefWidth="321.0" styleClass="profileBackground" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="imagedetail" fitHeight="316.0" fitWidth="280.0" layoutX="21.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" styleClass="paneImage">
+                  <ImageView fx:id="imagedetail" fitHeight="337.0" fitWidth="250.0" layoutX="51.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" styleClass="paneImage">
                      <image>
                         <Image url="@../util/assets/img/libro.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="pdflivre" layoutX="72.0" layoutY="436.0" mnemonicParsing="false" onMouseClicked="#openPDF" prefHeight="31.0" prefWidth="161.0" styleClass="buttonAdmin" stylesheets="@../util/adminStyle.css" text="pdf" textFill="WHITE" />
-                  <Button fx:id="evaluationP" layoutX="94.0" layoutY="348.0" mnemonicParsing="false" onAction="#evaluationP" prefHeight="48.0" prefWidth="47.0" styleClass="loginButton" text="+" textFill="#fffbfb">
+                  <Button fx:id="pdflivre" layoutX="72.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#openPDF" prefHeight="31.0" prefWidth="161.0" styleClass="buttonAdmin" stylesheets="@../util/adminStyle.css" text="pdf" textFill="WHITE" />
+                  <Button fx:id="evaluationP" layoutX="94.0" layoutY="389.0" mnemonicParsing="false" onAction="#evaluationP" prefHeight="48.0" prefWidth="47.0" styleClass="loginButton" text="+" textFill="#fffbfb">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="evaluationM" layoutX="168.0" layoutY="348.0" mnemonicParsing="false" onAction="#evaluationM" prefHeight="48.0" prefWidth="47.0" styleClass="loginButton" text="-" textFill="#fffbfb">
+                  <Button fx:id="evaluationM" layoutX="165.0" layoutY="389.0" mnemonicParsing="false" onAction="#evaluationM" prefHeight="48.0" prefWidth="47.0" styleClass="loginButton" text="-" textFill="#fffbfb">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
                   <Label fx:id="id_livre" layoutX="14.0" layoutY="4.0" />
-                  <Button fx:id="acheterlivre" layoutX="72.0" layoutY="493.0" mnemonicParsing="false" onAction="#validerachat" prefHeight="31.0" prefWidth="161.0" styleClass="buttonAdmin" stylesheets="@../util/adminStyle.css" text="acheter livre" textFill="WHITE" />
+                  <Button fx:id="acheterlivre" layoutX="72.0" layoutY="520.0" mnemonicParsing="false" onAction="#validerachat" prefHeight="31.0" prefWidth="161.0" styleClass="buttonAdmin" stylesheets="@../util/adminStyle.css" text="acheter livre" textFill="WHITE" />
                </children>
             </Pane>
          </left>

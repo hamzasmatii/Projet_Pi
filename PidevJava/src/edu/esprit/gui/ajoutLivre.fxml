@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AjoutLivreController">
+   <children>
+      <Button layoutX="574.0" layoutY="708.0" mnemonicParsing="false" onAction="#modifier_livre" prefHeight="77.0" prefWidth="177.0" styleClass="buttonAdmin" text="modifier" />
+      <TextField fx:id="titre_livreInput" layoutX="8.0" layoutY="70.0" prefHeight="31.0" prefWidth="163.0" promptText="Titre livre" styleClass="loginInputs" stylesheets="@../util/loginStyle.css" />
+      <TextField fx:id="photo_livreInput" layoutX="8.0" layoutY="386.0" prefHeight="31.0" prefWidth="163.0" promptText="photo livre" />
+      <TextField fx:id="contenu_livreInput" layoutX="8.0" layoutY="468.0" prefHeight="31.0" prefWidth="163.0" promptText="contenu livre" styleClass="loginInputs" stylesheets="@../util/loginStyle.css" />
+      <TextField fx:id="prix_livreInput" layoutX="8.0" layoutY="549.0" prefHeight="31.0" prefWidth="163.0" promptText="prix livre" styleClass="loginInputs" stylesheets="@../util/loginStyle.css" />
+      <TextArea fx:id="description_livreInput" layoutX="8.0" layoutY="140.0" prefHeight="195.0" prefWidth="163.0" promptText="Discription livre" styleClass="loginInputs" stylesheets="@../util/loginStyle.css" />
+      <ComboBox fx:id="categorie_livreInput" layoutX="8.0" layoutY="623.0" prefWidth="150.0" promptText="categorie" />
+      <Button layoutX="794.0" layoutY="708.0" mnemonicParsing="false" onAction="#ajoutLivre" prefHeight="77.0" prefWidth="177.0" styleClass="buttonAdmin" text="ajouter" />
+      <Button layoutX="349.0" layoutY="708.0" mnemonicParsing="false" onAction="#supprimer_livre" prefHeight="77.0" prefWidth="177.0" styleClass="buttonAdmin" text="supprimer" />
+      <TableView fx:id="table_livre" layoutX="186.0" layoutY="33.0" onMouseClicked="#selectRow" prefHeight="654.0" prefWidth="804.0" styleClass="tableView">
+        <columns>
+          <TableColumn fx:id="id_livre" prefWidth="75.0" text="id livre" />
+          <TableColumn fx:id="titre_livre" prefWidth="75.0" text="titre livre" />
+            <TableColumn fx:id="description_livre" prefWidth="87.0" text="description" />
+            <TableColumn fx:id="date_publication_livre" prefWidth="124.0" text="date publication" />
+            <TableColumn fx:id="photo_livre" prefWidth="51.0" text="photo" />
+            <TableColumn fx:id="contenu_livre" prefWidth="67.0" text="contenu" />
+            <TableColumn fx:id="prix_livre" prefWidth="46.0" text="prix" />
+            <TableColumn fx:id="evaluation_livre" prefWidth="84.0" text="evaluation" />
+            <TableColumn fx:id="id_ecrivain_livre" text="id ecrivain" />
+            <TableColumn fx:id="id_categorie_livre" prefWidth="112.0" text="id categorie" />
+        </columns>
+         <stylesheets>
+            <URL value="@../util/adminStyle.css" />
+            <URL value="@../util/loginStyle.css" />
+         </stylesheets>
+      </TableView>
+      <Button fx:id="uploadImage" layoutX="51.0" layoutY="425.0" mnemonicParsing="false" onAction="#uploadImage" text="Button" />
+      <Button fx:id="uploadPdf" layoutX="51.0" layoutY="509.0" mnemonicParsing="false" onAction="#uploadPDF" text="Button" />
+   </children>
+   <stylesheets>
+      <URL value="@../util/adminStyle.css" />
+      <URL value="@../util/style.css" />
+      <URL value="@../util" />
+      <URL value="@../util/style.css" />
+   </stylesheets>
+</AnchorPane>

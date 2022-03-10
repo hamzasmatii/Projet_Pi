@@ -1,0 +1,34 @@
+.button
+{
+-fx-background-color : #FCF3DE ;
+
+}
+.navbarButton:hover{
+-fx-background-color : #81523B;
+-fx-text-fill : #FFFFFF ;
+}
+
+.navbar{
+-fx-background-color : #FCF3DE ;
+}
+.navbarButton{
+-fx-background-color : transparent;
+-fx-text-fill : #81523B ;
+}
+.bodyCard{
+-fx-background-color : #FFFFFF;
+-fx-effect: innershadow(gaussian, #787878, 10, 0, 0,2 );
+}
+borderpane center
+{
+-fx-padding:10;
+}
+.profileBodyCard{
+-fx-background-color : #FCF3DE ;
+-fx-background-radius:25px;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+.homeImg
+{
+-fx-effect: dropshadow(gaussian, #787878, 20, 0.5, 0.0, 0.0);
+}

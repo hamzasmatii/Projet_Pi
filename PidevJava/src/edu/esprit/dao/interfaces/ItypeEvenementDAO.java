@@ -18,5 +18,6 @@ public interface ItypeEvenementDAO {
     public void updateTypeEvenment(Type_evenement t);
     public void deleteTypeEvenement(Type_evenement t);
     public List<Type_evenement> fetchTypeEvenment();
+    public Type_evenement fetchTypeEvenementById(int id);
     
 }

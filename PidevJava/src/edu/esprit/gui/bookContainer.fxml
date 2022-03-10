@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane styleClass="paneImage" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.BookContainerController">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="160.0" styleClass="paneliv">
+         <children>
+            <Pane prefHeight="31.0" prefWidth="160.0" />
+            <ImageView fx:id="imagelivre" fitHeight="169.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" styleClass="paneImage">
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="titre" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="60.0" prefWidth="163.0" text="Label" />
+            <Label fx:id="discription" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="160.0" text="Label" />
+            <Label fx:id="evaluation" alignment="CENTER" prefHeight="38.0" prefWidth="158.0" text="Label">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Pane prefHeight="23.0" prefWidth="160.0" />
+            <HBox prefHeight="60.0" prefWidth="160.0">
+               <children>
+                  <Pane prefHeight="56.0" prefWidth="30.0" />
+                  <Pane prefHeight="49.0" prefWidth="27.0" />
+                  <Button fx:id="btnConsulter" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#consulterLivre" styleClass="loginButton" text="suite" textFill="WHITE" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

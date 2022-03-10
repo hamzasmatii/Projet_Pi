@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.EvenementAdminController">
+   <center>
+      <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0">
+         <children>
+            <TableView fx:id="tableView" layoutX="34.0" layoutY="94.0" onMouseClicked="#selectRow" prefHeight="481.0" prefWidth="959.0">
+               <columns>
+                  <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="titre" prefWidth="150.0" text="Titre" />
+                  <TableColumn fx:id="date_creation" minWidth="0.0" prefWidth="140.0" text="Date creation" />
+                  <TableColumn fx:id="date_evenement" prefWidth="156.0" text="Date de l'evenement" />
+                  <TableColumn fx:id="adresse" prefWidth="72.0" text="Adresse" />
+                  <TableColumn fx:id="description" prefWidth="95.0" text="description" />
+                  <TableColumn fx:id="image" prefWidth="66.0" text="image" />
+                  <TableColumn fx:id="type" minWidth="1.0" prefWidth="92.0" text="Type" />
+                  <TableColumn fx:id="utilisateur" prefWidth="116.0" text="Createur" />
+               </columns>
+            </TableView>
+            <Text fill="#81523b" layoutX="50.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des evenements">
+               <font>
+                  <Font name="Microsoft JhengHei Bold" size="34.0" />
+               </font>
+            </Text>
+            <Button fx:id="suprimerBtn" layoutX="549.0" layoutY="613.0" mnemonicParsing="false" onAction="#deleteEvenement" prefHeight="36.0" prefWidth="196.0" styleClass="loginButton" text="Supprimer l'evenement" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft JhengHei" size="14.0" />
+               </font>
+            </Button>
+            <Separator layoutX="754.0" layoutY="613.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="0.0" />
+            <Separator layoutX="92.0" layoutY="78.0" prefHeight="3.0" prefWidth="281.0" />
+            <Button fx:id="saveBtn" layoutX="823.0" layoutY="657.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: transparent;" />
+            <Button fx:id="modifierBtn" layoutX="771.0" layoutY="613.0" mnemonicParsing="false" onAction="#modifierButton" prefHeight="36.0" prefWidth="196.0" styleClass="loginButton" text="Modifier evenement" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <stylesheets>
+            <URL value="@../util/loginStyle.css" />
+            <URL value="@../util/adminStyle.css" />
+         </stylesheets>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,26 @@
+.buttonAdmin
+{
+-fx-background-color : #fcf3de;
+-fx-text-fill : #81523b;
+}
+.buttonAdmin:hover{
+-fx-background-color : #81523b;
+-fx-text-fill : #fcf3de;
+}
+.buttonAdmin:pressed
+{
+-fx-background-color : #fcf3de;
+}
+.lightbackground{
+-fx-background-color : #fcf3de
+}
+.sidebar{
+-fx-border-radius: 15px 50px 30px 5px;
+-fx-background-color: #fcf3de;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.suspensionBtn
+{
+-fx-background-color:#81523b;
+-fx-text-fill : #ffffff;
+}

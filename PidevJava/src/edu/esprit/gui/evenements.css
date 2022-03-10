@@ -1,0 +1,53 @@
+.mainFxmlClass {
+    
+
+}
+
+.participerButton{
+-fx-background-color : #81523B ;
+-fx-background-radius: 17px;
+
+}
+
+.cardContainer{
+ -fx-border-radius: 15px;
+ border-left-width: 15px;
+ -fx-border-color:#81523B;
+ -fx-background-color:white;
+ -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1),10.0,0,0,10.0); 
+
+}
+.transparent{
+  -fx-background:rgba(0,0,0,0)  ;
+    
+}
+
+.chosen{
+    -fx-background-color:white;
+}
+.input{
+    
+    -fx-background-radius: 17px;
+}
+.searchBar{
+    -fx-background-color : #ffffff;
+    -fx-border-color:#CFCDCD ;
+    -fx-border-radius:5.6383px;
+    -fx-effect: dropshadow(gaussian,rgba(194, 213, 231, 0.2) , 20,0 , 0, 0);
+}
+.expired{
+   -fx-text-fill: red;
+    
+}
+
+.calendar{
+   -fx-background-color :bisque;
+    
+}
+.calendar{
+   -fx-background-color :red;
+    
+}
+.Agenda {
+    -fx-width:800px;
+}

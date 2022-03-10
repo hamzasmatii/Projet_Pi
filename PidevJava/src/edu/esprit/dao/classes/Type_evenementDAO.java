@@ -8,7 +8,7 @@ package edu.esprit.dao.classes;
 import edu.esprit.dao.interfaces.ItypeEvenementDAO;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Type_evenement;
-import edu.esprit.util.MyDB;
+import edu.esprit.util.MyConnection;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -27,7 +27,7 @@ public class Type_evenementDAO implements ItypeEvenementDAO {
     Connection connection;
     
     public Type_evenementDAO(){
-        connection=MyDB.getInstance().getConnexion();
+        connection=MyConnection.getInstance();
     } 
 
     @Override
@@ -46,7 +46,7 @@ public class Type_evenementDAO implements ItypeEvenementDAO {
 
     @Override
     public void updateTypeEvenment(Type_evenement t) {
-        String query = "update type_evenement set libelle_type_evenement=?, where id_type_evenement=?";
+        String query = "update type_evenement set libelle_type_evenement=? where id_type_evenement=?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, t.getLibelle_type_evenement());
@@ -89,6 +89,7 @@ public class Type_evenementDAO implements ItypeEvenementDAO {
                 t.setLibelle_type_evenement(resultat.getString(2));
                 
                 listeType.add(t);
+                System.out.println(t);
             }
             return listeType;
         } catch (SQLException ex) {
@@ -96,6 +97,28 @@ public class Type_evenementDAO implements ItypeEvenementDAO {
             System.out.println("erreur lors du chargement des stocks " + ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public Type_evenement fetchTypeEvenementById(int id) {
+        String requete = "select * from type_evenement where id_type_evenement=?";
+       try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setInt(1,id);
+            ResultSet resultat= ps.executeQuery();
+            Type_evenement te=new Type_evenement();
+            while (resultat.next()) {
+                te.setId_type_evenement(resultat.getInt(1));
+                te.setLibelle_type_evenement(resultat.getString(2));
+            }
+            System.out.println("FETCHED");
+            return te;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur" + ex.getMessage());
+        }
+        return null;
+       
     }
     }
     

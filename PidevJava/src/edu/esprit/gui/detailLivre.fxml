@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.DetailLivreController">
+   <children>
+      <BorderPane layoutX="-1.0" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../util/loginStyle.css">
+         <left>
+            <Pane prefHeight="600.0" prefWidth="321.0" styleClass="profileBackground" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="imagedetail" fitHeight="337.0" fitWidth="250.0" layoutX="51.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" styleClass="paneImage">
+                     <image>
+                        <Image url="@../util/assets/img/libro.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="pdflivre" layoutX="72.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#openPDF" prefHeight="31.0" prefWidth="161.0" styleClass="buttonAdmin" stylesheets="@../util/adminStyle.css" text="pdf" textFill="WHITE" />
+                  <Button fx:id="evaluationP" layoutX="94.0" layoutY="389.0" mnemonicParsing="false" onAction="#evaluationP" prefHeight="48.0" prefWidth="47.0" styleClass="loginButton" text="+" textFill="#fffbfb">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="evaluationM" layoutX="165.0" layoutY="389.0" mnemonicParsing="false" onAction="#evaluationM" prefHeight="48.0" prefWidth="47.0" styleClass="loginButton" text="-" textFill="#fffbfb">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="id_livre" layoutX="14.0" layoutY="4.0" />
+                  <Button fx:id="acheterlivre" layoutX="72.0" layoutY="520.0" mnemonicParsing="false" onAction="#validerachat" prefHeight="31.0" prefWidth="161.0" styleClass="buttonAdmin" stylesheets="@../util/adminStyle.css" text="acheter livre" textFill="WHITE" />
+               </children>
+            </Pane>
+         </left>
+         <bottom>
+            <ScrollPane prefHeight="221.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+               <content>
+                  <GridPane fx:id="livre_categorie" prefHeight="10.0" prefWidth="0.0" styleClass="homebody">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </bottom>
+         <center>
+            <SplitPane dividerPositions="0.4055459272097054" orientation="VERTICAL" prefHeight="200.0" prefWidth="976.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="877.0" styleClass="homebody">
+                     <children>
+                        <Label fx:id="titreLabel" layoutX="14.0" layoutY="14.0" text="titre livre" textFill="#81523b">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="auteurdetail" layoutX="57.0" layoutY="87.0" text="auteur " textFill="#81523b">
+                           <font>
+                              <Font size="19.0" />
+                           </font></Label>
+                        <Label fx:id="evaluationdetail" layoutX="48.0" layoutY="111.0" text="rating" textFill="#81523b" />
+                        <Label fx:id="discriptiondetail" layoutX="48.0" layoutY="142.0" prefHeight="71.0" prefWidth="782.0" textFill="#81523b" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="877.0" styleClass="body">
+                     <children>
+                        <ScrollPane layoutY="2.0" prefHeight="256.0" prefWidth="877.0" styleClass="homebody">
+                           <content>
+                              <GridPane fx:id="commentaire_list" prefHeight="8.0" prefWidth="0.0" styleClass="homebody">
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                        <TextField fx:id="commentairelivreInput" layoutX="14.0" layoutY="273.0" prefHeight="43.0" prefWidth="653.0" styleClass="loginInputs" />
+                        <Button fx:id="ajoutcommentairebtn" layoutX="705.0" layoutY="276.0" mnemonicParsing="false" onAction="#AjoutCommentaire" prefHeight="38.0" prefWidth="126.0" styleClass="loginButton" text="commenter" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

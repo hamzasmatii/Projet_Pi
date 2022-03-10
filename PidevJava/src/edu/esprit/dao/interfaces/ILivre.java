@@ -22,4 +22,5 @@ public interface ILivre {
     Livre findLivreById(int id);
 
     List<Livre> DisplayAllLivre();
+    List<Livre> DisplayAllLivreByDate();
 }

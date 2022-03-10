@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AjoutEvenementController">
+    <stylesheets>
+        <URL value="@evenements.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="258.0" layoutY="70.0" prefHeight="681.0" prefWidth="646.0" styleClass="cardContainer" stylesheets="@evenements.css">
+         <children>
+            <DatePicker fx:id="dateInput" layoutX="55.0" layoutY="222.0" prefHeight="45.0" prefWidth="205.0" promptText="Date de l'evenement" />
+            <TextField fx:id="titreInput" layoutX="55.0" layoutY="42.0" prefHeight="45.0" prefWidth="536.0" promptText="Titre evenement" styleClass="input" />
+            <TextArea fx:id="descriptionInput" layoutX="55.0" layoutY="366.0" prefHeight="164.0" prefWidth="536.0" promptText="Description" />
+            <Button fx:id="saveInput" layoutX="55.0" layoutY="622.0" mnemonicParsing="false" onAction="#saveData" prefHeight="45.0" prefWidth="536.0" styleClass="participerButton" text="Enregistrer" textFill="WHITE" />
+            <TextField fx:id="adresse" layoutX="55.0" layoutY="296.0" prefHeight="45.0" prefWidth="536.0" promptText="Adresse" styleClass="input" />
+            <ComboBox fx:id="TypeInput" layoutX="55.0" layoutY="131.0" prefHeight="45.0" prefWidth="536.0" promptText="Type evenement" styleClass="input" />
+            <Button layoutX="440.0" layoutY="551.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="45.0" prefWidth="151.0" styleClass="participerButton" text="Attacher" textFill="WHITE" />
+            <TextField fx:id="imagePath" editable="false" layoutX="55.0" layoutY="551.0" prefHeight="45.0" prefWidth="373.0" promptText=" " styleClass="input" />
+            <JFXTimePicker fx:id="timepicker" defaultColor="#81523d" layoutX="282.0" layoutY="225.0" prefHeight="40.0" prefWidth="302.0" />
+         </children>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </Pane>
+      <Label layoutX="276.0" layoutY="14.0" prefHeight="52.0" prefWidth="324.0" text="Ajouter un evenement " textFill="#81523b">
+         <font>
+            <Font name="Microsoft JhengHei Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -6,6 +6,8 @@
 package edu.esprit.entities;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+
 
 /**
  *
@@ -13,17 +15,18 @@ import java.sql.Date;
  */
 public class Evenement {
     private int id_evenement;
+    private String image;
     private String titre_evenement;
     private String adresse_evenement;
     private String description_evenement;
     private Date date_creation_evenement;
-    private Date  date_evenement;
-    private int type_evenements;
-    private int id_utilisateur;
+    private Timestamp  date_evenement;
+    private Type_evenement type_evenements;
+    private Utilisateur utilisateur;
     
    public Evenement(){}
 
-    public Evenement(int id_evenement, String titre_evenement, String adresse_evenement, String description_evenement, Date date_creation_evenement, Date date_evenement, int type_evenements, int id_utilisateur) {
+    public Evenement(int id_evenement, String titre_evenement, String adresse_evenement, String description_evenement, Date date_creation_evenement, Timestamp date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur,String image) {
         this.id_evenement = id_evenement;
         this.titre_evenement = titre_evenement;
         this.adresse_evenement = adresse_evenement;
@@ -31,17 +34,32 @@ public class Evenement {
         this.date_creation_evenement = date_creation_evenement;
         this.date_evenement = date_evenement;
         this.type_evenements = type_evenements;
-        this.id_utilisateur = id_utilisateur;
+        this.utilisateur = id_utilisateur;
+        this.image=image;
     }
 
-    public Evenement(String titre_evenement, String adresse_evenement, String description_evenement, Date date_evenement, int type_evenements, int id_utilisateur) {
+    public Evenement(int id_evenement, String titre_evenement, String adresse_evenement, String description_evenement, Timestamp date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur) {
+        this.id_evenement = id_evenement;
         this.titre_evenement = titre_evenement;
         this.adresse_evenement = adresse_evenement;
         this.description_evenement = description_evenement;
         this.date_evenement = date_evenement;
         this.type_evenements = type_evenements;
-        this.id_utilisateur = id_utilisateur;
+        this.utilisateur = id_utilisateur;
     }
+
+    public Evenement(String titre_evenement, String adresse_evenement, String description_evenement, Timestamp date_evenement, Type_evenement type_evenements, Utilisateur id_utilisateur,String image) {
+        this.titre_evenement = titre_evenement;
+        this.adresse_evenement = adresse_evenement;
+        this.description_evenement = description_evenement;
+        this.date_evenement = date_evenement;
+        this.type_evenements = type_evenements;
+        this.utilisateur = id_utilisateur;
+        this.image = image;
+    }
+
+    
+    
 
     
 
@@ -85,28 +103,47 @@ public class Evenement {
         this.date_creation_evenement = date_creation_evenement;
     }
 
-    public Date getDate_evenement() {
+    public Timestamp getDate_evenement() {
         return date_evenement;
     }
 
-    public void setDate_evenement(Date date_evenement) {
+    public void setDate_evenement(Timestamp date_evenement) {
         this.date_evenement = date_evenement;
     }
 
-    public int getType_evenements() {
+    public Type_evenement getType_evenements() {
         return type_evenements;
     }
 
-    public void setType_evenements(int type_evenements) {
+    public void setType_evenements(Type_evenement type_evenements) {
         this.type_evenements = type_evenements;
     }
 
-    public int getId_utilisateur() {
-        return id_utilisateur;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setId_utilisateur(int id_utilisateur) {
-        this.id_utilisateur = id_utilisateur;
+    public void setUtilisateur(Utilisateur id_utilisateur) {
+        this.utilisateur = id_utilisateur;
+    }
+
+    @Override
+    public String toString() {
+        return "Evenement{" + "id_evenement=" + id_evenement + ", titre_evenement=" + titre_evenement + ", adresse_evenement=" + adresse_evenement + ", description_evenement=" + description_evenement + ", date_creation_evenement=" + date_creation_evenement + ", date_evenement=" + date_evenement + ", type_evenements=" + type_evenements + ", id_utilisateur=" + utilisateur + '}';
+    }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
     }
     
     

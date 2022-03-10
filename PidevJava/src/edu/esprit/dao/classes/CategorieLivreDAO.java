@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import edu.esprit.util.MyDB;
+import edu.esprit.util.MyConnection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,20 +24,19 @@ import java.util.List;
  * @author aziz karoui
  */
 public class CategorieLivreDAO implements ICategorieLivre {
-        Connection connexion;
-    Statement stm;
+       private Connection connection;
 
     public CategorieLivreDAO() {
-        connexion = MyDB.getInstance().getConnexion();
+        connection = MyConnection.getInstance();
     }
 
     public void insertCategorieLivre(CategorieLivre l) {
-        String req = "INSERT INTO `categorie_livre` (`id_categorie_livre`,`libelle`) "
-                + "VALUES (?,?) ";
+        String req = "INSERT INTO `categorie_livre` (`libelle`) "
+                + "VALUES (?) ";
         try {
-            PreparedStatement ls = connexion.prepareStatement(req);
-            ls.setInt(1, l.getId_categorie_livre());
-            ls.setString(2, l.getLibelle());
+            PreparedStatement ls = connection.prepareStatement(req);
+            //ls.setInt(1, l.getId_categorie_livre());
+            ls.setString(1, l.getLibelle());
             ls.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -47,7 +46,7 @@ public class CategorieLivreDAO implements ICategorieLivre {
     public void updateCategorieLivre(CategorieLivre l) {
         String req = "update categorie_livre set libelle=? where id_categorie_livre=?";
         try {
-            PreparedStatement ls = connexion.prepareStatement(req);
+            PreparedStatement ls = connection.prepareStatement(req);
             ls.setInt(2, l.getId_categorie_livre());
             ls.setString(1, l.getLibelle());
  
@@ -63,7 +62,7 @@ public class CategorieLivreDAO implements ICategorieLivre {
     public void deleteCategorieLivre(int id) {
         String requete = "delete from categorie_livre where id_categorie_livre=?";
         try {
-            PreparedStatement ls = connexion.prepareStatement(requete);
+            PreparedStatement ls = connection.prepareStatement(requete);
             ls.setInt(1, id);
             ls.executeUpdate();
             System.out.println("categorie_livre supprimée");
@@ -77,7 +76,7 @@ public class CategorieLivreDAO implements ICategorieLivre {
         CategorieLivre categorielivre = new CategorieLivre();
         String requete = "select * from categorie_livre where id_categorie_livre=?";
         try {
-            PreparedStatement ps = connexion.prepareStatement(requete);
+            PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next()) {
@@ -100,7 +99,7 @@ public class CategorieLivreDAO implements ICategorieLivre {
 
         String requete = "select * from categorie_livre";
         try {
-            Statement statement = connexion
+            Statement statement = connection
                     .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 

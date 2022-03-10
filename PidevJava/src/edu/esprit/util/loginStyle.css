@@ -1,0 +1,65 @@
+
+.body{
+-fx-background-image: url("assets/img/loginBackground.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 100%;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+.pane2{
+
+-fx-background-color: white;
+-fx-background-radius: 50px;
+
+}
+.paneliv{
+    -fx-background-color : #FCF3DE;
+        -fx-background-repeat: stretch;   
+
+    -fx-effect: dropshadow(three-pass-box, silver, 30, 0.2, 0, 0); 
+    
+    
+}
+.paneImage{
+
+-fx-background-color:red;
+
+-fx-background-radius: 50px;
+-fx-background-size: cover;
+
+-fx-border-radius: 50px;
+
+
+}
+.loginButton{
+-fx-background-color : #81523B ;
+-fx-background-radius: 17px;
+}
+.loginInputs{
+-fx-background-radius: 17px;
+}
+.newAccountButton{
+-fx-background-color : Transparent ;
+-fx-background-radius: 30px;
+}
+
+.profileBackground{
+-fx-background-color : #FCF3DE;
+}
+.modifyProfileButton{
+-fx-background-color : #81523b;
+}
+.tableView{
+}
+.table-view .column-header{
+-fx-background-color : #FCF3DE;
+-fx-text-fill :white;
+}
+.table-row-cell:even{
+    -fx-background-color: #FCF3DE;
+
+}
+.homebody
+{
+-fx-background-color:#FFFFFF;
+}

@@ -18,6 +18,7 @@ public interface IevenementDAO {
     void updateEvenement(Evenement e);
     List<Evenement> fetchEvenement();
     Evenement fetchEvenementById(int id);
+    List<Evenement> fetchPopularEvents();
     
     
 }

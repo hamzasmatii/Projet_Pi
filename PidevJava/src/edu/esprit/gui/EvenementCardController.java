@@ -36,7 +36,7 @@ public class EvenementCardController implements Initializable {
     @FXML
     private ImageView image;
 
-    Evenement e;
+    Evenement evenement;
     @FXML
     private HBox boxTest;
     @FXML
@@ -55,31 +55,31 @@ public class EvenementCardController implements Initializable {
 
     void setData(Evenement e,EvenementListner listner) {
         this.listner=listner;
-        this.e=e;
-       titreEvenement.setText(e.getTitre_evenement());
-       this.descriptionText.setText(e.getDescription_evenement());
+        this.evenement=e;
+       titreEvenement.setText(evenement.getTitre_evenement());
+       this.descriptionText.setText(evenement.getDescription_evenement());
          Image eventImage;
-            if(e.getImage()==null){
+            if(evenement.getImage()==null){
                 eventImage=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
             }else {
-                eventImage=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
+                System.out.println(evenement.getImage());
+                eventImage=new Image("/edu/esprit/util/assets/img/"+e.getImage());
             }
        image.setImage(eventImage);
        
-       dateLabel.setText(e.getDate_evenement().toString());
-        if(e.getDate_evenement().compareTo(new Date())<0) {
+       dateLabel.setText(evenement.getDate_evenement().toString());
+        if(evenement.getDate_evenement().compareTo(new Date())<0) {
             dateLabel.getStyleClass().add("expired");
         } 
-       adresse.setText(e.getAdresse_evenement());
+       adresse.setText(evenement.getAdresse_evenement());
        //boxTest.getChildren().remove(0, 2);
        
     }
 
     @FXML
     private void setSideBar(MouseEvent event) {
-        
             if(listner!=null){
-        listner.onClickListner(e);
+        listner.onClickListner(evenement);
             }
     }
 

@@ -7,6 +7,7 @@ package edu.esprit.dao.classes;
 
 import edu.esprit.dao.interfaces.IUtilisateur;
 import edu.esprit.dao.interfaces.IevenementDAO;
+import edu.esprit.dao.interfaces.IparticipationEvenementDAO;
 import edu.esprit.dao.interfaces.ItypeEvenementDAO;
 import edu.esprit.entities.Evenement;
 import edu.esprit.util.MyConnection;
@@ -18,6 +19,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -116,8 +119,6 @@ public class EvenementDAO implements IevenementDAO{
 
     @Override
     public Evenement fetchEvenementById(int id) {
-       
-
         String requete ="select * from evenement where id_evenement= ?";
         try {
             PreparedStatement statement = connection.prepareStatement(requete);
@@ -140,10 +141,47 @@ public class EvenementDAO implements IevenementDAO{
             return e;
         } catch (SQLException ex) {
             //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des evenement2 " + ex.getMessage());
+            System.out.println("erreur lors du chargement des evenement 2 " + ex.getMessage());
             return null;
         }
         
+    }
+    
+    @Override
+    public List<Evenement> fetchPopularEvents() {
+      IparticipationEvenementDAO pdao=new Participation_evenementDAO();
+      String query ="select count(*) , e.* from participation_evenement p , evenement e where e.id_evenement=p.id_evenement GROUP by p.id_evenement order by count(*) desc LIMIT 3";
+      Statement statement;
+        try {
+            statement = connection.createStatement();
+      ResultSet resultat;
+       
+            resultat = statement.executeQuery(query);
+        
+      ItypeEvenementDAO typeEvenementDAO= new Type_evenementDAO();
+      IUtilisateur utilisateurDAO= new UtilisateurDAO();
+      List<Evenement> listeEvenement = new ArrayList<Evenement>();
+         while (resultat.next()) {
+                Evenement e = new Evenement ();
+                e.setId_evenement(resultat.getInt(2));
+                e.setTitre_evenement(resultat.getString(3));
+                e.setAdresse_evenement(resultat.getString(4));
+                e.setDescription_evenement(resultat.getString(5));
+                e.setDate_creation_evenement((resultat.getDate(6)));
+                e.setDate_evenement((resultat.getTimestamp(7)));
+                int idTypeEvenement=resultat.getInt(8);
+                e.setType_evenements(typeEvenementDAO.fetchTypeEvenementById(idTypeEvenement));
+                e.setUtilisateur(utilisateurDAO.findUtilisateurtById(resultat.getInt(8)));
+                listeEvenement.add(e);
+                System.out.println(e);
+            }
+        
+      return listeEvenement ;
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
         
     }

@@ -81,7 +81,7 @@ public class LivreacheteController implements Initializable {
     }    
     private List<Livre> getData(){
         LivreDAO ldao=new LivreDAO();    
-        return ldao.DisplayAllLivreByecrivain(Statics.currentUser);
+        return ldao.DisplayAllLivreByAchat(Statics.currentUser);
         
         
         

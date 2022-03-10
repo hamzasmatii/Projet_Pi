@@ -5,20 +5,26 @@
  */
 package edu.esprit.gui;
 
+import edu.esprit.dao.classes.AchatLivreDAO;
 import edu.esprit.dao.classes.CommentaireLivreDAO;
 import edu.esprit.dao.classes.LivreDAO;
+import edu.esprit.dao.classes.UtilisateurDAO;
 import edu.esprit.dao.interfaces.ICommentaireLivre;
 import edu.esprit.dao.interfaces.ILivre;
 import edu.esprit.entities.CategorieLivre;
 import edu.esprit.entities.CommentaireLivre;
+import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Livre;
 import edu.esprit.util.Statics;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +35,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -76,21 +84,25 @@ public class DetailLivreController implements Initializable {
     private Button evaluationP;
     @FXML
     private Button evaluationM;
+    @FXML
+    private TextField commentairelivreInput;
+    @FXML
+    private Button ajoutcommentairebtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                //livres = getDataTest();
-       // System.out.println("Prix "+l.getPrix_livre());
+        //livres = getDataTest();
+        // System.out.println("Prix "+l.getPrix_livre());
         livres = getData(Statics.categorielivreid);
         int column = 0;
         int row = 1;
         if (livres == null) {
         }
-       // System.out.println(Statics.livreid + "----------------------------------**************************");
-       // System.out.println(livres.size());
+        // System.out.println(Statics.livreid + "----------------------------------**************************");
+        // System.out.println(livres.size());
         try {
             for (int i = 0; i < livres.size(); i++) {
                 System.out.print(livres.get(i));
@@ -132,7 +144,7 @@ public class DetailLivreController implements Initializable {
         //System.out.println(commentaire.size());
         try {
             for (int i = 0; i < commentaire.size(); i++) {
-               // System.out.print(commentaire.get(i));
+                // System.out.print(commentaire.get(i));
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("commentairelivre.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
@@ -158,7 +170,7 @@ public class DetailLivreController implements Initializable {
         }
         //tesst
     }
-    
+
     private List<Livre> getDataTest() {
         LivreDAO ldao = new LivreDAO();
         return ldao.DisplayAllLivre();
@@ -180,7 +192,7 @@ public class DetailLivreController implements Initializable {
 
     public void setData(Livre l) {
         this.l = l;
-       // System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa." + l);
+        // System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa." + l);
         titreLabel.setText(l.getTitre_livre());
         discriptiondetail.setText(l.getDescription_livre());
         auteurdetail.setText("Par :" + l.getUtilisateur().getNom_utilisateur());
@@ -192,9 +204,10 @@ public class DetailLivreController implements Initializable {
 
     @FXML
     public void openPDF() {
-
-        String file = "C:/Users/aziz karoui/Desktop/pass_covid/tn.pdf";
-
+        File file = new File("src/pdf/livre" + l.getContenu_livre());
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        String path = file.getAbsolutePath();
+        System.out.println(path);
 // build a controller
         SwingController controller = new SwingController();
 
@@ -220,31 +233,62 @@ public class DetailLivreController implements Initializable {
         window.setVisible(true);
 
 // Open a PDF document to view
-        controller.openDocument(file);
+        controller.openDocument(path);
 
     }
 
+    @FXML
     public void evaluationP() {
+        LivreDAO ldao = new LivreDAO();
+        System.out.println(l.getId_livre());
+        ldao.updateLivreEvaluationP(l.getId_livre());
+        evaluationP.setDisable(true);
+        evaluationM.setDisable(true);
 
     }
 
+    @FXML
     public void evaluationM() {
+        LivreDAO ldao = new LivreDAO();
+        System.out.println(l.getId_livre());
+        ldao.updateLivreEvaluationM(l.getId_livre());
+        evaluationP.setDisable(true);
+        evaluationM.setDisable(true);
 
     }
 
     @FXML
     private void validerachat(ActionEvent event) {
-         Alert alert = new Alert(AlertType.CONFIRMATION);
-         System.out.println("Prix "+l.getPrix_livre());
-        if(Statics.currentUser.getSolde_utilisateur()<l.getPrix_livre()){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        //System.out.println("Prix " + l.getPrix_livre());
+        if (Statics.currentUser.getSolde_utilisateur() > l.getPrix_livre()) {
+            UtilisateurDAO user = new UtilisateurDAO();
+            user.updateLivreEvaluationP(Statics.currentUser.getId_utilisateur(), l.getPrix_livre());
+            AchatLivreDAO achat = new AchatLivreDAO();
+            LocalDate date = java.time.LocalDate.now();
+            achat.insertAchatLivre(Statics.currentUser.getId_utilisateur(), l.getId_livre(), java.sql.Date.valueOf(date));
+            
+            acheterlivre.setDisable(true);
             alert.setAlertType(AlertType.ERROR);
             return;
         }
-       
-        Optional<ButtonType> options =alert.showAndWait();
-        if(options.get() == ButtonType.OK){
+
+        Optional<ButtonType> options = alert.showAndWait();
+        if (options.get() == ButtonType.OK) {
             System.out.println("Echri");
+            /*UtilisateurDAO user = new UtilisateurDAO();
+            user.updateLivreEvaluationP(Statics.currentUser.getId_utilisateur(), l.getPrix_livre());*/
         }
-        
+
     }
+
+    @FXML
+    private void AjoutCommentaire(ActionEvent event) {
+
+        LocalDate date = java.time.LocalDate.now();
+        CommentaireLivre temp = new CommentaireLivre(Statics.currentUser.getId_utilisateur(), commentairelivreInput.getText(), l.getId_livre(), java.sql.Date.valueOf(date));
+        CommentaireLivreDAO lc = new CommentaireLivreDAO();
+        lc.insertCommentaireLivre(temp);
+    }
+
 }

@@ -100,4 +100,13 @@ public class CommentaireLivre {
         this.id_livre=1;
         this.date_commentaire=null;
     }
+
+    public CommentaireLivre(int id_commentaire, int id_utilisateur, int id_livre, String contenu_commentaire, Date date_commentaire, Utilisateur utilisateur) {
+        this.id_commentaire = id_commentaire;
+        this.id_utilisateur = id_utilisateur;
+        this.id_livre = id_livre;
+        this.contenu_commentaire = contenu_commentaire;
+        this.date_commentaire = date_commentaire;
+        this.utilisateur = utilisateur;
+    }
 }

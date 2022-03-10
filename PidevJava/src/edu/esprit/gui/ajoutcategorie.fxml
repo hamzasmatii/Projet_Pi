@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" styleClass="homebody" stylesheets="@../util/loginStyle.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.AjoutcategorieController">
+   <children>
+      <TableView fx:id="table_categorie" layoutX="591.0" layoutY="144.0" onMouseClicked="#selectRow" prefHeight="406.0" prefWidth="192.0">
+        <columns>
+          <TableColumn fx:id="id_categorie_livre" prefWidth="98.0" text="id categorie" />
+          <TableColumn fx:id="libelle" prefWidth="86.0" text="libelle" />
+        </columns>
+      </TableView>
+      <TextField fx:id="libelleInput" layoutX="116.0" layoutY="165.0" prefHeight="58.0" prefWidth="237.0" promptText="Libelle" styleClass="loginInputs" />
+      <Button layoutX="179.0" layoutY="383.0" mnemonicParsing="false" onAction="#AjoutCategorieLivre" prefHeight="41.0" prefWidth="128.0" styleClass="navbarButton" stylesheets="@../util/style.css" text="ajouter" />
+      <Button layoutX="179.0" layoutY="446.0" mnemonicParsing="false" onAction="#modifier_CategorieLivre" prefHeight="41.0" prefWidth="128.0" styleClass="navbarButton" text="modifier">
+         <stylesheets>
+            <URL value="@../util/loginStyle.css" />
+            <URL value="@../util/style.css" />
+         </stylesheets>
+      </Button>
+      <Button layoutX="179.0" layoutY="509.0" mnemonicParsing="false" onAction="#supprimer_CategorieLivre" prefHeight="41.0" prefWidth="128.0" styleClass="navbarButton" text="supprimer">
+         <stylesheets>
+            <URL value="@../util/loginStyle.css" />
+            <URL value="@../util/adminStyle.css" />
+            <URL value="@../util/style.css" />
+         </stylesheets>
+      </Button>
+      <Separator layoutX="446.0" layoutY="97.0" orientation="VERTICAL" prefHeight="517.0" prefWidth="31.0" />
+   </children>
+</AnchorPane>

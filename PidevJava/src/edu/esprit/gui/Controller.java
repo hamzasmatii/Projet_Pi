@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 public class Controller implements Initializable {
 
     @FXML
-    private VBox pnItems = null;
+    private BorderPane pnItems ;
     
     
     @FXML
@@ -91,7 +91,15 @@ public class Controller implements Initializable {
             btnSignin.setManaged(false);
         }
         
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("evenementsAccueil.fxml"));
+        Pane orderView;
+        try {
+            orderView = loader.load();
+            pnItems.setCenter(orderView);
+        } catch (IOException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 

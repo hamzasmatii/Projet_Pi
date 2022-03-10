@@ -63,7 +63,7 @@ public class EvenementCardController implements Initializable {
                 eventImage=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
             }else {
                 System.out.println(evenement.getImage());
-                eventImage=new Image("/edu/esprit/util/assets/img/"+e.getImage());
+                eventImage=new Image("/image/"+e.getImage());
             }
        image.setImage(eventImage);
        

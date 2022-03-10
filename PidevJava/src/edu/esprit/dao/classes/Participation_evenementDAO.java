@@ -9,6 +9,7 @@ import edu.esprit.dao.interfaces.IevenementDAO;
 import edu.esprit.dao.interfaces.IparticipationEvenementDAO;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Participation_evenement;
+import edu.esprit.entities.Type_evenement;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.MyConnection;
 import java.sql.Connection;
@@ -111,7 +112,7 @@ public class Participation_evenementDAO implements IparticipationEvenementDAO {
     }
 
     @Override
-    public Boolean verifEvenementUser(Evenement e, Utilisateur u) {
+    public boolean verifEvenementUser(Evenement e, Utilisateur u) {
         String requete = "select * from participation_evenement where id_utilisateur=? and id_evenement=?";
         try {
             PreparedStatement statement = connection.prepareStatement(requete);
@@ -130,6 +131,55 @@ public class Participation_evenementDAO implements IparticipationEvenementDAO {
     
     
 }
+
+    @Override
+    public boolean fetchUpcomingEvents(Utilisateur u) {
+      List<Evenement> listeEvenement = new ArrayList<Evenement>();
+
+        String requete = "SELECT e.* , u.* , t.* from participation_evenement p JOIN evenement e on p.id_evenement=e.id_evenement join utilisateur u on p.id_utilisateur=u.id_utilisateur join type_evenement t on e.type_evenement=t.id_type_evenement where e.date_evenement> now() and p.id_utilisateur=?;";
+        try {
+            PreparedStatement statement = connection.prepareStatement(requete);
+            
+            statement.setInt(1, u.getId_utilisateur());
+            ResultSet resultat = statement.executeQuery();
+            if (resultat.next() == false) { 
+                
+                return false; 
+            }
+
+ 
+            
+            return true;
+          
+    
+            /*while (resultat.next()) { 
+                Evenement e=new Evenement();
+                e.setId_evenement(resultat.getInt(1));
+                e.setTitre_evenement(resultat.getString(2));
+                e.setAdresse_evenement(resultat.getString(3));
+                e.setDescription_evenement(resultat.getString(4));
+                e.setDate_creation_evenement(resultat.getDate(5));
+                e.setDate_evenement(resultat.getTimestamp(6));
+                e.setImage(resultat.getString(9));
+                e.setUtilisateur(u);
+                Type_evenement t= new Type_evenement();
+                t.setId_type_evenement(resultat.getInt(17));
+                t.setLibelle_type_evenement(resultat.getString(17));
+                e.setType_evenements(t);
+                
+                 
+                listeEvenement.add(e);
+                System.out.println(e);
+            }
+                return listeEvenement;
+                    */
+            
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des evenement " + ex.getMessage());
+            return false;
+        }
+    }
     
     
 }

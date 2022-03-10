@@ -22,6 +22,7 @@ public interface IparticipationEvenementDAO {
     public void deleteParticipation(Participation_evenement p);
     List<Evenement> fetchParticipationByUser(int id);
     List<Participation_evenement> fetchParticipationByEvent(int id);
-    Boolean verifEvenementUser(Evenement e , Utilisateur u );
+    boolean verifEvenementUser(Evenement e , Utilisateur u );
+    boolean fetchUpcomingEvents(Utilisateur u);
     
 }

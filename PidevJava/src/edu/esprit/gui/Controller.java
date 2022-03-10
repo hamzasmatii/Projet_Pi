@@ -1,5 +1,8 @@
 package edu.esprit.gui;
 
+import com.github.plushaze.traynotification.notification.Notification;
+import com.github.plushaze.traynotification.notification.Notifications;
+import com.github.plushaze.traynotification.notification.TrayNotification;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.Statics;
 import javafx.event.ActionEvent;
@@ -73,6 +76,9 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        
+        
         if (Statics.currentUser.getType_utilisateur()==0)
         {
             btnProfile.setVisible(false);
@@ -232,5 +238,25 @@ public class Controller implements Initializable {
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
+    }
+    
+    private void evenementNotification(){
+        Utilisateur user=Statics.currentUser;
+        if(user.getType_utilisateur()==0){
+            return;
+        }
+        
+        
+        
+      String title = "Evenement a venir";
+        String message = "Veuillez verifier le calendrier vous avez des evenements a venir ";
+        Notification notification = Notifications.SUCCESS;
+        
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotification(notification);
+        tray.showAndWait();  
+        
     }
 }

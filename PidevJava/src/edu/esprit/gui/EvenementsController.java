@@ -80,24 +80,31 @@ public class EvenementsController implements Initializable {
     
     private EvenementListner listner;
     @FXML
-    private ComboBox<?> typeList;
-    @FXML
     private HBox topHbox;
     @FXML
     private Button ajoutButton;
     @FXML
     private JFXToggleButton sortToggle;
+    Utilisateur utilisateur=Statics.currentUser;
     
     Evenement sideBarEvenement=new Evenement();
+    @FXML
+    private HBox modifBox;
+    @FXML
+    private Button modifBtn;
+    @FXML
+    private HBox participerBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-        //topHbox.getChildren().remove(7,8);
+        if(utilisateur.getType_utilisateur()<2){
+          topHbox.getChildren().remove(7,8);
+        }
        
         this.allEvenements=fechEvenement();
         try {
-            setChosenEvenement(this.allEvenements.get(0));
+             if(allEvenements.size()>0){
+            setChosenEvenement(this.allEvenements.get(0));}
         } catch (IOException ex) {
             Logger.getLogger(EvenementsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,12 +121,17 @@ public class EvenementsController implements Initializable {
 
 public List<Evenement> fechEvenement(){
     IevenementDAO edao=new EvenementDAO();
-    
     return edao.fetchEvenement();
     
 }
 private void setChosenEvenement(Evenement evenement) throws IOException {
-       
+       if(utilisateur.getId_utilisateur()!=evenement.getUtilisateur().getId_utilisateur()){
+          modifBox.getChildren().remove(2);
+       }
+       IparticipationEvenementDAO pdao=new Participation_evenementDAO();
+       if(pdao.verifEvenementUser(evenement, utilisateur)){
+           participerBox.getChildren().remove(1);
+       }
        sideBarEvenement=evenement;
        titreText.setText(evenement.getTitre_evenement());
        descriptionText.setText(evenement.getDescription_evenement());
@@ -226,6 +238,19 @@ private void setChosenEvenement(Evenement evenement) throws IOException {
         
     }
     
+    private void hideComponents(){
+        //0 
+        //1 utilisateur
+        // 2 ecrivain 
+        // 3 maison d'edition
+        //4 admin 
+        
+       
+           
+    
+    
+    
+    }
     
     
 }

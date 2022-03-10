@@ -7,6 +7,7 @@ package edu.esprit.dao.interfaces;
 
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Participation_evenement;
+import edu.esprit.entities.Utilisateur;
 import java.util.List;
 
 /**
@@ -21,5 +22,6 @@ public interface IparticipationEvenementDAO {
     public void deleteParticipation(Participation_evenement p);
     List<Evenement> fetchParticipationByUser(int id);
     List<Participation_evenement> fetchParticipationByEvent(int id);
+    Boolean verifEvenementUser(Evenement e , Utilisateur u );
     
 }

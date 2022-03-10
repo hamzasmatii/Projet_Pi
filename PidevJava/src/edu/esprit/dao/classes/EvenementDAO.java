@@ -10,6 +10,7 @@ import edu.esprit.dao.interfaces.IevenementDAO;
 import edu.esprit.dao.interfaces.IparticipationEvenementDAO;
 import edu.esprit.dao.interfaces.ItypeEvenementDAO;
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.MyConnection;
 import java.sql.Connection;
 import java.sql.Date;
@@ -69,13 +70,15 @@ public class EvenementDAO implements IevenementDAO{
 
     @Override
     public void updateEvenement(Evenement e) {
-        String query = "update evenement set description_evenement=?, date_evenement=?, adresse_evenement=? where id_evenement=?";
+        String query = "update evenement set description_evenement=?, date_evenement=?, adresse_evenement=? , image=?, titre_evenement=? where id_evenement=? ";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, e.getDescription_evenement());
             ps.setTimestamp(2, e.getDate_evenement());
             ps.setString(3, e.getAdresse_evenement());
-            ps.setInt(4, e.getId_evenement());
+            ps.setString(4, e.getImage());
+            ps.setString(5, e.getTitre_evenement());
+            ps.setInt(6, e.getId_evenement());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -186,6 +189,8 @@ public class EvenementDAO implements IevenementDAO{
         
         return null;
     }
+
+   
         
     }
 

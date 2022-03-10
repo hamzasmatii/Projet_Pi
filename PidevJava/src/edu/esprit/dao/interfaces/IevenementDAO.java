@@ -5,6 +5,7 @@
  */
 package edu.esprit.dao.interfaces;
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.Utilisateur;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public interface IevenementDAO {
     List<Evenement> fetchEvenement();
     Evenement fetchEvenementById(int id);
     List<Evenement> fetchPopularEvents();
+    
     
     
 }

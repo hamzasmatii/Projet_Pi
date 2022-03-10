@@ -9,6 +9,7 @@ import edu.esprit.dao.interfaces.IevenementDAO;
 import edu.esprit.dao.interfaces.IparticipationEvenementDAO;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Participation_evenement;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -106,7 +109,27 @@ public class Participation_evenementDAO implements IparticipationEvenementDAO {
     public List<Participation_evenement> fetchParticipationByEvent(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Boolean verifEvenementUser(Evenement e, Utilisateur u) {
+        String requete = "select * from participation_evenement where id_utilisateur=? and id_evenement=?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(requete);
+            
+            statement.setInt(1, u.getId_utilisateur());
+            statement.setInt(2,e.getId_evenement());
+            ResultSet resultat = statement.executeQuery();
+            
+            return resultat.last();
+            
+        
+    }    catch (SQLException ex) {
+             Logger.getLogger(Participation_evenementDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    return false;
     
+    
+}
     
     
 }

@@ -13,18 +13,15 @@ import edu.esprit.dao.interfaces.ItypeEvenementDAO;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Type_evenement;
 import edu.esprit.entities.Utilisateur;
-import edu.esprit.util.Statics;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,12 +44,10 @@ import javafx.stage.Stage;
  *
  * @author Khaled
  */
-public class AjoutEvenementController implements Initializable {
+public class ModifierEvenementController implements Initializable {
 
     @FXML
     private DatePicker dateInput;
-    @FXML
-    private ComboBox<Type_evenement> TypeInput;
     @FXML
     private TextField titreInput;
     @FXML
@@ -62,15 +57,21 @@ public class AjoutEvenementController implements Initializable {
     @FXML
     private TextField adresse;
     @FXML
+    private ComboBox<Type_evenement> TypeInput;
+    @FXML
     private TextField imagePath;
     @FXML
-    private AnchorPane anchor;
-    String  imageName;
-    Alert alert;
-    @FXML
     private JFXTimePicker timepicker;
-
-   
+    
+    String imageName;
+     Alert alert;
+    Evenement evenement;
+    @FXML
+    private AnchorPane anchor;
+    
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.setComboBoxData();
@@ -87,7 +88,6 @@ public class AjoutEvenementController implements Initializable {
 
     @FXML
     private void saveData(ActionEvent event) {
-       
         if (titreInput.getText() == null || titreInput.getText().trim().isEmpty())
             {
                 errorAlert("Le champ titre est vide!");
@@ -108,21 +108,22 @@ public class AjoutEvenementController implements Initializable {
                errorAlert("Le champ description est vide!");
                return;
             }
-        if(this.timepicker.getValue()==null){
-            errorAlert("L'heure est obligatoire");
-               return;
-        }
         LocalTime value = timepicker.getValue();    
-        Utilisateur utilisateur = Statics.currentUser;
         Timestamp date = this.prepareSelectedDate();
-        Evenement e = new Evenement(this.titreInput.getText(),this.adresse.getText(),this.descriptionInput.getText(),date,TypeInput.getValue(),utilisateur,this.imageName);
+        evenement.setTitre_evenement(this.titreInput.getText());
+        evenement.setAdresse_evenement(this.adresse.getText());
+        evenement.setDescription_evenement(this.descriptionInput.getText());
+        evenement.setDate_evenement(date);
+        evenement.setType_evenements(TypeInput.getValue());
+        evenement.setImage(imageName);
         IevenementDAO edao=new EvenementDAO();
-        edao.insertEvenement(e);
+        edao.updateEvenement(evenement);
         succesAlert();
-        clearForm();
+       
       
     }
     
+
     @FXML
     private void uploadImage(ActionEvent event) throws FileNotFoundException, IOException {
         FileChooser chooser =  new FileChooser();
@@ -153,14 +154,18 @@ public class AjoutEvenementController implements Initializable {
         ObservableList<Type_evenement> list = FXCollections.observableArrayList(tedao.fetchTypeEvenment());
         this.TypeInput.setItems(list); 
     }
-    private void clearForm() {
-        this.titreInput.clear();
-        this.adresse.clear();
-        this.descriptionInput.clear();
-        this.imageName="";
-        dateInput.setValue(null);
-        this.TypeInput.getSelectionModel().clearSelection();
-        this.imagePath.clear();
+    
+    public void setData(Evenement e){
+        this.evenement=e;
+        this.titreInput.setText(evenement.getTitre_evenement());
+        this.descriptionInput.setText(evenement.getDescription_evenement());
+        this.adresse.setText(evenement.getAdresse_evenement());
+        TypeInput.setValue(evenement.getType_evenements());
+        this.imagePath.setText(evenement.getImage());
+        this.dateInput.setValue(evenement.getDate_evenement().toLocalDateTime().toLocalDate());
+        this.timepicker.setValue(evenement.getDate_evenement().toLocalDateTime().toLocalTime());
+        
+         
     }
     private void succesAlert(){
         if(alert==null){
@@ -189,9 +194,6 @@ public class AjoutEvenementController implements Initializable {
         return selectedDate;
         
         
-        
-        
     }
-  
-    
+   
 }

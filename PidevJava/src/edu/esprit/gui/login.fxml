@@ -43,7 +43,7 @@
                      </font>
                   </Button>
                   <PasswordField fx:id="mdpInput" layoutX="655.0" layoutY="291.0" prefHeight="51.0" prefWidth="357.0" promptText="Mot de passe" styleClass="loginInputs" />
-                  <Button layoutX="1009.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchHome" style="-fx-background-color: transparent;">
+                  <Button fx:id="btnHome" layoutX="607.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchHome" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="32.0">
                            <image>
@@ -52,6 +52,16 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Text fx:id="blockedText" fill="#81523b" layoutX="685.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Votre compte a été bloqué définitivement" textAlignment="CENTER" wrappingWidth="313.13671875">
+                     <font>
+                        <Font name="Arial Bold" size="21.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="dureeText" fill="#81523b" layoutX="799.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2202/02/03" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </children>

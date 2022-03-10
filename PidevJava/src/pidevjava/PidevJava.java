@@ -35,11 +35,14 @@ public class PidevJava extends Application {
     @Override
     public void start(Stage primaryStage) {
          
+        LoginDAO ls = new LoginDAO();
+        System.out.println(new java.sql.Date(System.currentTimeMillis()));
         
+        ls.unblockByDay(new java.sql.Date(System.currentTimeMillis()));
         
         this.stage = primaryStage;
         try {
-            parent = FXMLLoader.load(getClass().getResource("/edu/esprit/gui/ajoutLivrecrivain.fxml"));//Home livreachete
+            parent = FXMLLoader.load(getClass().getResource("/edu/esprit/gui/home.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -47,7 +50,7 @@ public class PidevJava extends Application {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.setMaxWidth(1200);
-        stage.setMaxHeight(860);
+        stage.setMaxHeight(880);
         stage.setTitle("Libro");
         stage.getIcons().add(icon);
         stage.show();

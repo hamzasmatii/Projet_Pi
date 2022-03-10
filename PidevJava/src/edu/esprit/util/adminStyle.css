@@ -19,3 +19,8 @@
 -fx-background-color: #fcf3de;
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
+.suspensionBtn
+{
+-fx-background-color:#81523b;
+-fx-text-fill : #ffffff;
+}

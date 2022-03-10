@@ -7,6 +7,7 @@ package edu.esprit.gui;
 
 import edu.esprit.dao.classes.LoginDAO;
 import edu.esprit.dao.classes.UtilisateurDAO;
+import edu.esprit.entities.Login;
 import edu.esprit.util.Statics;
 import java.io.IOException;
 
@@ -33,6 +34,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.ImageIcon;
 
@@ -62,6 +64,12 @@ public class LoginController implements Initializable {
     private Button btn1;
     @FXML
     private Button btn11;
+    @FXML
+    private Button btnHome;
+    @FXML
+    private Text blockedText;
+    @FXML
+    private Text dureeText;
 
     
     /**
@@ -70,6 +78,8 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        blockedText.setVisible(false);
+        dureeText.setVisible(false);
         Image im= new Image("/edu/esprit/util/assets/img/loginBooks1.jpg",imagePane.getBoundsInParent().getWidth(),imagePane.getBoundsInParent().getHeight(),false,false) ;
         
         imageView.setImage(im);
@@ -104,6 +114,25 @@ public class LoginController implements Initializable {
             UtilisateurDAO us = new UtilisateurDAO();
             if (ls.verifLogin(emailInput.getText(), mdpInput.getText()))
             {
+            Login templogin = ls.findLoginByMail(emailInput.getText());
+            if(templogin.getBlocked_login())
+            {
+                if(templogin.getBlocked_duree()==null)
+                {
+                    hideInputs();
+                    blockedText.setVisible(true);
+                    
+                }
+                else
+                {
+                    blockedText.setText("Votre compte a éte suspendu jusqu'a");
+                    blockedText.setVisible(true);
+                    dureeText.setText(templogin.getBlocked_duree()+"");
+                    dureeText.setVisible(true);
+                    hideInputs();
+                }
+                return;
+            }
             Statics.currentUser = us.findUtilisateurtByMail(emailInput.getText());
             if(Statics.currentUser.getType_utilisateur()==4)
             {
@@ -133,7 +162,6 @@ public class LoginController implements Initializable {
     stage.setScene(scene);
     stage.show();
     }
-    @FXML
     public void switchSceneAdminHome(ActionEvent event) throws IOException
     {
        root = FXMLLoader.load(getClass().getResource("adminHome.fxml"));
@@ -169,4 +197,16 @@ public class LoginController implements Initializable {
     stage.setScene(scene);
     stage.show();
     }
+    
+   private void  hideInputs()
+    {
+        btn.setVisible(false);
+        btn1.setVisible(false);
+        btn11.setVisible(false);
+        emailInput.setVisible(false);
+        mdpInput.setVisible(false);
+        
+    }
+   
+    
 }

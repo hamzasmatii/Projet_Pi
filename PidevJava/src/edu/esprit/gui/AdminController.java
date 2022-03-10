@@ -152,7 +152,7 @@ public class AdminController implements Initializable {
 
     @FXML
     private void livre(MouseEvent event) {
-        loadPage("Livre");
+        loadPage("ajoutLivre");
     }
 
     @FXML

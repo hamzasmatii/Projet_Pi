@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -37,6 +38,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.ImageIcon;
+
 
 /**
  * FXML Controller class
@@ -70,6 +72,10 @@ public class LoginController implements Initializable {
     private Text blockedText;
     @FXML
     private Text dureeText;
+    @FXML
+    private Text raisonText;
+    @FXML
+    private BorderPane captcha;
 
     
     /**
@@ -80,6 +86,7 @@ public class LoginController implements Initializable {
         // TODO
         blockedText.setVisible(false);
         dureeText.setVisible(false);
+        raisonText.setVisible(false);
         Image im= new Image("/edu/esprit/util/assets/img/loginBooks1.jpg",imagePane.getBoundsInParent().getWidth(),imagePane.getBoundsInParent().getHeight(),false,false) ;
         
         imageView.setImage(im);
@@ -102,6 +109,7 @@ public class LoginController implements Initializable {
         imageView.setClip(null);
         
         imageView.setImage(image);
+
         
     }    
     
@@ -121,6 +129,8 @@ public class LoginController implements Initializable {
                 {
                     hideInputs();
                     blockedText.setVisible(true);
+                    raisonText.setText(templogin.getBlocked_message());
+                    raisonText.setVisible(true);
                     
                 }
                 else
@@ -129,6 +139,8 @@ public class LoginController implements Initializable {
                     blockedText.setVisible(true);
                     dureeText.setText(templogin.getBlocked_duree()+"");
                     dureeText.setVisible(true);
+                    raisonText.setText(templogin.getBlocked_message());
+                    raisonText.setVisible(true);
                     hideInputs();
                 }
                 return;

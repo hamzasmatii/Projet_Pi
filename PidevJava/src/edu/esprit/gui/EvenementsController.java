@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,11 +95,12 @@ public class EvenementsController implements Initializable {
     private Button modifBtn;
     @FXML
     private HBox participerBox;
+    Evenement chosenEvent;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if(utilisateur.getType_utilisateur()<2){
-          topHbox.getChildren().remove(7,8);
+          topHbox.getChildren().remove(6);
         }
        
         this.allEvenements=fechEvenement();
@@ -115,8 +117,8 @@ public class EvenementsController implements Initializable {
                Logger.getLogger(EvenementsController.class.getName()).log(Level.SEVERE, null, ex);
            }
         };
-            List<Evenement> newList=this.sortByDate();
-            this.displayGrid(newList);
+       this.displayGrid(allEvenements);
+            
     }
 
 public List<Evenement> fechEvenement(){
@@ -125,12 +127,15 @@ public List<Evenement> fechEvenement(){
     
 }
 private void setChosenEvenement(Evenement evenement) throws IOException {
+        chosenEvent=evenement;
+        this.participerBTN.setVisible(true);
+        modifBtn.setVisible(true);
        if(utilisateur.getId_utilisateur()!=evenement.getUtilisateur().getId_utilisateur()){
-          modifBox.getChildren().remove(2);
+          modifBtn.setVisible(false);
        }
        IparticipationEvenementDAO pdao=new Participation_evenementDAO();
        if(pdao.verifEvenementUser(evenement, utilisateur)){
-           participerBox.getChildren().remove(1);
+           this.participerBTN.setVisible(false);
        }
        sideBarEvenement=evenement;
        titreText.setText(evenement.getTitre_evenement());
@@ -141,7 +146,7 @@ private void setChosenEvenement(Evenement evenement) throws IOException {
             if(evenement.getImage()==null){
                 eventImage=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
             }else {
-                eventImage=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
+                eventImage=new Image("/image/"+evenement.getImage());
             }
         imageView.setImage(eventImage);
        } 
@@ -237,20 +242,18 @@ private void setChosenEvenement(Evenement evenement) throws IOException {
                    }
         
     }
-    
-    private void hideComponents(){
-        //0 
-        //1 utilisateur
-        // 2 ecrivain 
-        // 3 maison d'edition
-        //4 admin 
+
+    @FXML
+    private void switchscene(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("modifierEvenement.fxml"));
+            Pane orderView = loader.load();
+            ModifierEvenementController contr=loader.getController();
+            contr.setData(chosenEvent);
+            BorderPane homePane = (BorderPane) modifBtn.getScene().getRoot();
+            homePane.setCenter(orderView);     
         
-       
-           
-    
-    
-    
     }
     
+   
     
 }

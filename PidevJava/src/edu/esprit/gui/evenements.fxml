@@ -100,7 +100,7 @@
                                           <Insets top="5.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <Button fx:id="modifBtn" mnemonicParsing="false" prefHeight="96.0" prefWidth="78.0" style="-fx-background-color: transparent;">
+                                    <Button fx:id="modifBtn" mnemonicParsing="false" onAction="#switchscene" prefHeight="96.0" prefWidth="78.0" style="-fx-background-color: transparent;">
                                        <graphic>
                                           <ImageView fitHeight="54.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                              <image>

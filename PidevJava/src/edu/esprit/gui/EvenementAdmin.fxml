@@ -40,7 +40,7 @@
             </Button>
             <Separator layoutX="754.0" layoutY="613.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="0.0" />
             <Separator layoutX="92.0" layoutY="78.0" prefHeight="3.0" prefWidth="281.0" />
-            <Button fx:id="saveBtn" layoutX="823.0" layoutY="657.0" mnemonicParsing="false" onAction="#chageBlockedMessage" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: transparent;" />
+            <Button fx:id="saveBtn" layoutX="823.0" layoutY="657.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: transparent;" />
             <Button fx:id="modifierBtn" layoutX="771.0" layoutY="613.0" mnemonicParsing="false" onAction="#modifierButton" prefHeight="36.0" prefWidth="196.0" styleClass="loginButton" text="Modifier evenement" textFill="WHITE">
                <font>
                   <Font size="14.0" />

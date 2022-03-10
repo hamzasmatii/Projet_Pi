@@ -63,7 +63,7 @@ public class EvenementAdminController implements Initializable {
     private Button saveBtn;
     @FXML
     private Button modifierBtn;
-
+IevenementDAO edao= new EvenementDAO();
     /**
      * Initializes the controller class.
      */
@@ -78,7 +78,7 @@ public class EvenementAdminController implements Initializable {
         image.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getImage()))); 
         type.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getType_evenements().getLibelle_type_evenement())));
         utilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getUtilisateur().getNom_utilisateur())));
-        IevenementDAO edao= new EvenementDAO();
+        
         List<Evenement> evenements=edao.fetchEvenement();
         tableView.setItems(FXCollections.observableList(evenements));     
     }
@@ -90,8 +90,10 @@ public class EvenementAdminController implements Initializable {
 
     @FXML
     private void deleteEvenement(ActionEvent event) {
-        IevenementDAO edao= new EvenementDAO();
+        
         edao.deleteEvenement(tableView.getSelectionModel().getSelectedItem().getId_evenement());
+        List<Evenement> evenements=edao.fetchEvenement();
+        tableView.setItems(FXCollections.observableList(evenements));  
     }
     
     @FXML
@@ -103,6 +105,8 @@ public class EvenementAdminController implements Initializable {
             contr.setData(tableView.getSelectionModel().getSelectedItem());
             BorderPane homePane = (BorderPane) modifierBtn.getScene().getRoot();
             homePane.setCenter(orderView);     
+        List<Evenement> evenements=edao.fetchEvenement();
+        tableView.setItems(FXCollections.observableList(evenements));  
         }
     }
     

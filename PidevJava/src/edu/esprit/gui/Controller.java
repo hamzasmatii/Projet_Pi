@@ -3,6 +3,10 @@ package edu.esprit.gui;
 import com.github.plushaze.traynotification.notification.Notification;
 import com.github.plushaze.traynotification.notification.Notifications;
 import com.github.plushaze.traynotification.notification.TrayNotification;
+import edu.esprit.dao.classes.EvenementDAO;
+import edu.esprit.dao.classes.Participation_evenementDAO;
+import edu.esprit.dao.interfaces.IevenementDAO;
+import edu.esprit.dao.interfaces.IparticipationEvenementDAO;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.Statics;
 import javafx.event.ActionEvent;
@@ -76,8 +80,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        
+        evenementNotification();
         
         if (Statics.currentUser.getType_utilisateur()==0)
         {
@@ -242,21 +245,28 @@ public class Controller implements Initializable {
     
     private void evenementNotification(){
         Utilisateur user=Statics.currentUser;
-        if(user.getType_utilisateur()==0){
-            return;
-        }
         
+        if(user.getType_utilisateur()!=0){
+           
+        IparticipationEvenementDAO edao= new Participation_evenementDAO();
+        if(edao.fetchUpcomingEvents(user)==true){
         
-        
-      String title = "Evenement a venir";
+        String title = "Evenement a venir";
         String message = "Veuillez verifier le calendrier vous avez des evenements a venir ";
         Notification notification = Notifications.SUCCESS;
-        
         TrayNotification tray = new TrayNotification();
         tray.setTitle(title);
         tray.setMessage(message);
         tray.setNotification(notification);
         tray.showAndWait();  
+        }
+        }
+            
+        }
+            
+        
+        
+      
         
     }
-}
+

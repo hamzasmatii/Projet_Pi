@@ -62,6 +62,8 @@ public class AdminController implements Initializable {
     
     @FXML
     private Button btnEvenement;
+    @FXML
+    private Button btnCategorieLivre;
 
     
     
@@ -178,6 +180,10 @@ public class AdminController implements Initializable {
     @FXML
     private void jeton(MouseEvent event) {
         loadPage("Jeton");
+    }
+    @FXML
+    private void categorieLivre(MouseEvent event) {
+        loadPage("ajoutcategorie");
     }
     private Stage stage;
     private Scene scene;

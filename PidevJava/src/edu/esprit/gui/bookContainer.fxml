@@ -14,7 +14,11 @@
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="160.0" styleClass="paneliv">
          <children>
             <Pane prefHeight="31.0" prefWidth="160.0" />
-            <ImageView fx:id="imagelivre" fitHeight="97.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" styleClass="paneImage" />
+            <ImageView fx:id="imagelivre" fitHeight="169.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" styleClass="paneImage">
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </ImageView>
             <Label fx:id="titre" alignment="CENTER" contentDisplay="BOTTOM" prefHeight="60.0" prefWidth="163.0" text="Label" />
             <Label fx:id="discription" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="160.0" text="Label" />
             <Label fx:id="evaluation" alignment="CENTER" prefHeight="38.0" prefWidth="158.0" text="Label">

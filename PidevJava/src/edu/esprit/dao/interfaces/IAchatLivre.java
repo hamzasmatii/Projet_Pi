@@ -6,6 +6,7 @@
 package edu.esprit.dao.interfaces;
 
 import edu.esprit.entities.AchatLivre;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * @author aziz karoui
  */
 public interface IAchatLivre {
-  void insertAchatLivre(AchatLivre depot) ;
+  void insertAchatLivre(int id ,int idl,Date date) ;
 
     void updateAchatLivre(AchatLivre d);
 

@@ -31,12 +31,12 @@ public class CategorieLivreDAO implements ICategorieLivre {
     }
 
     public void insertCategorieLivre(CategorieLivre l) {
-        String req = "INSERT INTO `categorie_livre` (`id_categorie_livre`,`libelle`) "
-                + "VALUES (?,?) ";
+        String req = "INSERT INTO `categorie_livre` (`libelle`) "
+                + "VALUES (?) ";
         try {
             PreparedStatement ls = connection.prepareStatement(req);
-            ls.setInt(1, l.getId_categorie_livre());
-            ls.setString(2, l.getLibelle());
+            //ls.setInt(1, l.getId_categorie_livre());
+            ls.setString(1, l.getLibelle());
             ls.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);

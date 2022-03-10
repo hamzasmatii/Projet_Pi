@@ -57,9 +57,7 @@ public class LivreDAO implements ILivre {
             Logger.getLogger(LivreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    //UPDATE `livre` SET `evalution_livre`=`evalution_livre`+1 WHERE `id_livre`=1;
-    //UPDATE `livre` SET `evalution_livre`=`evalution_livre`-1 WHERE `id_livre`=1;
-
+   
     public void updateLivre(edu.esprit.entities.Livre l) {
         String req = "update livre set titre_livre=? , description_livre=? , date_publication_livre=? ,photo_livre=? ,contenu_livre=? ,prix_livre=?,evalution_livre=?,id_ecrivain_livre=?  where id_livre=?";
         try {
@@ -84,6 +82,40 @@ public class LivreDAO implements ILivre {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
         }
     }
+    //evaluation
+     //UPDATE `livre` SET `evalution_livre`=`evalution_livre`+1 WHERE `id_livre`=1;
+    //UPDATE `livre` SET `evalution_livre`=`evalution_livre`-1 WHERE `id_livre`=1;
+
+     public void updateLivreEvaluationP(int id) {
+        String req = "update livre set evalution_livre=evalution_livre+1 where id_livre=?";
+        try {
+            PreparedStatement usl = connection.prepareStatement(req);
+           
+            usl.setInt(1, id);
+
+            usl.executeUpdate();
+            System.out.println("Mise à jour effectuée avec succès");
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+        }
+    }
+     public void updateLivreEvaluationM(int id) {
+        String req = "update livre set evalution_livre=evalution_livre-1 where id_livre=?";
+        try {
+            PreparedStatement usl = connection.prepareStatement(req);
+           
+            usl.setInt(1, id);
+
+            usl.executeUpdate();
+            System.out.println("Mise à jour effectuée avec succès");
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour " + ex.getMessage());
+        }
+    }
+
+    //evaluation
 
     public void deleteLivre(int id) {
         String requete = "delete from livre where id_livre=?";
@@ -173,6 +205,54 @@ public class LivreDAO implements ILivre {
         List<edu.esprit.entities.Livre> listedepots = new ArrayList<edu.esprit.entities.Livre>();
 
         String requete = "select L.*,C.*,U.* from livre L join categorie_livre C on L.id_categorie_livre=C.id_categorie_livre join utilisateur U on L.id_ecrivain_livre=U.id_utilisateur where L.id_ecrivain_livre= ?";
+        // String requete="select * from livre where id_categorie_livre=? ";
+        try {
+            PreparedStatement statement = connection.prepareStatement(requete);
+            statement.setInt(1, l.getId_utilisateur());
+            ResultSet resultat = statement.executeQuery();
+
+            while (resultat.next()) {
+                edu.esprit.entities.Livre livre = new edu.esprit.entities.Livre();
+                Utilisateur utilisateur = l;
+               /* utilisateur.setId_utilisateur(resultat.getInt(13));
+                utilisateur.setNom_utilisateur(resultat.getString(14));
+                utilisateur.setDate_naissance_utilisateur(resultat.getDate(15));
+                utilisateur.setPhoto_utilisateur(resultat.getString(16));
+                utilisateur.setType_utilisateur(resultat.getInt(17));
+                utilisateur.setSolde_utilisateur(resultat.getInt(18));*/
+                CategorieLivre cat = new CategorieLivre();
+                livre.setId_livre(resultat.getInt(1));
+                livre.setTitre_livre(resultat.getString(2));
+                livre.setDescription_livre(resultat.getString(3));
+                livre.setDate_publication_livre(resultat.getDate(4));
+                livre.setPhoto_livre(resultat.getString(5));
+                livre.setContenu_livre(resultat.getString(6));
+                livre.setPrix_livre(resultat.getInt(7));
+                livre.setEvalution_livre(resultat.getInt(8));
+                livre.setId_ecrivain_livre(resultat.getInt(9));
+                cat.setId_categorie_livre(resultat.getInt(10));
+                cat.setLibelle(resultat.getString(12));
+                livre.setCategorieLivre(cat);
+                livre.setUtilisateur(utilisateur);
+
+                listedepots.add(livre);
+                
+            }
+            //System.out.println("22222222222222-" + listedepots);
+            return listedepots;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
+            return null;
+        }
+    }
+
+    //test
+    public List<edu.esprit.entities.Livre> DisplayAllLivreByAchat(Utilisateur l) {
+
+        List<edu.esprit.entities.Livre> listedepots = new ArrayList<edu.esprit.entities.Livre>();
+
+        String requete = "select L.*,C.*,U.* from achat_livre A join livre L on L.id_livre=A.id_livre join utilisateur U on L.id_ecrivain_livre=U.id_utilisateur join categorie_livre  C on C.id_categorie_livre =L.id_categorie_livre where A.id_utilisateur= ?";
         // String requete="select * from livre where id_categorie_livre=? ";
         try {
             PreparedStatement statement = connection.prepareStatement(requete);

@@ -20,6 +20,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import edu.esprit.util.MyConnection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +34,15 @@ public class AchatLivreDAO implements IAchatLivre {
     public AchatLivreDAO() {
         connection = MyConnection.getInstance();
     }
-
-    public void insertAchatLivre(AchatLivre l) {
+//AchatLivre l
+    public void insertAchatLivre(int id ,int idl,Date date) {
         String req = "INSERT INTO `achat_livre` (`id_utilisateur`,`id_livre`,`date_achat`) "
                 + "VALUES (?,?,?) ";
         try {
             PreparedStatement ls = connection.prepareStatement(req);
-            ls.setInt(1, l.getId_utilisateur());
-            ls.setInt(2, l.getId_livre());
-            ls.setDate(3, l.getDate_achat());
+            ls.setInt(1, id);
+            ls.setInt(2, idl);
+            ls.setDate(3, date);
 
             ls.executeUpdate();
         } catch (SQLException ex) {

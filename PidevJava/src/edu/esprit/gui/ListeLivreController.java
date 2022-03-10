@@ -7,17 +7,21 @@ package edu.esprit.gui;
 
 import edu.esprit.dao.classes.LivreDAO;
 import edu.esprit.dao.interfaces.ILivre;
+import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Livre;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -38,6 +42,8 @@ public class ListeLivreController implements Initializable {
     private GridPane livredate;
     @FXML
     private ScrollPane scrollLivre;
+    @FXML
+    private TextField searchBox;
 
     /**
      * Initializes the controller class.
@@ -129,4 +135,5 @@ public class ListeLivreController implements Initializable {
         ILivre ldao = new LivreDAO();
         return ldao.DisplayAllLivreByDate();
     }
+    
 }

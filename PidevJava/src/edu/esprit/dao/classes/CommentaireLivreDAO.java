@@ -35,7 +35,7 @@ public class CommentaireLivreDAO implements ICommentaireLivre {
     public void insertCommentaireLivre(CommentaireLivre com) {
         
          String req = "INSERT INTO `commentaire_livre` (`id_utilisateur`,`contenu_commentaire`,`id_livre`,`date_commentaire`) "//id_livre
-                + "VALUES (?,?) ";
+                + "VALUES (?,?,?,?) ";
         try {
             PreparedStatement ls = connection.prepareStatement(req);
             ls.setInt(1, com.getId_utilisateur());

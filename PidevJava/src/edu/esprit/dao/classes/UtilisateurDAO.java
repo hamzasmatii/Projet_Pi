@@ -68,6 +68,23 @@ public class UtilisateurDAO implements IUtilisateur {
             System.out.println("erreur lors de la mise à jour " + ex.getMessage());
         }
     }
+    //karoui
+    public void updateLivreEvaluationP(int id,int solde) {
+        String req = "update utilisateur set solde_utilisateur=solde_utilisateur-? where id_utilisateur=? ";
+       try {
+            PreparedStatement us = connection.prepareStatement(req);
+            us.setInt(1,solde);
+            us.setInt(2,id);
+            
+
+            us.executeUpdate();
+            System.out.println("achat avec succès");
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur achat " + ex.getMessage());
+        }
+    }
+    //karoui
     
      public void deleteUtilisateur(int id) {
         String requete = "delete from utilisateur where id_utilisateur=?";

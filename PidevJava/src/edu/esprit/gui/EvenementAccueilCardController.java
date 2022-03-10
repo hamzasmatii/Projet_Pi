@@ -38,7 +38,7 @@ public class EvenementAccueilCardController implements Initializable {
         if(e.getImage()==null){
                img=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
             }else {
-               img=new Image("/edu/esprit/util/assets/img/"+e.getImage());
+               img=new Image("/image/"+e.getImage());
             }
        
         this.imageEvenement.setImage(img);

@@ -106,6 +106,7 @@ public class EvenementDAO implements IevenementDAO{
                 int idTypeEvenement=resultat.getInt(7);
                 e.setType_evenements(typeEvenementDAO.fetchTypeEvenementById(idTypeEvenement));
                 e.setUtilisateur(utilisateurDAO.findUtilisateurtById(resultat.getInt(8)));
+                e.setImage(resultat.getString(9));
                 listeEvenement.add(e);
                 System.out.println(e);
             }
@@ -136,6 +137,7 @@ public class EvenementDAO implements IevenementDAO{
                  e.setDate_evenement((resultat.getTimestamp(6)));
                 e.setType_evenements(typeEvenementDAO.fetchTypeEvenementById(resultat.getInt(7)));
                 e.setUtilisateur(utilisateurDAO.findUtilisateurtById(resultat.getInt(8)));
+                e.setImage(resultat.getString(9));
                 System.out.println(e);
             }
             return e;
@@ -172,6 +174,7 @@ public class EvenementDAO implements IevenementDAO{
                 int idTypeEvenement=resultat.getInt(8);
                 e.setType_evenements(typeEvenementDAO.fetchTypeEvenementById(idTypeEvenement));
                 e.setUtilisateur(utilisateurDAO.findUtilisateurtById(resultat.getInt(8)));
+                e.setImage(resultat.getString(10));
                 listeEvenement.add(e);
                 System.out.println(e);
             }

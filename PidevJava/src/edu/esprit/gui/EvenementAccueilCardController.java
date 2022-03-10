@@ -35,11 +35,11 @@ public class EvenementAccueilCardController implements Initializable {
         System.out.println(e.getTitre_evenement());
         this.titreEvenement.setText(evenement.getTitre_evenement());
         Image img;
-        if(e.getImage()==null){
-               img=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
-            }else {
-               img=new Image("/edu/esprit/util/assets/img/"+e.getImage());
-            }
+        if(evenement.getImage()!=null){
+            img=new Image("/edu/esprit/util/assets/img/"+e.getImage());
+        }else {
+            img=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
+        }
        
         this.imageEvenement.setImage(img);
     }

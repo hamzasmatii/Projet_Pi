@@ -8,9 +8,13 @@ package edu.esprit.gui;
 
 import edu.esprit.entities.Evenement;
 import edu.esprit.util.EvenementListner;
+import static edu.esprit.util.Statics.imageDirectory;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -53,18 +58,20 @@ public class EvenementCardController implements Initializable {
         // TODO
     }    
 
-    void setData(Evenement e,EvenementListner listner) {
+    void setData(Evenement e,EvenementListner listner) throws IOException {
         this.listner=listner;
         this.evenement=e;
        titreEvenement.setText(evenement.getTitre_evenement());
        this.descriptionText.setText(evenement.getDescription_evenement());
          Image eventImage;
-            if(evenement.getImage()==null){
+         if(evenement.getImage()==null){
                 eventImage=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
-            }else {
-                System.out.println(evenement.getImage());
-                eventImage=new Image("/image/"+e.getImage());
-            }
+           }else {
+               File sourceimage = new File(imageDirectory+evenement.getImage());
+                    Image image = SwingFXUtils.toFXImage(ImageIO.read(sourceimage), null);
+                    eventImage=image;
+               
+           }
        image.setImage(eventImage);
        
        dateLabel.setText(evenement.getDate_evenement().toString());

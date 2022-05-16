@@ -14,6 +14,7 @@ import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Type_evenement;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.Statics;
+import static edu.esprit.util.Statics.imageDirectory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -130,7 +131,7 @@ public class AjoutEvenementController implements Initializable {
         File file = chooser.showOpenDialog(stage);
         if (file != null) { 
              imagePath.setText(file.toString());
-             File directory = new File("/src/image");
+             File directory = new File(imageDirectory);
              String destination = directory.toString();
                 if(!directory.exists())
                 {
@@ -140,7 +141,7 @@ public class AjoutEvenementController implements Initializable {
                 File destinationFile = null;
                 imageName = file.toString().substring(file.toString().lastIndexOf('\\')+1);
                 sourceFile = new File(file.toString());
-                destinationFile = new File( "src/image/"+imageName);
+                destinationFile = new File( imageDirectory+imageName);
                 if(!destinationFile.exists())
                 {
                 Files.copy(sourceFile.toPath(), destinationFile.toPath());

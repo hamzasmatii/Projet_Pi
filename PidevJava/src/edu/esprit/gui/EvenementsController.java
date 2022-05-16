@@ -14,6 +14,9 @@ import edu.esprit.entities.Participation_evenement;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.EvenementListner;
 import edu.esprit.util.Statics;
+import static edu.esprit.util.Statics.imageDirectory;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,6 +49,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -143,11 +148,15 @@ private void setChosenEvenement(Evenement evenement) throws IOException {
        dateText.setText(evenement.getDate_evenement().toString());
        lieuText.setText(evenement.getAdresse_evenement());
        Image eventImage;
-            if(evenement.getImage()==null){
+           if(evenement.getImage()==null){
+               
                 eventImage=new Image("/edu/esprit/util/assets/img/pasdimage.jpg");
-            }else {
-                eventImage=new Image("/image/"+evenement.getImage());
-            }
+           }else {
+               File sourceimage = new File(imageDirectory+evenement.getImage());
+                    Image image = SwingFXUtils.toFXImage(ImageIO.read(sourceimage), null);
+                    eventImage=image;
+               
+           }
         imageView.setImage(eventImage);
        } 
 

@@ -36,7 +36,7 @@ public class EvenementDAO implements IevenementDAO{
 
     @Override
     public void insertEvenement(Evenement e) {
-       String query="INSERT INTO evenement (titre_evenement,adresse_evenement,description_evenement,date_evenement,type_evenement,id_utilisateur,image) VALUES (?,?,?,?,?,?,?)";
+       String query="INSERT INTO evenement (titre_evenement,adresse_evenement,description_evenement,date_evenement,type_evenement,id_createur,image) VALUES (?,?,?,?,?,?,?)";
              try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, e.getTitre_evenement());

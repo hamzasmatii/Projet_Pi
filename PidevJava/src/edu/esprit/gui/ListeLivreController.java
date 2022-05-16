@@ -130,10 +130,60 @@ public class ListeLivreController implements Initializable {
         return ldao.DisplayAllLivre();
 
     }
+    
+    @FXML
+    private void search(KeyEvent event) {
+      String word=searchBox.getText();
+      List<Livre> searchList=this.livres.stream()
+                .filter((e)->{return e.getTitre_livre().toUpperCase().startsWith(word.toUpperCase());})
+                .collect(Collectors.toList());
+      this.bookContainer.getChildren().clear();
+      this.displayGrid(searchList);
+    }
 
     private List<Livre> getDataO() {
         ILivre ldao = new LivreDAO();
         return ldao.DisplayAllLivreByDate();
     }
-    
+    private void displayGrid(List<Livre> livres){
+         int column = 0;
+        int row = 1;
+        // System.out.println(livres.size());
+        try {
+            for (int i = 0; i < livres.size(); i++) {
+                // System.out.print(livres.get(i));
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("bookContainer.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                BookContainerController itemController = fxmlLoader.getController();
+                itemController.setData(livres.get(i));
+
+                if (column == 6) {
+                    column = 0;
+                    row++;
+                }
+
+                bookContainer.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                bookContainer.setMinWidth(Region.USE_COMPUTED_SIZE);
+                bookContainer.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                bookContainer.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                bookContainer.setMinHeight(Region.USE_COMPUTED_SIZE);
+                bookContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                bookContainer.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        
+        
+        
+        
+    }
 }

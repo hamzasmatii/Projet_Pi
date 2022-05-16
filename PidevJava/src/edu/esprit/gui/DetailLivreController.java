@@ -16,6 +16,7 @@ import edu.esprit.entities.CommentaireLivre;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Livre;
 import edu.esprit.util.Statics;
+import static edu.esprit.util.Statics.imageDirectory;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +44,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.icepdf.ri.common.ComponentKeyBinding;
@@ -190,14 +193,17 @@ public class DetailLivreController implements Initializable {
 
     }
 
-    public void setData(Livre l) {
+    public void setData(Livre l) throws IOException {
         this.l = l;
         // System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa." + l);
         titreLabel.setText(l.getTitre_livre());
         discriptiondetail.setText(l.getDescription_livre());
         auteurdetail.setText("Par :" + l.getUtilisateur().getNom_utilisateur());
         evaluationdetail.setText("réaction pour ce livre :" + l.getEvalution_livre() + "");
-        Image img = new Image("/image/livre" + l.getPhoto_livre(), false);
+        File sourceimage = new File(imageDirectory+l.getPhoto_livre());
+                    Image image = SwingFXUtils.toFXImage(ImageIO.read(sourceimage), null);
+                Image img=image;
+       
         imagedetail.setImage(img);
 
     }

@@ -7,9 +7,12 @@ package edu.esprit.gui;
 
 import edu.esprit.entities.Livre;
 import edu.esprit.util.Statics;
+import static edu.esprit.util.Statics.imageDirectory;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +28,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -54,7 +58,7 @@ public class BookContainerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //System.out.println("---------------------------------------------"+l); 
     }
-public void setData(Livre liv) {
+public void setData(Livre liv) throws IOException {
            // System.out.println("This is Set data");
 
         this.l = liv;
@@ -62,7 +66,9 @@ public void setData(Livre liv) {
         discription.setText(l.getDescription_livre());
         evaluation.setText(l.getEvalution_livre()+"");
         //System.out.print(l.getPhoto_livre());
-       Image img = new Image("/image/livre"+l.getPhoto_livre(),false);
+        File sourceimage = new File(imageDirectory+l.getPhoto_livre());
+                    Image image = SwingFXUtils.toFXImage(ImageIO.read(sourceimage), null);
+                Image img=image;
         imagelivre.setImage(img);
         
         

@@ -18,7 +18,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="pane2" stylesheets="@../util/loginStyle.css" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="hbox" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label prefHeight="36.0" prefWidth="380.0" text="Ajouter récemment" textFill="#81523b">
                      <font>

@@ -9,6 +9,8 @@ import edu.esprit.dao.classes.LivreDAO;
 import edu.esprit.dao.interfaces.ILivre;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Livre;
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.util.Statics;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
@@ -50,7 +53,9 @@ public class ListeLivreController implements Initializable {
     private TextField searchBox;
     @FXML
     private Button ajoutLivreBtn;
-
+Utilisateur utilisateur=Statics.currentUser;
+    @FXML
+    private HBox hbox;
     /**
      * Initializes the controller class.
      */
@@ -58,7 +63,10 @@ public class ListeLivreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         livres = getData();
         livresdate=getDataO();
-        
+        if(utilisateur.getType_utilisateur()<2){
+          hbox.getChildren().remove(2);
+        }
+       
         int column = 0;
         int row = 1;
         // System.out.println(livres.size());

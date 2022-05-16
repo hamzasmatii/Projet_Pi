@@ -30,6 +30,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -39,6 +40,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -86,7 +89,7 @@ public class AjoutEvenementController implements Initializable {
     }    
 
     @FXML
-    private void saveData(ActionEvent event) {
+    private void saveData(ActionEvent event) throws IOException {
        
         if (titreInput.getText() == null || titreInput.getText().trim().isEmpty())
             {
@@ -120,6 +123,10 @@ public class AjoutEvenementController implements Initializable {
         edao.insertEvenement(e);
         succesAlert();
         clearForm();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("evenements.fxml"));
+        Pane orderView = loader.load();
+        BorderPane homePane = (BorderPane) saveInput.getScene().getRoot();
+        homePane.setCenter(orderView);
       
     }
     

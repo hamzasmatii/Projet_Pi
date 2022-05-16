@@ -15,15 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
 /**
@@ -44,6 +48,8 @@ public class ListeLivreController implements Initializable {
     private ScrollPane scrollLivre;
     @FXML
     private TextField searchBox;
+    @FXML
+    private Button ajoutLivreBtn;
 
     /**
      * Initializes the controller class.
@@ -129,6 +135,14 @@ public class ListeLivreController implements Initializable {
         ILivre ldao = new LivreDAO();
         return ldao.DisplayAllLivre();
 
+    }
+    
+    @FXML
+    private void ajoutLivre(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajoutlivrecrivain.fxml"));
+        Pane orderView = loader.load();
+        BorderPane homePane = (BorderPane) ajoutLivreBtn.getScene().getRoot();
+        homePane.setCenter(orderView);
     }
     
     @FXML

@@ -7,17 +7,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="1200.0" styleClass="profileBackground" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AjoutlivrecrivainController">
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../util/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AjoutlivrecrivainController">
    <children>
-      <TextField fx:id="titre_livreInput" layoutX="252.0" layoutY="116.0" promptText="Titre livre" styleClass="loginInputs" />
-      <TextField fx:id="photo_livreInput" layoutX="252.0" layoutY="468.0" promptText="Photo livre" />
-      <TextField fx:id="contenu_livreInput" layoutX="252.0" layoutY="552.0" promptText="Contenu livre" />
-      <TextField fx:id="prix_livreInput" layoutX="252.0" layoutY="640.0" promptText="Prix livre" styleClass="loginInputs" />
-      <TextArea fx:id="description_livreInput" layoutX="246.0" layoutY="207.0" prefHeight="200.0" prefWidth="200.0" promptText="Discription livre" styleClass="loginInputs" />
+      <TextField fx:id="titre_livreInput" layoutX="72.0" layoutY="116.0" prefHeight="31.0" prefWidth="367.0" promptText="Titre livre" styleClass="loginInputs" />
+      <TextField fx:id="photo_livreInput" layoutX="667.0" layoutY="116.0" prefHeight="31.0" prefWidth="367.0" promptText="Photo livre" />
+      <TextField fx:id="contenu_livreInput" layoutX="667.0" layoutY="192.0" prefHeight="31.0" prefWidth="367.0" promptText="Contenu livre" />
+      <TextField fx:id="prix_livreInput" layoutX="78.0" layoutY="599.0" prefHeight="31.0" prefWidth="427.0" promptText="Prix livre" styleClass="loginInputs" />
+      <TextArea fx:id="description_livreInput" layoutX="72.0" layoutY="207.0" prefHeight="258.0" prefWidth="498.0" promptText="Discription livre" styleClass="loginInputs" />
       <Separator layoutX="597.0" layoutY="47.0" orientation="VERTICAL" prefHeight="713.0" prefWidth="43.0" />
-      <ComboBox fx:id="categorie_livreInput" layoutX="776.0" layoutY="116.0" prefWidth="150.0" />
-      <Button layoutX="800.0" layoutY="545.0" mnemonicParsing="false" onAction="#ajoutLivre" prefHeight="79.0" prefWidth="187.0" styleClass="loginButton" text="ajouter" textFill="WHITE" />
-      <Button fx:id="uploadImage" layoutX="454.0" layoutY="468.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="31.0" prefWidth="124.0" text="Upload" />
-      <Button fx:id="uploadPdf" layoutX="454.0" layoutY="552.0" mnemonicParsing="false" onAction="#uploadPDF" prefHeight="31.0" prefWidth="124.0" text="Upload" />
+      <ComboBox fx:id="categorie_livreInput" layoutX="77.0" layoutY="526.0" prefHeight="31.0" prefWidth="488.0" />
+      <Button layoutX="801.0" layoutY="574.0" mnemonicParsing="false" onAction="#ajoutLivre" prefHeight="50.0" prefWidth="237.0" styleClass="loginButton" text="ajouter" textFill="WHITE" />
+      <Button fx:id="uploadImage" layoutX="1049.0" layoutY="116.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="31.0" prefWidth="124.0" text="Upload" />
+      <Button fx:id="uploadPdf" layoutX="1049.0" layoutY="192.0" mnemonicParsing="false" onAction="#uploadPDF" prefHeight="31.0" prefWidth="124.0" text="Upload" />
    </children>
 </AnchorPane>

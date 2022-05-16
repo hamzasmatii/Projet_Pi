@@ -28,8 +28,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -88,13 +92,44 @@ public class AjoutlivrecrivainController implements Initializable {
     }    
    
     @FXML
-    private void ajoutLivre(ActionEvent event) {
+    private void ajoutLivre(ActionEvent event) throws IOException {
         
          //LocalDate date = LocalDate.of(2020, 1, 8);
+         if (titre_livreInput.getText() == null || titre_livreInput.getText().trim().isEmpty())
+            {
+                errorAlert("Le champ titre est vide!");
+                return;
+            }
+        
+        if (description_livreInput.getText() == null || description_livreInput.getText().trim().isEmpty())
+            {
+                errorAlert("Le champ description est vide!");
+                return;
+            }
+        if (prix_livreInput.getText() == null || prix_livreInput.getText().trim().isEmpty())
+            {
+               errorAlert("Le champ prix est vide!");
+               return;
+            }
+        if (contenu_livreInput.getText() == null || contenu_livreInput.getText().trim().isEmpty())
+            {
+               errorAlert("Le champ contenu livre est vide!");
+               return;
+            }
+        if (photo_livreInput.getText() == null || photo_livreInput.getText().trim().isEmpty())
+            {
+               errorAlert("Le champ photo livre est vide!");
+               return;
+            }
+       
          LocalDate date=java.time.LocalDate.now();
         Livre templ = new Livre(titre_livreInput.getText(),description_livreInput.getText(),java.sql.Date.valueOf(date),imageName,pdfName,Integer.parseInt(prix_livreInput.getText()),0,Statics.currentUser.getId_utilisateur(),categorie_livreInput.getValue().getId_categorie_livre());
         LivreDAO ls = new LivreDAO();
         ls.insertLivre(templ);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("listeLivre.fxml"));
+        Pane orderView = loader.load();
+        BorderPane homePane = (BorderPane) uploadPdf.getScene().getRoot();
+        homePane.setCenter(orderView);
         
     }
     @FXML
@@ -147,5 +182,15 @@ private void uploadPDF(ActionEvent event) throws FileNotFoundException, IOExcept
             
          }
     } 
+    Alert alert;
+
+ private void errorAlert(String content){
+         if(alert==null){
+            alert=new Alert(Alert.AlertType.ERROR);
+        }
+        alert.setAlertType(Alert.AlertType.ERROR);
+        alert.setContentText(content);
+        alert.show();
+    }
     
 }

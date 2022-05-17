@@ -215,7 +215,7 @@ public class SignupController implements Initializable {
         Login templogin = new Login(tempuser.getId_utilisateur(),emailInput.getText(),mdpInput.getText(),token);
        ls.insertLogin(templogin);
        
-       URL yahoo = new URL("http://127.0.0.1:8001/api/activate?emailLogin="+emailInput.getText()+"&activationToken="+token);
+       URL yahoo = new URL("http://127.0.0.1:8000/api/activate?emailLogin="+emailInput.getText()+"&activationToken="+token);
         URLConnection yc = yahoo.openConnection();
         BufferedReader in = new BufferedReader(
                                 new InputStreamReader(

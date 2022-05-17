@@ -62,7 +62,7 @@ public class ItemRecompensAchtController implements Initializable {
         id_recompense = achatrecomponse.getId_recomponse();
         quantite.setText(String.valueOf(achatrecomponse.getQuantite()));
         recompense = achatrecomponse.getRecompense();
-        System.out.println("eeeeee"+recompense.getPhoto_recomponse());
+        System.out.println("eeeeee"+recompense);
         File file = new File(Statics.imageDirectory+recompense.getPhoto_recomponse());
         System.out.println(file.toURI().toString());
         Image image = new Image(file.toURI().toString());

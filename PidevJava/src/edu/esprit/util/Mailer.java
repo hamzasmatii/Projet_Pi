@@ -27,6 +27,7 @@ public class Mailer {
         
         p.put("mail.smtp.auth", "true");
         p.put("mail.smtp.starttls.enable", "true");
+        p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         p.put("mail.smtp.host", "smtp.gmail.com");
         p.put("mail.smtp.port", "587");
         

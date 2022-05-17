@@ -57,6 +57,8 @@ public class ItemJetonController implements Initializable {
     private Button suprimer;
     @FXML
     private Button modifier;
+    @FXML
+    private Button acheter;
    
     //private MyListener myListener;
 
@@ -69,6 +71,10 @@ public class ItemJetonController implements Initializable {
         {
             suprimer.setVisible(false);
             modifier.setVisible(false);
+        }
+        else
+        {
+            acheter.setVisible(false);
         }
     }    
 

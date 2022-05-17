@@ -29,7 +29,7 @@
                 <Insets />
             </HBox.margin>
         </Label>
-        <Button mnemonicParsing="false" onAction="#Acheter" prefHeight="29.0" prefWidth="110.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@style.css" text="Acheter">
+        <Button fx:id="acheter" mnemonicParsing="false" onAction="#Acheter" prefHeight="29.0" prefWidth="110.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@style.css" text="Acheter">
             <HBox.margin>
                 <Insets />
             </HBox.margin>

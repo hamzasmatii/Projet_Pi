@@ -174,12 +174,12 @@ public class AdminController implements Initializable {
 
     @FXML
     private void recompense(MouseEvent event) {
-        loadPage("Recompense");
+        loadPage("RecompenseFXML");
     }
 
     @FXML
     private void jeton(MouseEvent event) {
-        loadPage("Jeton");
+        loadPage("JetonFXML");
     }
     @FXML
     private void categorieLivre(MouseEvent event) {

@@ -67,6 +67,8 @@ public class ItemRecompensController implements Initializable {
     private Button Modifirebut;
     @FXML
     private Button suprimer;
+    @FXML
+    private Button acheter;
 
     /**
      * Initializes the controller class.
@@ -77,6 +79,10 @@ public class ItemRecompensController implements Initializable {
         {
             suprimer.setVisible(false);
             Modifirebut.setVisible(false);
+        }
+        else
+        {
+            acheter.setVisible(false);
         }
     }    
 

@@ -41,6 +41,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
@@ -97,6 +98,8 @@ public class RecompenseFXMLController implements Initializable {
      private List<Livre> livres = new ArrayList<>();
     @FXML
     private HBox boxx;
+    @FXML
+    private ScrollPane scorll;
 
     /**
      * Initializes the controller class.
@@ -305,6 +308,13 @@ public class RecompenseFXMLController implements Initializable {
         if(Statics.currentUser.getType_utilisateur()!=4)
         {
             boxx.setVisible(false);
+        }
+        else
+        {
+            scorll.setVisible(false);
+             quantitedon.setVisible(false);
+             bookname.setVisible(false);
+             
         }
         
         

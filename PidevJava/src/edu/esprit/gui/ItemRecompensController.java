@@ -142,7 +142,7 @@ public class ItemRecompensController implements Initializable {
     {
         this.recompense = recompense;
         id_recompense = recompense.getId_recomponse();
-        File file = new File("src/image/"+recompense.getPhoto_recomponse());
+        File file = new File(Statics.imageDirectory+recompense.getPhoto_recomponse());
         System.out.println(file.toURI().toString());
         Image image = new Image(file.toURI().toString());
         imageview.setImage(image);

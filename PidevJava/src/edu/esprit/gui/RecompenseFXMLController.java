@@ -331,7 +331,7 @@ public class RecompenseFXMLController implements Initializable {
         if (file != null) { 
             Image img = new Image(file.toURI().toString());
              imagePath.setText(file.toString());
-             File directory = new File("/src/image");
+             File directory = new File(Statics.imageDirectory);
              String destination = directory.toString();
                 if(!directory.exists())
                 {
@@ -341,7 +341,7 @@ public class RecompenseFXMLController implements Initializable {
                 File destinationFile = null;
                 imageName = file.toString().substring(file.toString().lastIndexOf('\\')+1);
                 sourceFile = new File(file.toString());
-                destinationFile = new File( "src/image/"+imageName);
+                destinationFile = new File( Statics.imageDirectory+imageName);
                 if(!destinationFile.exists())
                 {
                 Files.copy(sourceFile.toPath(), destinationFile.toPath());

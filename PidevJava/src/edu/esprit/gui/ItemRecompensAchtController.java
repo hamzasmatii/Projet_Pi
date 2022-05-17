@@ -8,6 +8,7 @@ package edu.esprit.gui;
 import edu.esprit.gui.*;
 import edu.esprit.entities.AchatRecomponse;
 import edu.esprit.entities.Recompense;
+import edu.esprit.util.Statics;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -62,7 +63,7 @@ public class ItemRecompensAchtController implements Initializable {
         quantite.setText(String.valueOf(achatrecomponse.getQuantite()));
         recompense = achatrecomponse.getRecompense();
         System.out.println("eeeeee"+recompense.getPhoto_recomponse());
-        File file = new File("src/image/"+recompense.getPhoto_recomponse());
+        File file = new File(Statics.imageDirectory+recompense.getPhoto_recomponse());
         System.out.println(file.toURI().toString());
         Image image = new Image(file.toURI().toString());
         imageview.setImage(image);

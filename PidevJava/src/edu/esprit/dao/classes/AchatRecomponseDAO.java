@@ -116,5 +116,58 @@ public class AchatRecomponseDAO implements IAchatRecomponseDAO {
         }
         return achatrecomponseDAO;
     }
+
+    @Override
+    public AchatRecomponse findQuantiteRecomponseByIdUser(int idu, int idr) {
+        AchatRecomponse achatrecomponse = new AchatRecomponse();
+        String requete = "select quantite from achat_recomponse where id_utilisateur=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setInt(1, idr);
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                
+                achatrecomponse.setQuantite(resultat.getInt(1));
+                
+                
+                
+
+                
+            }
+            return achatrecomponse;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des jeton " + ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<AchatRecomponse> findQRecomponseByIdUser(int idu) {
+        List<AchatRecomponse> listeachatrecomponse = new ArrayList<AchatRecomponse>();
+
+        String requete = "select * from achat_recomponse where id_utilisateur=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setInt(1, idu);
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                AchatRecomponse achatrecomponse = new AchatRecomponse();
+                achatrecomponse.setId_recomponse(resultat.getInt(1));
+                achatrecomponse.setId_utilisateur(resultat.getInt(2));
+                achatrecomponse.setQuantite(resultat.getInt(3));
+                
+
+                listeachatrecomponse.add(achatrecomponse);
+            }
+            return listeachatrecomponse;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
+            return null;
+        }
+    }
     
 }

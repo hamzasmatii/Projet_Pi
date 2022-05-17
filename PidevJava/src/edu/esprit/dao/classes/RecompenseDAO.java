@@ -106,7 +106,7 @@ public class RecompenseDAO  implements IRecompenseDAO {
         }
     }
     
-   
+ 
     
 private static RecompenseDAO recompenseDAO;
 
@@ -116,4 +116,35 @@ private static RecompenseDAO recompenseDAO;
         }
         return recompenseDAO;
     }
+
+    @Override
+    public Recompense findRecompenseById(int idr) {
+       
+        Recompense recomponse = new Recompense();
+        String requete = "select * from recomponse where id_recomponse=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setInt(1, idr);
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                recomponse.setId_recomponse(resultat.getInt(1));
+                recomponse.setNom_recomponse(resultat.getString(2));
+                recomponse.setDescription_recomponse(resultat.getString(3));
+                recomponse.setPhoto_recomponse(resultat.getString(4));
+                recomponse.setPrix_recomponse(resultat.getInt(5));
+                
+
+                
+            }
+            return recomponse;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des depots " + ex.getMessage());
+            return null;
+        }
+    }    
+
+    
+    
 }

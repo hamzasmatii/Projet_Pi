@@ -18,6 +18,8 @@ public interface IAchatRecomponseDAO {
     void updateAchatRecomponse(AchatRecomponse a);
 
     void deleteAchatRecomponse(int id);
+    AchatRecomponse findQuantiteRecomponseByIdUser(int idu,int idr);
+    List<AchatRecomponse> findQRecomponseByIdUser(int idu);
 //
 //    
     List<AchatRecomponse> DisplayAllAchatRecomponse();

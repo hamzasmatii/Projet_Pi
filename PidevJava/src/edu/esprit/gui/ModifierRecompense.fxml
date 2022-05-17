@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="panemod" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="565.0" style="-fx-background-color: #02030A; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ModifierRecompenseController">
+   <children>
+      <Text fill="WHITE" layoutX="183.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier" textAlignment="CENTER" wrappingWidth="175.13671875">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nom" layoutX="23.0" layoutY="161.0" prefHeight="35.0" prefWidth="168.0" stylesheets="@style.css" />
+      <Spinner fx:id="spprix" editable="true" layoutX="458.0" layoutY="172.0" prefHeight="27.0" prefWidth="74.0" stylesheets="@style.css" />
+      <Text fill="WHITE" layoutX="63.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="109.13671875">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="234.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="109.13671875">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="477.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" wrappingWidth="109.13671875">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Button fx:id="confbut" layoutX="458.0" layoutY="323.0" mnemonicParsing="false" onAction="#ConfirmerRecom" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #006400;" text="Confirmer" textFill="WHITE" />
+      <TextField fx:id="lbdescrip1" layoutX="214.0" layoutY="162.0" prefHeight="48.0" prefWidth="204.0" stylesheets="@style.css" />
+      <Text fill="WHITE" layoutX="245.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Photo" wrappingWidth="109.13671875">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <TextField fx:id="imagePath" layoutX="187.0" layoutY="306.0" prefHeight="35.0" prefWidth="168.0" stylesheets="@style.css" />
+      <ImageView fx:id="imageView" fitHeight="109.0" fitWidth="129.0" layoutX="33.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="230.0" layoutY="359.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #006400;" text="Import" textFill="WHITE" />
+   </children>
+</AnchorPane>

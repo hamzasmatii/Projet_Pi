@@ -55,6 +55,30 @@ public class Jeton {
         this.prix_pack = prix_pack;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Jeton other = (Jeton) obj;
+        if (this.id_pack != other.id_pack) {
+            return false;
+        }
+        return true;
+    }
+
     public String getDescription_pack() {
         return description_pack;
     }

@@ -19,6 +19,7 @@ public interface IRecompenseDAO {
     void updateRecompense(Recompense r);
 
     void deleteRecompense(int id);
+    Recompense findRecompenseById(int idr);
 //
 //    
     List<Recompense> DisplayAllRecompense();

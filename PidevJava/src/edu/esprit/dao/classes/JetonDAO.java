@@ -114,4 +114,32 @@ public class JetonDAO implements IJetonDAO {
         }
         return jetonDAO;
     }
+    
+    @Override
+    public Jeton findJetonById(int idr) {
+        Jeton jeton = new Jeton();
+        String requete = "select * from pack_jeton where id_pack=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setInt(1, idr);
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                jeton.setQuantie_pack(resultat.getInt(3));
+                jeton.setId_pack(resultat.getInt(1));
+                jeton.setPrix_pack((int) resultat.getFloat(4));
+                jeton.setDescription_pack(resultat.getString(2));
+                
+                
+
+                
+            }
+            return jeton;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des jeton " + ex.getMessage());
+            return null;
+        }
+        
+    }
 }

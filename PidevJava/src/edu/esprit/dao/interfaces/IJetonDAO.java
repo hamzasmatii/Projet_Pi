@@ -21,6 +21,8 @@ public interface IJetonDAO {
 //
 //    
     List<Jeton> DisplayAllJeton();
+    public Jeton findJetonById(int idr);
+    
     
     
 }

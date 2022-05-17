@@ -5,12 +5,16 @@
  */
 package edu.esprit.entities;
 
+import java.util.List;
+
 /**
  *
  * @author Hamza
  */
 public class RecomponseLivre {
     private int id_livre,id_recomponse,quantite;
+    
+    private Recompense recompense;
 
     public RecomponseLivre(int id_livre, int id_recomponse, int quantite) {
         this.id_livre = id_livre;
@@ -50,10 +54,22 @@ public class RecomponseLivre {
         this.quantite = quantite;
     }
 
+    public Recompense getRecompense() {
+        return recompense;
+    }
+
+    public void setRecompense(Recompense recompense) {
+        this.recompense = recompense;
+    }
+
     @Override
     public String toString() {
-        return "RecomponseLivre{" + "id_livre=" + id_livre + ", id_recomponse=" + id_recomponse + ", quantite=" + quantite + '}';
+        return "RecomponseLivre{" + "id_livre=" + id_livre + ", id_recomponse=" + id_recomponse + ", quantite=" + quantite + ", recompense=" + recompense + '}';
     }
+
+   
+
+
     
 
     

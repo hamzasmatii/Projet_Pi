@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="pnlJeton" prefHeight="576.0" prefWidth="1066.0" style="-fx-background-color: #02030A;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.JetonFXMLController">
+   <children>
+      <Text fill="#cdc9c9" layoutX="67.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeton" wrappingWidth="107.13671875" />
+      <TextField fx:id="serachbox" layoutX="518.0" layoutY="51.0" onKeyReleased="#search" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+      <HBox alignment="CENTER_LEFT" layoutX="55.0" layoutY="188.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #02030A;">
+         <children>
+            <Label prefHeight="17.0" prefWidth="128.0" text="Description" textFill="#e7e5e5">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="77.0" text="Prix" textFill="#e7e5e5">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label text="Quantiée" textFill="#e7e5e5">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <ScrollPane layoutX="24.0" layoutY="242.0" prefHeight="320.0" prefWidth="1039.0" stylesheets="@style.css">
+         <content>
+            <VBox fx:id="boxJeton" accessibleText="1" prefHeight="318.0" prefWidth="1037.0" spacing="5.0" style="-fx-background-color: #02030A;">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="676.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_Search_52px.png" />
+         </image>
+      </ImageView>
+      <HBox layoutX="55.0" layoutY="83.0">
+         <children>
+            <TextField fx:id="lbdescrip" prefHeight="48.0" prefWidth="204.0" stylesheets="@style.css" />
+            <Spinner fx:id="spquantite" editable="true" prefHeight="27.0" prefWidth="83.0" stylesheets="@style.css">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Spinner>
+            <Spinner fx:id="spprix" editable="true" prefHeight="27.0" prefWidth="74.0" stylesheets="@style.css">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Spinner>
+         </children>
+      </HBox>
+      <Button layoutX="566.0" layoutY="97.0" mnemonicParsing="false" onAction="#AjouterJeton" style="-fx-background-color: #006400;" text="Ajouter" />
+      <Button layoutX="560.0" layoutY="154.0" mnemonicParsing="false" onAction="#TrieDecroiss" style="-fx-background-color: #006400;" text="Trie prix decroissant" />
+   </children>
+</Pane>

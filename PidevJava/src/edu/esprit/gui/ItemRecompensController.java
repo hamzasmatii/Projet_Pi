@@ -13,6 +13,7 @@ import edu.esprit.dao.interfaces.IRecompenseDAO;
 import edu.esprit.entities.AchatRecomponse;
 import edu.esprit.entities.Jeton;
 import edu.esprit.entities.Recompense;
+import edu.esprit.util.Statics;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -64,13 +65,19 @@ public class ItemRecompensController implements Initializable {
     private ImageView imageview;
     @FXML
     private Button Modifirebut;
+    @FXML
+    private Button suprimer;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        if(Statics.currentUser.getType_utilisateur()!=4)
+        {
+            suprimer.setVisible(false);
+            Modifirebut.setVisible(false);
+        }
     }    
 
     @FXML

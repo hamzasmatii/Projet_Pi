@@ -10,6 +10,7 @@ import edu.esprit.dao.classes.JetonDAO;
 import edu.esprit.dao.interfaces.IJetonDAO;
 
 import edu.esprit.entities.Jeton;
+import edu.esprit.util.Statics;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.HBox;
@@ -51,6 +53,10 @@ public class ItemJetonController implements Initializable {
     private Stage stage;
 	private Scene scene;
 	private Parent root;
+    @FXML
+    private Button suprimer;
+    @FXML
+    private Button modifier;
    
     //private MyListener myListener;
 
@@ -59,7 +65,11 @@ public class ItemJetonController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        if(Statics.currentUser.getType_utilisateur()!=4)
+        {
+            suprimer.setVisible(false);
+            modifier.setVisible(false);
+        }
     }    
 
     @FXML

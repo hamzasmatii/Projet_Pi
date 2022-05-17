@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #02030A; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ItemJetonController">
+<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #FCF3DE; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ItemJetonController">
     <children>
         <ImageView fitHeight="94.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -18,13 +18,13 @@
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-        <Label fx:id="descriptionjeton" prefHeight="78.0" prefWidth="228.0" text="KeepToo" textFill="#b7c3d7" />
-        <Label fx:id="prixjeton" prefHeight="62.0" prefWidth="109.0" text="JFK" textFill="#b7c3d7">
+        <Label fx:id="descriptionjeton" prefHeight="78.0" prefWidth="228.0" text="KeepToo" />
+        <Label fx:id="prixjeton" prefHeight="62.0" prefWidth="109.0" text="JFK">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label fx:id="quantitejeton" prefHeight="66.0" prefWidth="111.0" text="\$200" textFill="#b7c3d7">
+        <Label fx:id="quantitejeton" prefHeight="66.0" prefWidth="111.0" text="\$200">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
@@ -34,8 +34,8 @@
                 <Insets />
             </HBox.margin>
         </Button>
-      <Button mnemonicParsing="false" onAction="#SupprimerJeton" prefHeight="27.0" prefWidth="115.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@style.css" text="Supprimer" />
-      <Button mnemonicParsing="false" onAction="#ModifIerJeton" prefHeight="29.0" prefWidth="110.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@style.css" text="Modifier" />
+      <Button fx:id="suprimer" mnemonicParsing="false" onAction="#SupprimerJeton" prefHeight="27.0" prefWidth="115.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@style.css" text="Supprimer" />
+      <Button fx:id="modifier" mnemonicParsing="false" onAction="#ModifIerJeton" prefHeight="29.0" prefWidth="110.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@style.css" text="Modifier" />
     </children>
     <effect>
         <DropShadow blurType="GAUSSIAN" height="5.0" radius="2.0" width="5.0" />

@@ -15,12 +15,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pnlJeton" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #02030A;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.RecompenseFXMLController">
+<Pane fx:id="pnlJeton" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.RecompenseFXMLController">
    <children>
-      <TextField fx:id="serachbox" layoutX="518.0" layoutY="51.0" onKeyReleased="#search" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
-      <HBox alignment="CENTER_LEFT" layoutX="-28.0" layoutY="151.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #02030A;">
+      <TextField fx:id="serachbox" layoutX="518.0" layoutY="51.0" onKeyReleased="#search" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: white; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+      <HBox alignment="CENTER_LEFT" layoutX="-28.0" layoutY="151.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #FCF3DE;">
          <children>
-            <Label prefHeight="17.0" prefWidth="128.0" text="Photo" textFill="#e7e5e5">
+            <Label prefHeight="17.0" prefWidth="128.0" text="Photo">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
@@ -28,7 +28,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="17.0" prefWidth="77.0" text="Nom" textFill="#e7e5e5">
+            <Label prefHeight="17.0" prefWidth="77.0" text="Nom">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -36,7 +36,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label text="Description" textFill="#e7e5e5">
+            <Label text="Description">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -44,7 +44,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label text="Prix" textFill="#e7e5e5">
+            <Label style="-fx-font: white;" text="Prix">
                <font>
                   <Font size="22.0" />
                </font>
@@ -53,7 +53,7 @@
       </HBox>
       <ScrollPane layoutX="13.0" layoutY="466.0" prefHeight="320.0" prefWidth="1175.0" stylesheets="@style.css">
          <content>
-            <VBox fx:id="boxJeton" accessibleText="1" prefHeight="318.0" prefWidth="1173.0" spacing="5.0" style="-fx-background-color: #02030A;">
+            <VBox fx:id="boxJeton" accessibleText="1" prefHeight="318.0" prefWidth="1173.0" spacing="5.0" style="-fx-background-color: white;">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -97,7 +97,7 @@
       <Button layoutX="419.0" layoutY="284.0" mnemonicParsing="false" onAction="#Statis" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #006400;" text="Stat" />
       <ScrollPane layoutX="883.0" layoutY="164.0" prefHeight="224.0" prefWidth="274.0" stylesheets="@style.css">
          <content>
-            <VBox fx:id="recomacht" prefHeight="222.0" prefWidth="272.0" style="-fx-background-color: #02030A;" />
+            <VBox fx:id="recomacht" prefHeight="222.0" prefWidth="272.0" style="-fx-background-color: #FCF3DE;" />
          </content>
       </ScrollPane>
       <Spinner fx:id="quantitedon" editable="true" layoutX="841.0" layoutY="102.0" />

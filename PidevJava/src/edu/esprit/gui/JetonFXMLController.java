@@ -9,6 +9,7 @@ import edu.esprit.gui.*;
 import edu.esprit.dao.classes.JetonDAO;
 import edu.esprit.dao.interfaces.IJetonDAO;
 import edu.esprit.entities.Jeton;
+import edu.esprit.util.Statics;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -27,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
@@ -61,6 +63,10 @@ public class JetonFXMLController implements Initializable {
     @FXML
     private TextField serachbox;
      private List<Jeton> alljetons=new ArrayList();
+    @FXML
+    private HBox box;
+    @FXML
+    private Button ajouter;
      
     
     
@@ -158,6 +164,12 @@ public void afficherJeton (){
         } catch (IOException ex) {
                  Logger.getLogger(JetonFXMLController.class.getName()).log(Level.SEVERE, null, ex);
              }
+        if(Statics.currentUser.getType_utilisateur()!=4)
+        {
+            box.setVisible(false);
+            ajouter.setVisible(false);
+            
+        }
 }
 
     @FXML

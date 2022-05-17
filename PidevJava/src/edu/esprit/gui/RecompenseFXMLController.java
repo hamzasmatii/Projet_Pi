@@ -302,7 +302,7 @@ public class RecompenseFXMLController implements Initializable {
              }
         
         System.out.println("aaaa"+achatrecomponse2);
-        if(Statics.currentUser.getId_utilisateur()!=4)
+        if(Statics.currentUser.getType_utilisateur()!=4)
         {
             boxx.setVisible(false);
         }

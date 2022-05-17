@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.esprit.Controller;
+package edu.esprit.gui;
 
 import edu.esprit.dao.classes.BlogDAO;
 import edu.esprit.dao.interfaces.IBlog;
@@ -103,7 +103,7 @@ public class ModifierBlogController implements Initializable {
                             stage.close();
                             //actualiser new window
                         FXMLLoader fxmlloader = new FXMLLoader();
-                        fxmlloader.setLocation(getClass().getResource("../view/BlogFXML.fxml"));
+                        fxmlloader.setLocation(getClass().getResource("../gui/BlogFXML.fxml"));
                         Parent root =  fxmlloader.load();
                         BlogFXMLController recompensecontroller = fxmlloader.getController();
                         recompensecontroller.afficherRecom();

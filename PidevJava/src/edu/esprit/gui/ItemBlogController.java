@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.esprit.Controller;
+package edu.esprit.gui;
+
 
 import edu.esprit.dao.classes.BlogDAO;
 import edu.esprit.dao.interfaces.IBlog;

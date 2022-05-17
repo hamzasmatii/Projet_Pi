@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.esprit.Controller;
+package edu.esprit.gui;
 
 import edu.esprit.dao.classes.BlogDAO;
 import edu.esprit.dao.interfaces.IBlog;
@@ -176,7 +176,7 @@ public class BlogFXMLController implements Initializable {
         for (Blog recompense : recompensel ) {
 
                 FXMLLoader fxmlloader = new FXMLLoader();
-                fxmlloader.setLocation(getClass().getResource("../view/ItemBlog.fxml"));
+                fxmlloader.setLocation(getClass().getResource("../gui/ItemBlog.fxml"));
 
              
                  HBox anchorpane = fxmlloader.load();

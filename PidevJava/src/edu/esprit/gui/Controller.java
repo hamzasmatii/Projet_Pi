@@ -206,7 +206,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void blog(MouseEvent event) {
-        loadPage("Blog");
+        loadPage("BlogFXML");
     }
 
     @FXML

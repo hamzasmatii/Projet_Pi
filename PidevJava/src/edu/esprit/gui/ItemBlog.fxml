@@ -7,18 +7,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="943.0" spacing="10.0" style="-fx-background-color: #02030A; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.Controller.ItemBlogController">
+<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="943.0" spacing="10.0" style="-fx-background-color: #FCF3DE; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ItemBlogController">
     <children>
       <ImageView fx:id="imageview" fitHeight="80.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nom" prefHeight="62.0" prefWidth="85.0" text="JFK" textFill="#b7c3d7" />
-        <Label fx:id="description" prefHeight="78.0" prefWidth="122.0" text="KeepToo" textFill="#b7c3d7" />
-        <Label fx:id="prix" prefHeight="62.0" prefWidth="93.0" text="JFK" textFill="#b7c3d7">
+      <Label fx:id="nom" prefHeight="62.0" prefWidth="85.0" text="JFK" />
+        <Label fx:id="description" prefHeight="78.0" prefWidth="122.0" text="KeepToo" />
+        <Label fx:id="prix" prefHeight="62.0" prefWidth="93.0" text="JFK">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-      <Label fx:id="prix1" prefHeight="62.0" prefWidth="93.0" text="JFK" textFill="#b7c3d7" />
-      <Label fx:id="date" prefHeight="62.0" prefWidth="93.0" text="JFK" textFill="#b7c3d7" />
+      <Label fx:id="prix1" prefHeight="62.0" prefWidth="93.0" text="JFK" />
+      <Label fx:id="date" prefHeight="62.0" prefWidth="93.0" text="JFK" />
         <Button mnemonicParsing="false" onAction="#afficher" prefHeight="29.0" prefWidth="110.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@style.css" text="Afficher">
             <HBox.margin>
                 <Insets />

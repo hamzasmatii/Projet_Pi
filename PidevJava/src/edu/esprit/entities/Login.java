@@ -17,7 +17,16 @@ public class Login {
     Utilisateur utilisateur;
     Boolean blocked_login;
     String blocked_message;
+    String activation_token;
     Date blocked_duree;
+
+    public String getActivation_token() {
+        return activation_token;
+    }
+
+    public void setActivation_token(String activation_token) {
+        this.activation_token = activation_token;
+    }
 
     public Boolean getBlocked_login() {
         return blocked_login;
@@ -79,21 +88,24 @@ public class Login {
         }
     }
 
-    public Login(int id_login, String email_login, String mdp_login) {
+    public Login(int id_login, String email_login, String mdp_login,String activation_token) {
         this.id_login = id_login;
         this.email_login = email_login;
         this.mdp_login = mdp_login;
+        this.activation_token=activation_token;
     }
 
     public Login() {
         this.id_login = 0;
         this.email_login = "";
         this.mdp_login = "";
+        
     }
 
-    public Login(String email_login, String mdp_login) {
+    public Login(String email_login, String mdp_login,String activation_token) {
         this.email_login = email_login;
         this.mdp_login = mdp_login;
+        this.activation_token=activation_token;
     }
     
     public Login(Utilisateur utilisateur, String email_login, String mdp_login , Boolean blocked_login,String blocked_message,Date blocked_duree) {

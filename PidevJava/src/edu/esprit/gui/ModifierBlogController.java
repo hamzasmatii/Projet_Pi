@@ -8,6 +8,7 @@ package edu.esprit.gui;
 import edu.esprit.dao.classes.BlogDAO;
 import edu.esprit.dao.interfaces.IBlog;
 import edu.esprit.entities.Blog;
+import edu.esprit.util.Statics;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -125,7 +126,7 @@ public class ModifierBlogController implements Initializable {
         if (file != null) { 
             Image img = new Image(file.toURI().toString());
              imagePath.setText(file.toString());
-             File directory = new File("/src/image");
+             File directory = new File(Statics.imageDirectory);
              String destination = directory.toString();
                 if(!directory.exists())
                 {
@@ -135,7 +136,7 @@ public class ModifierBlogController implements Initializable {
                 File destinationFile = null;
                 imageName = file.toString().substring(file.toString().lastIndexOf('\\')+1);
                 sourceFile = new File(file.toString());
-                destinationFile = new File( "src/image/"+imageName);
+                destinationFile = new File( Statics.imageDirectory+imageName);
                 if(!destinationFile.exists())
                 {
                 Files.copy(sourceFile.toPath(), destinationFile.toPath());
@@ -148,7 +149,7 @@ public class ModifierBlogController implements Initializable {
     {
         this.blog = blog;
         id_blog = blog.getId_blog();
-        File file = new File("src/image/"+blog.getPhoto_blog());
+        File file = new File(Statics.imageDirectory+blog.getPhoto_blog());
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
         lbdescrip1.setText(blog.getSujet_blog());

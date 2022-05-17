@@ -9,6 +9,7 @@ package edu.esprit.gui;
 import edu.esprit.dao.classes.BlogDAO;
 import edu.esprit.dao.interfaces.IBlog;
 import edu.esprit.entities.Blog;
+import edu.esprit.util.Statics;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -88,7 +89,7 @@ public class ItemBlogController implements Initializable {
 
     @FXML
     private void SupprimerJeton(ActionEvent event) throws IOException {
-        IBlog recompensedao = BlogDAO.getInstance();
+        IBlog recompensedao = new BlogDAO();
 //        jetondao.insertJeton(jeton);
         recompensedao.deleteBlog(blog.getId_blog());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -98,7 +99,7 @@ public class ItemBlogController implements Initializable {
         
         //actualiser
         FXMLLoader fxmlloader = new FXMLLoader();
-        fxmlloader.setLocation(getClass().getResource("../view/BlogFXML.fxml"));
+        fxmlloader.setLocation(getClass().getResource("../gui/BlogFXML.fxml"));
         Parent root =  fxmlloader.load();
         BlogFXMLController recompensecontroller = fxmlloader.getController();
         recompensecontroller.afficherRecom();
@@ -111,7 +112,7 @@ public class ItemBlogController implements Initializable {
     {
         this.blog = blog;
         id_blog = blog.getId_blog();
-        File file = new File("src/image/"+blog.getPhoto_blog());
+        File file = new File(Statics.imageDirectory+blog.getPhoto_blog());
         Image image = new Image(file.toURI().toString());
         imageview.setImage(image);
         description.setText(blog.getSujet_blog());

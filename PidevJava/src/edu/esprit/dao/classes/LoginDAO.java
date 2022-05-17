@@ -35,13 +35,14 @@ public class LoginDAO implements ILogin {
     }
 
     public void insertLogin(Login l) {
-        String req = "INSERT INTO `login` (`id_login`,`email_login`, `mdp_login`) "
-                + "VALUES (?,?,?) ";
+        String req = "INSERT INTO `login` (`id_login`,`email_login`, `mdp_login`, `activation_token`) "
+                + "VALUES (?,?,?,? ) ";
         try {
             PreparedStatement ls = connection.prepareStatement(req);
             ls.setInt(1, l.getId_login());
             ls.setString(2, l.getEmail_login());
             ls.setString(3, doHashing(l.getMdp_login()));
+            ls.setString(4, l.getActivation_token());
             ls.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -304,6 +305,7 @@ public class LoginDAO implements ILogin {
                 login.setBlocked_login(resultat.getBoolean(4));
                 login.setBlocked_message(resultat.getString(5));
                 login.setBlocked_duree(resultat.getDate(6));
+                login.setActivation_token(resultat.getString(7));
 
             }
             return login;

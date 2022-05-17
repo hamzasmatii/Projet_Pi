@@ -10,11 +10,19 @@ import edu.esprit.dao.classes.UtilisateurDAO;
 import edu.esprit.entities.Login;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.Statics;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,6 +30,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -95,6 +104,7 @@ public class SignupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        // TODO
+       
        filePathInput.setEditable(false);
         Image im= new Image("/edu/esprit/util/assets/img/loginBooks1.jpg",imagePane.getBoundsInParent().getWidth(),imagePane.getBoundsInParent().getHeight(),false,false) ;
         
@@ -128,7 +138,13 @@ public class SignupController implements Initializable {
     }    
         
     @FXML
-    private void sInscrire(ActionEvent event) throws ParseException {
+    private void sInscrire(ActionEvent event) throws ParseException, MalformedURLException, IOException, NoSuchAlgorithmException {
+       /* String uniqueID = UUID.randomUUID().toString();
+       byte[] bytesOfMessage = uniqueID.getBytes("UTF-8");
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        byte[] theMD5digest = md.digest(bytesOfMessage);
+        String s = new String(theMD5digest, StandardCharsets.UTF_8);
+        System.out.print(s);*/
         Alert alert = new Alert(Alert.AlertType.ERROR);
         System.out.println(dateInput.getValue());
         System.out.println(nomInput.getText());
@@ -192,8 +208,19 @@ public class SignupController implements Initializable {
         us.insertUtilisateur(newUser);
         
        Utilisateur tempuser = us.findUtilisateurtByMail(emailInput.getText());
-       Login templogin = new Login(tempuser.getId_utilisateur(),emailInput.getText(),mdpInput.getText());
+        SecureRandom random = new SecureRandom();
+        byte bytes[] = new byte[20];
+        random.nextBytes(bytes);
+        String token = bytes.toString();
+        Login templogin = new Login(tempuser.getId_utilisateur(),emailInput.getText(),mdpInput.getText(),token);
        ls.insertLogin(templogin);
+       
+       URL yahoo = new URL("http://127.0.0.1:8001/api/activate?emailLogin="+emailInput.getText()+"&activationToken="+token);
+        URLConnection yc = yahoo.openConnection();
+        BufferedReader in = new BufferedReader(
+                                new InputStreamReader(
+                                yc.getInputStream()));
+        in.close();
         try {       
             switchSceneLogin(event);
         } catch (IOException ex) {

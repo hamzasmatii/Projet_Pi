@@ -123,6 +123,15 @@ public class LoginController implements Initializable {
             if (ls.verifLogin(emailInput.getText(), mdpInput.getText()))
             {
             Login templogin = ls.findLoginByMail(emailInput.getText());
+            System.out.print(templogin.getActivation_token());
+            if(templogin.getActivation_token()!=null)
+                {
+                    hideInputs();
+                    blockedText.setText("Votre compte n'est pas activé");
+                    blockedText.setVisible(true);
+                    return;
+                    
+                }
             if(templogin.getBlocked_login())
             {
                 if(templogin.getBlocked_duree()==null)

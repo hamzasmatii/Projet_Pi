@@ -76,7 +76,7 @@ public class RecompenseFXMLController implements Initializable {
     @FXML
     private TextField lbdescrip;
     private Spinner<Integer> spprix;
-    private int user_id=3;
+    private int user_id=Statics.currentUser.getId_utilisateur();
     
     
      private List<Recompense> allrecompenses=new ArrayList();

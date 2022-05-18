@@ -92,9 +92,9 @@ public class AchatRecomponseDAO implements IAchatRecomponseDAO {
 
             while (resultat.next()) {
                 AchatRecomponse achatrecomponse = new AchatRecomponse();
-                achatrecomponse.setId_recomponse(resultat.getInt(1));
-                achatrecomponse.setId_utilisateur(resultat.getInt(2));
-                achatrecomponse.setQuantite(resultat.getInt(3));
+                achatrecomponse.setId_recomponse(resultat.getInt(2));
+                achatrecomponse.setId_utilisateur(resultat.getInt(3));
+                achatrecomponse.setQuantite(resultat.getInt(4));
                 
 
                 listeachatrecomponse.add(achatrecomponse);
@@ -120,15 +120,18 @@ public class AchatRecomponseDAO implements IAchatRecomponseDAO {
     @Override
     public AchatRecomponse findQuantiteRecomponseByIdUser(int idu, int idr) {
         AchatRecomponse achatrecomponse = new AchatRecomponse();
-        String requete = "select quantite from achat_recomponse where id_utilisateur=?";
+        String requete = "select * from achat_recomponse where id_utilisateur=? AND id_recomponse=?";
         try {
             PreparedStatement ps = connection.prepareStatement(requete);
-            ps.setInt(1, idr);
+            ps.setInt(1, idu);
+            ps.setInt(2, idr);
             ResultSet resultat = ps.executeQuery();
 
             while (resultat.next()) {
                 
-                achatrecomponse.setQuantite(resultat.getInt(1));
+                achatrecomponse.setId_recomponse(resultat.getInt(2));
+                achatrecomponse.setId_utilisateur(resultat.getInt(3));
+                achatrecomponse.setQuantite(resultat.getInt(4));
                 
                 
                 
@@ -155,9 +158,9 @@ public class AchatRecomponseDAO implements IAchatRecomponseDAO {
 
             while (resultat.next()) {
                 AchatRecomponse achatrecomponse = new AchatRecomponse();
-                achatrecomponse.setId_recomponse(resultat.getInt(1));
-                achatrecomponse.setId_utilisateur(resultat.getInt(2));
-                achatrecomponse.setQuantite(resultat.getInt(3));
+                achatrecomponse.setId_recomponse(resultat.getInt(2));
+                achatrecomponse.setId_utilisateur(resultat.getInt(3));
+                achatrecomponse.setQuantite(resultat.getInt(4));
                 
 
                 listeachatrecomponse.add(achatrecomponse);

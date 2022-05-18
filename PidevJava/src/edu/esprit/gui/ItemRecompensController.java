@@ -8,11 +8,13 @@ package edu.esprit.gui;
 import edu.esprit.gui.*;
 import edu.esprit.dao.classes.AchatRecomponseDAO;
 import edu.esprit.dao.classes.RecompenseDAO;
+import edu.esprit.dao.classes.UtilisateurDAO;
 import edu.esprit.dao.interfaces.IAchatRecomponseDAO;
 import edu.esprit.dao.interfaces.IRecompenseDAO;
 import edu.esprit.entities.AchatRecomponse;
 import edu.esprit.entities.Jeton;
 import edu.esprit.entities.Recompense;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.Statics;
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +39,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -127,11 +130,11 @@ public class ItemRecompensController implements Initializable {
         alert.show();
         
         //actualiser
-        FXMLLoader fxmlloader = new FXMLLoader();
-        fxmlloader.setLocation(getClass().getResource("../gui/RecompenseFXML.fxml"));
-        Parent root =  fxmlloader.load();
-        RecompenseFXMLController recompensecontroller = fxmlloader.getController();
-        recompensecontroller.afficherRecom();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/RecompenseFXML.fxml"));
+        Pane pnlJeton = loader.load();
+        BorderPane homePane = (BorderPane) suprimer.getScene().getRoot();
+        homePane.setCenter(pnlJeton);
+        
 //        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 //        scene = new Scene(root);
 //        stage.setScene(scene);
@@ -156,19 +159,30 @@ public class ItemRecompensController implements Initializable {
 
     @FXML
     private void Acheter(ActionEvent event) throws IOException {
-        int id_user=3;
+        int solde = Statics.currentUser.getSolde_utilisateur();
+         IRecompenseDAO recompensedao=RecompenseDAO.getInstance();
+        recompense =recompensedao.findRecompenseById(recompense.getId_recomponse());
+        if (solde>=recompense.getPrix_recomponse())
+        {
+        int id_user=Statics.currentUser.getId_utilisateur();
         
       
        AchatRecomponse achatrecomponse2=new AchatRecomponse();
        IAchatRecomponseDAO recompdao=AchatRecomponseDAO.getInstance();
         achatrecomponse2=recompdao.findQuantiteRecomponseByIdUser(id_user,recompense.getId_recomponse());
         //System.out.println(achatrecomponse2.getQuantite());
-        System.out.println(achatrecomponse2);
+        System.out.println("dssssssdsdsd"+achatrecomponse2);
         if (achatrecomponse2.getQuantite()==0)
         {
             AchatRecomponse achatrecomponse = new AchatRecomponse(recompense.getId_recomponse(),id_user,1);    
         IAchatRecomponseDAO achatrecomponsedao = AchatRecomponseDAO.getInstance();
         achatrecomponsedao.insertAchatRecomponse(achatrecomponse);
+        
+        
+        Utilisateur tempuser= Statics.currentUser; 
+        tempuser.setSolde_utilisateur(solde-recompense.getPrix_recomponse());
+        UtilisateurDAO us = new UtilisateurDAO();
+        us.updateUtilisateur(tempuser);
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setContentText("Achat effectuée !");
@@ -184,9 +198,22 @@ public class ItemRecompensController implements Initializable {
         IAchatRecomponseDAO achatrecomponsedao = AchatRecomponseDAO.getInstance();
         achatrecomponsedao.updateAchatRecomponse(achatrecomponse);
         
+        Utilisateur tempuser= Statics.currentUser; 
+        tempuser.setSolde_utilisateur(solde-recompense.getPrix_recomponse());
+        UtilisateurDAO us = new UtilisateurDAO();
+        us.updateUtilisateur(tempuser);
+        
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
-        alert.setContentText("suppression effectuée !");
+        alert.setContentText("Achzt2 effectuée !");
+        alert.show();
+        }
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert");
+        alert.setContentText("Solde insuffisant !");
         alert.show();
         }
          //actualiser

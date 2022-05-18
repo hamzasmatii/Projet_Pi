@@ -95,9 +95,9 @@
          </font>
       </Text>
       <Button layoutX="419.0" layoutY="284.0" mnemonicParsing="false" onAction="#Statis" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #006400;" text="Stat" />
-      <ScrollPane fx:id="scorll" layoutX="883.0" layoutY="164.0" prefHeight="224.0" prefWidth="274.0" stylesheets="@style.css">
+      <ScrollPane fx:id="scorll" layoutX="776.0" layoutY="160.0" prefHeight="228.0" prefWidth="381.0" stylesheets="@style.css">
          <content>
-            <VBox fx:id="recomacht" prefHeight="222.0" prefWidth="272.0" style="-fx-background-color: #FCF3DE;" />
+            <VBox fx:id="recomacht" prefHeight="226.0" prefWidth="379.0" style="-fx-background-color: #FCF3DE;" />
          </content>
       </ScrollPane>
       <Spinner fx:id="quantitedon" editable="true" layoutX="841.0" layoutY="102.0" />

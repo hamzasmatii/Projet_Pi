@@ -12,6 +12,7 @@ import edu.esprit.dao.interfaces.IJetonDAO;
 import edu.esprit.dao.interfaces.IRecompenseDAO;
 import edu.esprit.entities.Jeton;
 import edu.esprit.entities.Recompense;
+import edu.esprit.util.Statics;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -188,7 +189,7 @@ public class ModifierRecompenseController implements Initializable {
         spprix.getValueFactory().setValue(recompense.getPrix_recomponse());
         lbdescrip1.setText(recompense.getDescription_recomponse());
         nom.setText(recompense.getNom_recomponse());
-        File file = new File("src/image/"+recompense.getPhoto_recomponse());
+        File file = new File(Statics.imageDirectory+recompense.getPhoto_recomponse());
         //System.out.println(file.toURI().toString());
         Image image = new Image(file.toURI().toString());
         imagePath.setText(file.toString());

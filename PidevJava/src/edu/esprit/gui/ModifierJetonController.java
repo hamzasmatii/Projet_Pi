@@ -26,11 +26,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import static jdk.nashorn.internal.objects.NativeRegExp.source;
@@ -57,6 +61,8 @@ public class ModifierJetonController implements Initializable {
     private AnchorPane panemod;
     
     private Scene scene;
+    @FXML
+    private Button confirmer;
         
     /**
      * Initializes the controller class.
@@ -100,6 +106,9 @@ public class ModifierJetonController implements Initializable {
         Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
         alert2.setTitle("Success");
         alert2.setContentText("Jeton is updated successfully!");
+             
+//       BorderPane homePane = (BorderPane) confirmer.getScene().getRoot();
+    //    homePane.setCenter(node);
         
         
      
@@ -109,22 +118,17 @@ public class ModifierJetonController implements Initializable {
          if(res.isPresent()) {
                 if(res.get().equals(ButtonType.OK))
                 {
+              
+                     
                          stage = (Stage) panemod.getScene().getWindow();
                             stage.close();
                             //actualiser new window
-                        FXMLLoader fxmlloader = new FXMLLoader();
-                        fxmlloader.setLocation(getClass().getResource("../gui/JetonFXML.fxml"));
-                        Parent root =  fxmlloader.load();
-                        JetonFXMLController jetoncontroller = fxmlloader.getController();
-                        jetoncontroller.afficherJeton();
-                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                        scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
+                       
                 }
         }
 
          }
+        
     }
     
     void afficher(){
@@ -145,6 +149,10 @@ public class ModifierJetonController implements Initializable {
         
         
         
+    }
+
+    @FXML
+    private void search(KeyEvent event) {
     }
     
 }

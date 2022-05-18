@@ -32,6 +32,6 @@
             <Font size="21.0" />
          </font>
       </Text>
-      <Button layoutX="394.0" layoutY="235.0" mnemonicParsing="false" onAction="#ConfirmerJeton" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #006400;" text="Confirmer" textFill="WHITE" />
+      <Button fx:id="confirmer" layoutX="394.0" layoutY="235.0" mnemonicParsing="false" onAction="#ConfirmerJeton" prefHeight="27.0" prefWidth="83.0" style="-fx-background-color: #006400;" text="Confirmer" textFill="WHITE" />
    </children>
 </AnchorPane>

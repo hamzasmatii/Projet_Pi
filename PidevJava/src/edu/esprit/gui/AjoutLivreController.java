@@ -166,6 +166,7 @@ public class AjoutLivreController implements Initializable {
         //LocalDate date = LocalDate.of(2020, 1, 8);
         LocalDate date = java.time.LocalDate.now();
         Livre templ = new Livre(titre_livreInput.getText(), description_livreInput.getText(), java.sql.Date.valueOf(date), imageName, pdfName, Integer.parseInt(prix_livreInput.getText()), 0, Statics.currentUser.getId_utilisateur(), categorie_livreInput.getValue().getId_categorie_livre());
+        System.out.print(templ);
         LivreDAO ls = new LivreDAO();
         ls.insertLivre(templ);
 
@@ -178,8 +179,10 @@ public class AjoutLivreController implements Initializable {
         File file = chooser.showOpenDialog(stage);
         if (file != null) {
             this.photo_livreInput.setText(file.toString());
-            File directory = new File("/src/image");
+            File directory = new File(Statics.imageDirectory+"livre\\");
+           
             String destination = directory.toString();
+            System.out.println(destination);
             if (!directory.exists()) {
                 directory.mkdir();
             }
@@ -187,7 +190,7 @@ public class AjoutLivreController implements Initializable {
             File destinationFile = null;
             imageName = file.toString().substring(file.toString().lastIndexOf('\\') + 1);
             sourceFile = new File(file.toString());
-            destinationFile = new File("src/image/livre" + imageName);
+            destinationFile = new File(Statics.imageDirectory+"livre\\"+ imageName);
             if (!destinationFile.exists()) {
                 Files.copy(sourceFile.toPath(), destinationFile.toPath());
             }
@@ -222,8 +225,9 @@ public class AjoutLivreController implements Initializable {
     @FXML
     private void modifier_livre(ActionEvent event) {
         LocalDate date = LocalDate.of(2020, 1, 8);
-        System.out.println(table_livre.getSelectionModel().getSelectedItem().getId_livre());
-        Livre templ = new Livre(table_livre.getSelectionModel().getSelectedItem().getId_livre(), titre_livreInput.getText(), 50, description_livre.getText(), java.sql.Date.valueOf(date), photo_livre.getText(), contenu_livre.getText(), 1, 15, 2);
+        
+        Livre templ = new Livre(table_livre.getSelectionModel().getSelectedItem().getId_livre(), titre_livreInput.getText(), 50, description_livreInput.getText(), java.sql.Date.valueOf(date), photo_livreInput.getText(), contenu_livreInput.getText(), 1, 15, 2);
+        System.out.println("+++++++++++++++"+templ);
         LivreDAO ls = new LivreDAO();
         ls.updateLivre(templ);
     }

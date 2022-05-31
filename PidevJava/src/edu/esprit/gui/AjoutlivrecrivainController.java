@@ -140,7 +140,7 @@ public class AjoutlivrecrivainController implements Initializable {
         File file = chooser.showOpenDialog(stage);
         if (file != null) { 
              this.photo_livreInput.setText(file.toString());
-             File directory = new File(imageDirectory);
+             File directory = new File(imageDirectory+"livre\\");
              String destination = directory.toString();
                 if(!directory.exists())
                 {
@@ -150,7 +150,7 @@ public class AjoutlivrecrivainController implements Initializable {
                 File destinationFile = null;
                 imageName = file.toString().substring(file.toString().lastIndexOf('\\')+1);
                 sourceFile = new File(file.toString());
-                destinationFile = new File( imageDirectory+imageName);
+                destinationFile = new File( imageDirectory+"livre\\"+imageName);
                 if(!destinationFile.exists())
                 {
                 Files.copy(sourceFile.toPath(), destinationFile.toPath());

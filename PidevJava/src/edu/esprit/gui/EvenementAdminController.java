@@ -90,7 +90,7 @@ IevenementDAO edao= new EvenementDAO();
 
     @FXML
     private void deleteEvenement(ActionEvent event) {
-        
+        System.out.println("delete "+tableView.getSelectionModel().getSelectedItem().getId_evenement());
         edao.deleteEvenement(tableView.getSelectionModel().getSelectedItem().getId_evenement());
         List<Evenement> evenements=edao.fetchEvenement();
         tableView.setItems(FXCollections.observableList(evenements));  

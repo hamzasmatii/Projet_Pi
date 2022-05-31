@@ -65,10 +65,11 @@ public void setData(Livre liv) throws IOException {
         titre.setText(l.getTitre_livre());
         discription.setText(l.getDescription_livre());
         evaluation.setText(l.getEvalution_livre()+"");
-        //System.out.print(l.getPhoto_livre());
-        File sourceimage = new File(imageDirectory+l.getPhoto_livre());
-                    Image image = SwingFXUtils.toFXImage(ImageIO.read(sourceimage), null);
-                Image img=image;
+        System.out.println("-----------------------"+imageDirectory+"-----"+l.getPhoto_livre());
+        
+        File sourceimage = new File(imageDirectory+"livre\\"+l.getPhoto_livre());
+        Image image = SwingFXUtils.toFXImage(ImageIO.read(sourceimage), null);
+        Image img=image;
         imagelivre.setImage(img);
         
         

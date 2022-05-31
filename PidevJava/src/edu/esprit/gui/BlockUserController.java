@@ -53,8 +53,8 @@ public class BlockUserController implements Initializable {
     private TableColumn<Login, String> id_utilisateur;
     @FXML
     private TableColumn<Login, String> nom_utilisateur;
-    @FXML
-    private TableColumn<Login, String> date_naissance_utilisateur;
+   /* @FXML
+    private TableColumn<Login, String> date_naissance_utilisateur;*/
     @FXML
     private TableColumn<Login, String> photo_utilisateur;
     @FXML
@@ -108,7 +108,7 @@ List<Login> listeutilisateurs;
 
         nom_utilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getUtilisateur().getNom_utilisateur())));
 
-        date_naissance_utilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getUtilisateur().getDate_naissance_utilisateur())));
+       // date_naissance_utilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getUtilisateur().getDate_naissance_utilisateur())));
 
         photo_utilisateur.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getUtilisateur().getPhoto_utilisateur())));
 

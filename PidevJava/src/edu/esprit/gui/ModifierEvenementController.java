@@ -115,7 +115,6 @@ public class ModifierEvenementController implements Initializable {
         evenement.setDescription_evenement(this.descriptionInput.getText());
         evenement.setDate_evenement(date);
         evenement.setType_evenements(TypeInput.getValue());
-        evenement.setImage(imageName);
         IevenementDAO edao=new EvenementDAO();
         edao.updateEvenement(evenement);
         succesAlert();
@@ -145,6 +144,8 @@ public class ModifierEvenementController implements Initializable {
                 if(!destinationFile.exists())
                 {
                 Files.copy(sourceFile.toPath(), destinationFile.toPath());
+                 evenement.setImage(imageName);
+
                 }
             
          }
